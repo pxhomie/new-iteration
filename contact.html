@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr31");console.log("KORA build: pr31")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<title>Contact — Kora</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+<meta name="description" content="Kora contact page — native HTML/CSS/JS rebuild." />
+<link rel="stylesheet" href="css/style.css?v=pr31" />
+<link rel="stylesheet" href="css/cases.css?v=pr31" />
+<link rel="stylesheet" href="css/contact.css?v=pr31" />
+</head>
+<body>
+<script src="js/transition.js?v=pr31"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo" href="index.html"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About us</a>
+    <a class="lnk" href="#contact">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="#contact">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="https://framerusercontent.com/images/JDU4AEuAWM8QYjfyZ91Xs9q0Cu8.jpg" alt="">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main class="cases-main" id="top">
+
+<!-- ================= CONTACT HERO ================= -->
+<section class="ct-hero">
+  <div class="ct-wrap">
+    <h1 data-appear>Contact.</h1>
+    <p class="sub" data-appear>Book a 30-minute call or send us a message. We respond within 24 hours.</p>
+    <div class="ct-info" data-appear>
+      <div>
+        <p class="tel">(510) 895-6500</p>
+        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+      </div>
+      <div>
+        <p class="lbl">Address</p>
+        <p class="val">2847 Mission Street<br>San Francisco, CA 94110</p>
+      </div>
+      <div>
+        <p class="lbl">Office Hours</p>
+        <p class="val">Monday to Friday:<br>9:00 AM – 6:00 PM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT CARD: image + glass form ================= -->
+<section class="contact-sec contact-sec--page" id="contact">
+  <div class="contact-sec__card">
+    <div class="contact-sec__bg">
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/YLqSXPwuRjvZniqgw49AQYJMSzM.png" alt="">
+    </div>
+    <div class="in">
+      <div style="display:flex;flex-direction:column">
+        <h2 data-appear>Let's find your next growth lever.</h2>
+        <ul class="feats" data-appear>
+          <li><span class="ic">✦</span>Actionable growth roadmap</li>
+          <li><span class="ic">✦</span>Channel &amp; funnel diagnostics</li>
+          <li><span class="ic">✦</span>Clear next steps &amp; timeline</li>
+        </ul>
+        <div class="q" data-appear>
+          <p class="lbl">Testimonial</p>
+          <p>"What sets Kora apart is their commitment to building our capabilities, not creating dependency."</p>
+          <div class="who">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg" alt="">
+            <span>Jennifer Holland — CFO, Elevance</span>
+          </div>
+        </div>
+      </div>
+      <form class="cform cform--glass" data-appear onsubmit="return false">
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="lead">No pitch decks, no pressure. <em>Tell us where you are and we'll share how we can help.</em></p>
+        <div class="row2">
+          <div><label>Name</label><input type="text" placeholder="Jane Cooper"></div>
+          <div><label>Email</label><input type="email" placeholder="name@company.com"></div>
+        </div>
+        <label>What services are you interested in?</label>
+        <div class="chips" data-chips>
+          <button type="button"><span class="rb"></span>Go-to-Market</button>
+          <button type="button"><span class="rb"></span>Growth Strategy</button>
+          <button type="button"><span class="rb"></span>Revenue Operations</button>
+          <button type="button"><span class="rb"></span>Sales Optimization</button>
+          <button type="button"><span class="rb"></span>Pricing &amp; Packaging</button>
+        </div>
+        <label>Annual revenue</label>
+        <div class="chips" data-chips="single">
+          <button type="button"><span class="rb"></span>Under $1M</button>
+          <button type="button"><span class="rb"></span>$1M - $5M</button>
+          <button type="button"><span class="rb"></span>$5M - $20M</button>
+          <button type="button" class="is-on"><span class="rb"></span>$20M+</button>
+        </div>
+        <label>Biggest growth challenge?</label>
+        <textarea placeholder="We've plateaued at $8M ARR…"></textarea>
+        <label class="terms"><input type="checkbox"> By submitting, you agree to our terms of service.</label>
+        <div class="foot">
+          <p class="note">We'll reach out within 24 hours to schedule your call.</p>
+          <button class="btn btn--dark" type="submit">Book a call <span class="dot" style="background:var(--green)"></span></button>
+        </div>
+      </form>
+    </div>
+    <div class="contact-stats">
+      <div class="cell"><p class="num"><span data-count="40">0</span><span class="sfx">+</span></p><p class="d">Long-term partnerships.</p></div>
+      <div class="cell"><p class="num"><span data-count="99">0</span><span class="sfx">%</span></p><p class="d">Satisfaction Rate.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ (tabbed) ================= -->
+<section class="faq faq--ct">
+  <h2 data-appear>FAQ</h2>
+  <div class="faq__panel" data-appear>
+    <div class="faq__tabs" id="faqTabs">
+      <button class="is-active" data-set="General">General</button>
+      <button data-set="Pricing">Pricing</button>
+      <button data-set="Process">Process</button>
+      <button data-set="Results">Results</button>
+    </div>
+
+    <div class="faq__list" data-set="General">
+      <details class="faq-item" open>
+        <summary>What exactly does Kora do? <span class="x">+</span></summary>
+        <p class="a">We are a growth partner for B2B companies in the $2M–$50M range. We diagnose what is holding revenue back, design the strategy to fix it, and then work inside your team until the fix is real. We do not run ad campaigns — we build the systems, processes, and positioning that make revenue predictable and repeatable.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What industries do you work with? <span class="x">+</span></summary>
+        <p class="a">Most of our work is in B2B — SaaS, professional services, fintech, and healthtech among others. What our clients share is a strong product that has outgrown its current growth engine. The frameworks travel across industries; the application is always tailored to your market, competitors, and buyers.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How is Kora different from a marketing agency? <span class="x">+</span></summary>
+        <p class="a">An agency executes tactics: ads, SEO, content. We operate a level up — figuring out why growth has stalled and which levers are actually worth pulling, then building the strategy and systems around them. If tactical execution is what you need afterwards, we will help you choose the right partner for it. In our experience the real gap is rarely tactics; it is clarity about priorities.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Who on our team would work with Kora? <span class="x">+</span></summary>
+        <p class="a">Usually the founder or CEO together with whoever owns the revenue number — a VP of Sales, a marketing lead, or a CRO. We embed in your existing rituals and tools and work directly with the people responsible for execution, so it feels less like hiring consultants and more like adding a senior teammate.</p>
+      </details>
+    </div>
+
+    <div class="faq__list" data-set="Pricing" hidden>
+      <details class="faq-item" open>
+        <summary>What happens on the discovery call? <span class="x">+</span></summary>
+        <p class="a">A focused 30-minute conversation about where growth is stalling and why. We ask about your funnel, team, and goals, share an honest first read on the bottleneck, and tell you whether — and how — we can help. No slides and no hard sell.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a minimum commitment? <span class="x">+</span></summary>
+        <p class="a">The Growth Sprint runs eight weeks and is the smallest way to work with us. Partnership engagements are month-to-month after an initial quarter — if we stop earning our fee, you stop paying it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I switch between tiers? <span class="x">+</span></summary>
+        <p class="a">Yes. Many clients start with a Sprint and roll into a Partnership once the roadmap is clear. You can step up, step down, or pause at the start of any month.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you work with startups or established companies? <span class="x">+</span></summary>
+        <p class="a">Both, with a sweet spot between $2M and $50M in revenue. Earlier than that, we help you build your first repeatable growth motion; later, we focus on removing the friction that scale has created.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What does the first week look like? <span class="x">+</span></summary>
+        <p class="a">Access, interviews, and data. We plug into your CRM and analytics, talk to the people who own revenue, and end the week with a working map of your funnel and the first hypotheses to test.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I know if Kora is the right fit? <span class="x">+</span></summary>
+        <p class="a">If you have a product that sells and growth that has stopped compounding, we are probably a fit. The discovery call exists to answer exactly this — and we will tell you plainly if we are not.</p>
+      </details>
+    </div>
+
+    <div class="faq__list" data-set="Process" hidden>
+      <details class="faq-item" open>
+        <summary>How long before we start seeing results? <span class="x">+</span></summary>
+        <p class="a">Quick wins usually land inside the first month — pricing fixes, funnel patches, cleaner reporting. Structural results build over one to two quarters as the new systems take hold.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How much time does this require from our team? <span class="x">+</span></summary>
+        <p class="a">Plan on a weekly working session with leadership plus async collaboration in your tools. We do the heavy lifting; your team stays close enough to own everything we build.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What tools or platforms do you work in? <span class="x">+</span></summary>
+        <p class="a">Yours. We work inside your existing CRM, analytics, and project stack rather than forcing a migration. Where a gap genuinely blocks growth, we recommend the lightest tool that closes it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What does a typical engagement look like week to week? <span class="x">+</span></summary>
+        <p class="a">A standing strategy session, a shared scoreboard of the metrics that matter, and a prioritized backlog we execute together. Every week ends with what moved, what did not, and what comes next.</p>
+      </details>
+    </div>
+
+    <div class="faq__list" data-set="Results" hidden>
+      <details class="faq-item" open>
+        <summary>What kind of results do your clients typically see? <span class="x">+</span></summary>
+        <p class="a">Most engagements move the numbers that compound — faster pipeline, stronger close rates, lower acquisition costs — and several clients have doubled revenue within a year. On the discovery call we share case studies from companies at your stage so the benchmark is realistic.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you guarantee results? <span class="x">+</span></summary>
+        <p class="a">No honest consultancy can. What we do guarantee is full transparency: a scoreboard you can check at any time, and the option to end the engagement if the numbers stop justifying it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do you measure success? <span class="x">+</span></summary>
+        <p class="a">Against the revenue goals we set together in week one — pipeline created, conversion, velocity, and ultimately closed revenue. Activity metrics only count when they move those.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens after the engagement ends? <span class="x">+</span></summary>
+        <p class="a">You keep everything: the playbooks, the dashboards, and a team trained to run them. Most clients stay in touch with a quarterly check-in, but the goal is that you no longer need us.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- support card -->
+  <div class="faq-support" data-appear>
+    <span class="avs">
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt="">
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt="">
+    </span>
+    <div class="tx">
+      <p class="t">More questions? Reach out anytime.</p>
+      <span class="faq__mail" data-copy="support@kora.com"><span class="ic">✳</span> support@kora.com</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="addr">2847 Mission Street<br>San Francisco, CA 94110</p>
+        <h3>Subscribe to<br>our newsletter.</h3>
+        <form class="nl" onsubmit="return false">
+          <input type="email" placeholder="Email" aria-label="Email">
+          <button class="btn btn--green">Subscribe ✳</button>
+        </form>
+        <label class="agree"><input type="checkbox"> By subscribing, you agree to our <u>privacy policy</u>.</label>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+        </div>
+        <p class="tel">(510) 895-6500</p>
+        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>kora</span></div>
+    <p class="footer__copy">© 2026 Kora All rights reserved.</p>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr31"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr31"></script>
+<script src="vendor/lenis.min.js?v=pr31"></script>
+<script src="js/shared.js?v=pr31"></script>
+</body>
+</html>

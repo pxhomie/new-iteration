@@ -1,0 +1,17 @@
+# Единый перенос строки в репозитории — иначе Windows и песочница
+# будут показывать весь файл как изменённый
+* text=auto eol=lf
+
+# Бинарники: не трогать и не пытаться показывать как текст
+*.woff2 binary
+*.woff  binary
+*.ttf   binary
+*.otf   binary
+*.zip   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.mp4   binary
+*.webm  binary

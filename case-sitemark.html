@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr31");console.log("KORA build: pr31")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<title>How Sitemark broke through an $18M plateau — Kora</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+<meta name="description" content="Kora case study — native HTML/CSS/JS rebuild." />
+<link rel="stylesheet" href="css/style.css?v=pr31" />
+<link rel="stylesheet" href="css/cases.css?v=pr31" />
+</head>
+<body>
+<script src="js/transition.js?v=pr31"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo" href="index.html"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About us</a>
+    <a class="lnk" href="contact.html">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="#contact">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="https://framerusercontent.com/images/JDU4AEuAWM8QYjfyZ91Xs9q0Cu8.jpg" alt="">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main class="cases-main" id="top">
+
+<!-- ================= CASE HERO ================= -->
+<section class="cs-hero">
+  <div class="cs-wrap">
+    <div class="cs-hero__top">
+      <div>
+        <h1 data-appear>Sitemark</h1>
+        <p class="sub" data-appear>Sitemark is a B2B SaaS platform serving 2,000+ enterprise customers. After three years of growth, they hit a plateau at $18M ARR.</p>
+      </div>
+      <div class="cs-hero__svc" data-appear>
+        <p class="lbl">Services</p>
+        <ul class="list">
+          <li>Growth Strategy</li><li>Revenue Operations</li><li>Pricing &amp; Packaging</li>
+          <li>Sales Optimization</li><li>Go-to-Market</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-shell" data-appear>
+      <div class="cs-shell__photo">
+        <img src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg" alt="">
+        <span class="feat__logo">✳ Sitemark</span>
+      </div>
+      <div class="cs-shell__row">
+        <div class="cs-meta">
+          <p class="cs-meta__logo">✳ Sitemark</p>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 12.5V3l5-1.8V12.5M7 12.5h5V6H7M4 5.5h1M4 8h1M9 8h1M9 10h1" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Industry</span>
+            <span class="mv">Enterprise Software</span>
+          </div>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="5" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="10" cy="5.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 12c0-2 1.5-3.5 3.5-3.5S8.5 10 8.5 12M9 9.5c1.8 0 3 1.2 3 2.5" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Company Size</span>
+            <span class="mv">450 Employees</span>
+          </div>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="7" cy="7.5" r="4.8" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M7 5v2.7l1.8 1.2M5.5 1h3" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Timeline</span>
+            <span class="mv">6 Months</span>
+          </div>
+        </div>
+        <div class="feat__metrics cs-metrics">
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5M10.5 1.5H13v2.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="v"><span data-count="47">0</span><sup>%</sup></p>
+            <p class="l">Revenue growth in 6 months</p>
+          </div>
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.5 8.5 10 5M7.5 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="v"><span data-count="2.4" data-dec="1">0</span><sup>x</sup></p>
+            <p class="l">Pipeline velocity increase</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="cs-art">
+  <div class="cs-wrap">
+    <time class="cs-art__date" datetime="2026-03-18">March 18, 2026</time>
+    <h2 class="cs-art__title" data-appear>How Sitemark broke through an $18M plateau and grew 47% in six months.</h2>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="0.8" fill="currentColor"/></svg>The challenge</span></p>
+      <div>
+        <p class="lead">Stuck at $18M for four straight quarters. Acquisition was steady, but churn and contraction were eating every gain.</p>
+        <p class="body">Sitemark was adding 40-50 new customers per quarter, but churn and contraction were eating the gains. Their sales cycle had ballooned from 25 to 42 days as they moved upmarket without adjusting their process. Reps were chasing unqualified enterprise leads while existing customers had no structured path to expand.</p>
+      </div>
+    </div>
+    <figure class="cs-fig" data-appear>
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/8jCrp6UAdvY0BvbZMQ69FMrPWU.jpg" alt="">
+    </figure>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 12h10M2 12V2m3 6 2.5-2.5L9.5 8 12 4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>The approach</span></p>
+      <div>
+        <p class="lead">Kora ran a full-funnel diagnostic in the first two weeks, then focused on three high-leverage initiatives.</p>
+        <p class="body">We rebuilt their qualification framework after finding 60% of enterprise leads were a poor fit. The sales team refocused on prospects with a 3x higher close rate. We restructured customer success around expansion triggers and compressed the sales cycle by replacing the three-meeting discovery process with a live product audit on the first call.</p>
+      </div>
+    </div>
+    <figure class="cs-fig" data-appear>
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/GCGprlnbGpXM6hbSFQyr2FmQhs.jpg" alt="">
+    </figure>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>The Results</span></p>
+      <div>
+        <p class="results-intro">Sitemark broke through a four-quarter plateau and grew from $18M to $26.5M ARR in six months. Expansion revenue became their primary growth driver for the first time.</p>
+        <ul class="results">
+        <li>Revenue grew from $18M to $26.5M ARR within six months</li>
+        <li>Pipeline velocity increased 2.4x through better qualification</li>
+        <li>Sales cycle compressed from 42 days to 29 days</li>
+        <li>Net revenue retention jumped from 97% to 118%</li>
+        <li>Expansion revenue became the largest growth driver within 90 days</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-quote" data-appear>
+      <p class="cs-quote__logo">✳ Sitemark</p>
+      <p class="q">“Kora helped us see around corners. When everyone else was telling us to grow headcount, they helped us realize we had a conversion problem, not a capacity problem. That insight alone saved us from making a costly mistake.”</p>
+      <div class="who">
+        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/MI76ZMTeB2Mvtl0tBcBCscmA.jpg" alt="">
+        <span><span class="n">David Kim</span><br><span class="r">VP Strategy</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MORE CASES ================= -->
+<section class="cs-more">
+  <div class="cs-wrap">
+    <div class="cs-more__head" data-appear>
+      <div>
+        <h2>More cases.</h2>
+        <p class="sub">Trusted by more than 50 companies, from ambitious startups to major enterprises.</p>
+      </div>
+      <a class="btn btn--dark" href="cases.html">View All</a>
+    </div>
+    <div class="cgrid cgrid--tight">
+      <article class="ccard" data-appear>
+        <div class="ccard__img">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/CtZtT97lx3imoMOuinUNyvOUo.jpg" alt="">
+          <span class="ccard__logo">Lightspeed</span>
+        </div>
+        <div class="ccard__body">
+          <time datetime="2026-03-12">March 12, 2026</time>
+          <h3>How Lightspeed tripled revenue in 18 months by rebuilding their sales engine from the ground up.</h3>
+          <div class="ccard__mrow">
+            <div class="cell"><p class="v">3.1x</p><p class="l">Revenue growth in 18 months</p></div>
+            <div class="cell"><p class="v">34%</p><p class="l">Close rate (from 12%)</p></div>
+          </div>
+        </div>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-sitemark.html">View Case Study</a>
+      </article>
+      <article class="ccard" data-appear>
+        <div class="ccard__img">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg" alt="">
+          <span class="ccard__logo">HAMILTON</span>
+        </div>
+        <div class="ccard__body">
+          <time datetime="2026-03-05">March 5, 2026</time>
+          <h3>How Hamilton broke their referral ceiling and grew from $6M to $15.6M in a year.</h3>
+          <div class="ccard__mrow">
+            <div class="cell"><p class="v">2.6x</p><p class="l">Revenue in 12 months</p></div>
+            <div class="cell"><p class="v">41%</p><p class="l">Revenue from new channels</p></div>
+          </div>
+        </div>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-sitemark.html">View Case Study</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DARK CTA ================= -->
+<section class="cta-dark" id="contact">
+  <div class="cta-card">
+    <div class="in">
+      <div>
+        <h2 id="ctaTitle" data-appear>Let's find your next growth lever.</h2>
+        <ul class="feats" data-appear>
+          <li><span class="ic">✦</span>Actionable growth roadmap</li>
+          <li><span class="ic">✦</span>Channel &amp; funnel diagnostics</li>
+          <li><span class="ic">✦</span>Clear next steps &amp; timeline</li>
+        </ul>
+        <div class="q" data-appear>
+          <p class="lbl">Testimonial</p>
+          <p>"What sets Kora apart is their commitment to building our capabilities, not creating dependency."</p>
+          <div class="who">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg" alt="">
+            <span><span class="n">Jennifer Holland</span><br><span class="r">CFO, Elevance</span></span>
+          </div>
+        </div>
+      </div>
+      <form class="cform" data-appear onsubmit="return false">
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="lead">No pitch decks, no pressure. <em>Tell us where you are and we'll share how we can help.</em></p>
+        <div class="row2">
+          <div><label>Name</label><input type="text" placeholder="Jane Cooper"></div>
+          <div><label>Email</label><input type="email" placeholder="name@company.com"></div>
+        </div>
+        <label>What services are you interested in?</label>
+        <div class="chips" data-chips>
+          <button type="button"><span class="rb"></span>Go-to-Market</button>
+          <button type="button"><span class="rb"></span>Growth Strategy</button>
+          <button type="button"><span class="rb"></span>Revenue Operations</button>
+          <button type="button"><span class="rb"></span>Sales Optimization</button>
+          <button type="button"><span class="rb"></span>Pricing &amp; Packaging</button>
+        </div>
+        <label>Biggest growth challenge?</label>
+        <textarea placeholder="We've plateaued at $18M ARR…"></textarea>
+        <label class="terms"><input type="checkbox"> By submitting, you agree to our terms of service.</label>
+        <div class="foot">
+          <p class="note">We'll reach out within 24 hours to schedule your call.</p>
+          <button class="btn btn--dark" type="submit">Book a call <span class="dot" style="background:var(--green)"></span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="addr">2847 Mission Street<br>San Francisco, CA 94110</p>
+        <h3>Subscribe to<br>our newsletter.</h3>
+        <form class="nl" onsubmit="return false">
+          <input type="email" placeholder="Email" aria-label="Email">
+          <button class="btn btn--green">Subscribe ✳</button>
+        </form>
+        <label class="agree"><input type="checkbox"> By subscribing, you agree to our <u>privacy policy</u>.</label>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+        </div>
+        <p class="tel">(510) 895-6500</p>
+        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>kora</span></div>
+    <p class="footer__copy">© 2026 Kora All rights reserved.</p>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr31"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr31"></script>
+<script src="vendor/lenis.min.js?v=pr31"></script>
+<script src="js/shared.js?v=pr31"></script>
+</body>
+</html>

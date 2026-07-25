@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr31");console.log("KORA build: pr31")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("preload")}catch(e){}</script>
+<title>Kora — Growth Consulting &amp; Agency</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+<meta name="description" content="Kora — growth consulting template. Native HTML/CSS/JS rebuild." />
+<link rel="stylesheet" href="css/style.css?v=pr31" />
+</head>
+<body>
+<script src="js/transition.js?v=pr31"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- kora mark: green circle w/ asterisk-ish knot -->
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+    <symbol id="ic-impl" viewBox="0 0 17 17">
+      <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.6 1.7"/>
+      <path d="M5.8 8.7l1.8 1.8 3.6-3.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ic-tech" viewBox="0 0 17 17">
+      <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="5.4" y="5.6" width="6.2" height="4.2" rx="0.9" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <path d="M7 11.6h3M8.5 9.8v1.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo" href="#top"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About us</a>
+    <a class="lnk" href="contact.html">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="#contact">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="https://framerusercontent.com/images/JDU4AEuAWM8QYjfyZ91Xs9q0Cu8.jpg" alt="">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main id="top">
+
+<!-- ================= INTRO PIN: hero → card → full-bleed → statement ================= -->
+<section class="intro" id="introPin">
+  <div class="intro__stick">
+    <div class="stage" id="stage">
+      <div class="stage__media" id="stageMedia">
+        <img src="https://framerusercontent.com/images/IaiFRY4S4OYymE10NQ9ipQb5dwc.jpg" alt="">
+      </div>
+      <div class="stage__dim" id="stageDim"></div>
+      <div class="stage__grain" aria-hidden="true"></div>
+
+      <!-- hero UI -->
+      <div class="hero-ui" id="heroUi">
+        <div class="hero-ui__txt">
+          <h1>Your growth partner for companies ready to scale.</h1>
+          <p class="sub">Kora helps leadership teams gain clarity and build systems that scale.</p>
+          <div class="hero-ui__cta">
+            <a class="btn btn--green" href="#services"><span class="dot"></span> Our Services</a>
+            <a class="btn btn--ghost" href="#pricing">Pricing <svg width="16" height="16" class="arr"><use href="#arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="hero-ui__foot">
+          <div class="trusted">
+            <span class="trusted__avatars">
+              <img src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+              <img src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt="">
+              <img src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt="">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt="">
+            </span>
+            <span class="cap"><span class="stars">★★★★★</span>Trusted by 50+ companies</span>
+          </div>
+          <div class="marquee">
+            <div class="marquee__track">
+              <span class="lg lg--1">Talliand</span><span class="lg lg--2">oslo.</span>
+              <span class="lg lg--3">Savannah</span><span class="lg lg--4">Theo</span>
+              <span class="lg lg--5">nice.</span><span class="lg lg--2">Lightspeed</span>
+              <span class="lg lg--5">✳ Sitemark</span><span class="lg lg--3">Hamilton</span>
+              <span class="lg lg--4">Logoipsum</span>
+              <span class="lg lg--1">Talliand</span><span class="lg lg--2">oslo.</span>
+              <span class="lg lg--3">Savannah</span><span class="lg lg--4">Theo</span>
+              <span class="lg lg--5">nice.</span><span class="lg lg--2">Lightspeed</span>
+              <span class="lg lg--5">✳ Sitemark</span><span class="lg lg--3">Hamilton</span>
+              <span class="lg lg--4">Logoipsum</span>
+            </div>
+          </div>
+        </div>
+
+        <a class="case-mini" href="cases.html">
+          <span class="case-mini__img">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg" alt="">
+            <span class="cl">✳ Sitemark</span>
+          </span>
+          <span class="case-mini__body">
+            <span class="chip">New Case Study</span>
+            <span class="t">How Sitemark broke through an $18M plateau and grew 47% in six months.</span>
+            <span class="case-mini__metric">
+              <b>47%</b>
+              <span>Revenue growth<br>in 6 months</span>
+              <span class="go"><svg width="15" height="15"><use href="#arrow"/></svg></span>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <!-- statement -->
+      <div class="statement" id="statement">
+        <p id="statementTxt">The strategies that built your company won't scale it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARISON ================= -->
+<section class="compare" id="comparePin">
+  <div class="compare__stick">
+    <div class="compare__title" id="compareTitle">
+      <div>
+        <span class="l1"><b>What changes</b> when</span>
+        <span class="l2">you work with us.</span>
+      </div>
+    </div>
+    <div class="compare__cards">
+      <div class="comp-card comp-card--before" id="beforeCard">
+        <span class="label">Before</span>
+        <span class="logo"><svg class="mark" style="color:var(--gray-2)"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <h3>Guessing what grows revenue.</h3>
+        <ul>
+          <li><span class="ic">✕</span>Hiring more reps to fix a conversion problem.</li>
+          <li><span class="ic">✕</span>Pipeline that looks full but never closes.</li>
+          <li><span class="ic">✕</span>Pricing based on what competitors charge.</li>
+          <li><span class="ic">✕</span>Every quarter starts from zero.</li>
+        </ul>
+      </div>
+      <div class="comp-card comp-card--after" id="afterCard">
+        <span class="label">After</span>
+        <span class="logo"><svg class="mark" style="color:var(--cream)"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <h3>Knowing exactly what moves the number.</h3>
+        <ul>
+          <li><span class="ic">✓</span>Every dollar of spend tied to revenue.</li>
+          <li><span class="ic">✓</span>Pipeline that converts predictably.</li>
+          <li><span class="ic">✓</span>Pricing built on what customers will pay.</li>
+          <li><span class="ic">✓</span>Compounding growth, quarter over quarter.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="svc-head" id="svcHead">
+    <h2 class="mega" data-appear>Services.</h2>
+    <p class="intro-p" data-appear>Within six months of working with Kora, clients experienced an <em>average 47% increase in annual revenue</em> based on pre and post-engagement performance.</p>
+    <p class="note" data-appear>*Across B2B clients with $5M to $50M in annual revenue over a standard 6-month engagement.</p>
+
+    <div class="chart" data-appear>
+      <div class="chart__grid" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="chart__row chart__row--kora"><i data-bar><span>With Kora</span><span>$14.2M avg ARR</span></i></div>
+      <div class="chart__row chart__row--without"><i data-bar><span>Without</span><span>$9.6M avg ARR</span></i></div>
+      <div class="chart__axis"><span>0M</span><span>2M</span><span>4M</span><span>6M</span><span>8M</span><span>10M</span><span>12M</span><span>14M</span></div>
+    </div>
+
+    </div><!-- /svc-head -->
+
+    <div class="svc-stack">
+      <article class="svc-card">
+        <div class="svc-card__info"><div class="svc-card__box">
+          <div class="svc-card__top">
+            <span class="lbl"><span class="ico"><svg width="16" height="16" viewBox="0 0 17 17"><path d="M2 5V3.4C2 2.6 2.6 2 3.4 2H5M12 2h1.6c.8 0 1.4.6 1.4 1.4V5M15 12v1.6c0 .8-.6 1.4-1.4 1.4H12M5 15H3.4C2.6 15 2 14.4 2 13.6V12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="8.5" cy="8.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span><span class="pt">Go-to-Market</span></span>
+            <span class="num">01</span>
+          </div>
+          <h3>Launches that land and scale.</h3>
+          <p class="desc">Whether you're launching a new product or entering a new segment, we design the GTM motion that lands and scales.</p>
+          <p class="offer-label">What we offer</p>
+          <ul class="chips">
+            <li>Launch Strategy &amp; Execution</li><li>ICP &amp; Persona Development</li><li>Messaging &amp; Value Proposition</li>
+            <li>Channel Selection &amp; Activation</li><li>Partner &amp; Alliance Programs</li><li>Market Entry Playbooks</li>
+          </ul></div>
+          <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
+        </div>
+        <figure class="svc-card__media">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/OqCGYrjHIzy11F9CWaDgfYAzKQ.jpg" alt="">
+          <div class="glass-quote">
+            <p>"Kora designed something that actually made our brand stronger."</p>
+            <div class="who">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/IUemvQkLgDMcBDfk0JMW2zfw.jpg" alt="">
+              <span><span class="n">James Martin</span><br><span class="r">CEO, Hamilton</span></span>
+            </div>
+          </div>
+        </figure>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-card__info"><div class="svc-card__box">
+          <div class="svc-card__top">
+            <span class="lbl"><span class="ico"><svg width="16" height="16" viewBox="0 0 17 17"><rect x="2" y="2" width="13" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M5 11l2.4-2.4 1.7 1.3 2.9-3.1M10.4 6.8H12v1.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="pt">Growth Strategy</span></span>
+            <span class="num">02</span>
+          </div>
+          <h3>Strategy that turns ambition into revenue.</h3>
+          <p class="desc">We build the roadmap that gets you from where you are to where the revenue needs to be.</p>
+          <p class="offer-label">What we offer</p>
+          <ul class="chips">
+            <li>Market Sizing &amp; Opportunity Mapping</li><li>Revenue Goal Architecture</li><li>Competitive Positioning</li>
+            <li>Growth Modeling &amp; Forecasting</li><li>Channel Strategy</li><li>Quarterly Planning Sprints</li>
+          </ul></div>
+          <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
+        </div>
+        <figure class="svc-card__media">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/3NdwQXmM1SRuYwMwOwL4wEa9Y.jpg" alt="">
+          <div class="glass-quote">
+            <p><span class="stars">★★★★★</span><br>"Kora didn't just give us a strategy—they helped us become a more strategic company."</p>
+            <div class="who">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/Lc4erlgEmXN8fEJjyK8QzjEA3Qo.jpg" alt="">
+              <span><span class="n">Sarah Bouchard</span><br><span class="r">Founder &amp; CEO, Lightspeed</span></span>
+            </div>
+          </div>
+        </figure>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-card__info"><div class="svc-card__box">
+          <div class="svc-card__top">
+            <span class="lbl"><span class="ico"><svg width="16" height="16" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="8.5" cy="8.5" r="3.1" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="8.5" cy="8.5" r="0.9" fill="currentColor"/></svg></span><span class="pt">Revenue Operations</span></span>
+            <span class="num">03</span>
+          </div>
+          <h3>Systems that make revenue predictable.</h3>
+          <p class="desc">Your pipeline has leaks. We find them, fix them, and build the systems that keep revenue flowing predictably.</p>
+          <p class="offer-label">What we offer</p>
+          <ul class="chips">
+            <li>Pipeline Architecture</li><li>CRM &amp; Tech Stack Optimization</li><li>Lead Scoring &amp; Qualification</li>
+            <li>Funnel Analytics &amp; Reporting</li><li>Handoff Process Design</li><li>Revenue Forecasting Dashboards</li>
+          </ul></div>
+          <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
+        </div>
+        <figure class="svc-card__media">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/NF5tRpn3xrpV81CGf1SDQo60Lk.jpg" alt="">
+          <div class="glass-quote">
+            <p>"Kora helped us realize we had a conversion problem, not a capacity problem."</p>
+            <div class="who">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/MI76ZMTeB2Mvtl0tBcBCscmA.jpg" alt="">
+              <span><span class="n">David Kim</span><br><span class="r">VP Strategy, Sitemark</span></span>
+            </div>
+          </div>
+        </figure>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-card__info"><div class="svc-card__box">
+          <div class="svc-card__top">
+            <span class="lbl"><span class="ico"><svg width="16" height="16" viewBox="0 0 17 17"><path d="M2.5 13.5A6.5 6.5 0 0 1 15 8.4M13.4 3.6 15 8.4l-4.8-.4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13.5l3.2-3.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span><span class="pt">Sales Optimization</span></span>
+            <span class="num">04</span>
+          </div>
+          <h3>Sales teams that close faster and bigger.</h3>
+          <p class="desc">We restructure how your team sells so every rep closes faster, bigger, and more consistently.</p>
+          <p class="offer-label">What we offer</p>
+          <ul class="chips">
+            <li>Sales Process Redesign</li><li>Team Structure &amp; Hiring</li><li>Compensation &amp; Incentive Design</li>
+            <li>Win/Loss Analysis</li><li>Deal Acceleration Playbooks</li><li>Sales Enablement &amp; Training</li>
+          </ul></div>
+          <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
+        </div>
+        <figure class="svc-card__media">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/Xg3naOB3jlkrgVdI79zfTGmUpxo.jpg" alt="">
+          <div class="glass-quote">
+            <p>"What sets Kora apart is their commitment to building our capabilities."</p>
+            <div class="who">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg" alt="">
+              <span><span class="n">Jennifer Holland</span><br><span class="r">CFO, Elevance</span></span>
+            </div>
+          </div>
+        </figure>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-card__info"><div class="svc-card__box">
+          <div class="svc-card__top">
+            <span class="lbl"><span class="ico"><svg width="16" height="16" viewBox="0 0 17 17"><path d="M8.9 2.2h4.5a1.4 1.4 0 0 1 1.4 1.4v4.5a1.4 1.4 0 0 1-.4 1L9 14.5a1.4 1.4 0 0 1-2 0L2.5 10a1.4 1.4 0 0 1 0-2l5.4-5.4a1.4 1.4 0 0 1 1-.4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="11.6" cy="5.4" r="1" fill="currentColor"/></svg></span><span class="pt">Pricing &amp; Packaging</span></span>
+            <span class="num">05</span>
+          </div>
+          <h3>Pricing that captures what you're actually worth.</h3>
+          <p class="desc">Most companies leave 20-40% on the table with bad pricing. We fix that with data-backed packaging that captures real value.</p>
+          <p class="offer-label">What we offer</p>
+          <ul class="chips">
+            <li>Pricing Model Design</li><li>Willingness-to-Pay Research</li><li>Expansion Revenue Strategy</li>
+            <li>Discount &amp; Negotiation Frameworks</li><li>Packaging &amp; Tiering</li><li>Price Testing &amp; Rollout</li>
+          </ul></div>
+          <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
+        </div>
+        <figure class="svc-card__media">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/qkntRVyDFXSavXk2fE20yVB6CU.jpg" alt="">
+          <div class="glass-quote">
+            <p>"Kora helped us see around corners."</p>
+            <div class="who">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/MI76ZMTeB2Mvtl0tBcBCscmA.jpg" alt="">
+              <span><span class="n">David Kim</span><br><span class="r">VP Strategy, Sitemark</span></span>
+            </div>
+          </div>
+        </figure>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW WE WORK ================= -->
+<section class="how">
+  <div class="container">
+    <h2 class="tt" data-appear>Most consultancies <em>slow you down</em> with process and overhead.</h2>
+    <p class="r-sub" data-appear>We built our process to get to revenue impact in weeks, not quarters.</p>
+
+    <div class="phases" id="phases" data-appear>
+      <div class="phase is-open">
+        <div class="head"><span>Phase&nbsp; 01</span><span class="dots"><i></i><i></i><i></i><i></i></span></div>
+        <div class="body">
+          <p class="nm"><svg width="18" height="18"><use href="#kmark"/></svg> Diagnose</p>
+          <p>Deep discovery into your market position, funnel economics, team structure, and strategic constraints. We find the real bottleneck, not just the surface symptoms.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="head"><span>02</span></div>
+        <div class="body">
+          <p class="nm"><svg width="18" height="18"><use href="#kmark"/></svg> Design</p>
+          <p>Co-create a focused growth plan with your leadership team. Clear priorities, defined milestones, and a resource model that's realistic and achievable.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="head"><span>03</span></div>
+        <div class="body">
+          <p class="nm"><svg width="18" height="18"><use href="#kmark"/></svg> Build</p>
+          <p>Hands-on execution alongside your team. We don't just advise — we build systems, run experiments, and create the infrastructure your next stage requires.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="head"><span>04</span></div>
+        <div class="body">
+          <p class="nm"><svg width="18" height="18"><use href="#kmark"/></svg> Transfer</p>
+          <p>Knowledge transfer, documentation, and team upskilling so your capability outlasts the engagement. You own the playbook — we help you write it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="how__video" data-appear>
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/38NpwzghYIptRRbFZ6Soejx3wVY.jpeg" alt="">
+      <span class="logo lg"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+      <button class="play" aria-label="Play video">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l12-7z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <h3 class="how__tagline tt" data-appear>We operate at the pace of your pipeline, <em>not a project plan.</em></h3>
+
+    <div class="pillars" data-appear>
+      <div class="p">
+        <svg width="22" height="22"><use href="#kmark"/></svg>
+        <p><b>Performance Tracking.</b> Real-time dashboards on every metric that matters. Monthly reports on pipeline health, revenue velocity, and ROI.</p>
+      </div>
+      <div class="p">
+        <svg width="22" height="22"><use href="#kmark"/></svg>
+        <p><b>Ongoing Optimization.</b> Quarterly reviews to refine what's working and cut what isn't. Adjust positioning, retune pricing, scale the wins.</p>
+      </div>
+      <div class="p">
+        <svg width="22" height="22"><use href="#kmark"/></svg>
+        <p><b>Support &amp; Training.</b> Train new hires on the playbooks, update processes, get answers when you need them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team-sec" id="team">
+  <div class="team-sec__card">
+    <div class="in">
+      <span class="logo"><svg class="mark" style="color:var(--cream)"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+      <h2 data-appear>Meet the team <em>behind the growth.</em></h2>
+      <div class="team-grid" data-appear>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt=""><span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span><span class="num">01</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt=""><span><span class="n">Priya Sharma</span><br><span class="r">Head of Growth Strategy</span></span><span class="num">02</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt=""><span><span class="n">James Okoro</span><br><span class="r">Senior Growth Consultant</span></span><span class="num">03</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt=""><span><span class="n">Alex Tanaka</span><br><span class="r">Growth Operations Lead</span></span><span class="num">04</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vT4xPYmbaRCnYfkKyzUAbKKiR0.jpg" alt=""><span><span class="n">David Wilson</span><br><span class="r">Head of Client Solutions</span></span><span class="num">05</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/HSDuVqMhSgRPV5plzbPZvxsh3c.jpg" alt=""><span><span class="n">Rachel Andersen</span><br><span class="r">Revenue Strategist</span></span><span class="num">06</span><span class="plus">+</span></div>
+      </div>
+      <div class="team-hire" data-appear>
+        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vJ0BOWZIknJPSUQfc9t1XTrJIE.jpeg" alt="">
+        <div class="team-hire__txt">
+          <h3>Join us,<br>we're hiring.</h3>
+          <p>We're looking for highly ambitious and talented people to help us drive real growth.</p>
+          <a class="btn btn--dark" href="#contact">Apply Now <span class="dot"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testi">
+  <div class="container">
+    <div class="testi__feat" data-appear>
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/F1UsC3Qy2MBxr7spZdOv8SWIZpQ.jpg" alt="">
+      <h2 class="big-t">Testimonials</h2>
+      <div class="glass-quote">
+        <p class="q">"Kora didn't just give us a strategy—they helped us become a more strategic company."</p>
+        <p class="small">They identified three fundamental issues that we'd been blind to for years. Two years later, we're at $52M and just closed our Series B.</p>
+        <div class="who">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/Lc4erlgEmXN8fEJjyK8QzjEA3Qo.jpg" alt="">
+          <span><span class="n">Sarah Bouchard</span><br><span class="r">CEO, Lightspeed</span></span>
+        </div>
+      </div>
+      <div class="rate">
+        <b>4.9<span>/5</span></b>
+        <p class="cap">Based on 300 verified reviews.</p>
+      </div>
+    </div>
+
+    <div class="t-cards" id="tCards" data-appear>
+      <div class="t-card is-open">
+        <div class="top"><span class="stars">★★★★★</span><span class="x">+</span></div>
+        <p class="qq">"I was skeptical of consultants—we'd been burned before by firms that delivered pretty slides and then disappeared. Kora was different. They rolled up their sleeves, challenged our assumptions, and stayed until the changes actually stuck."</p>
+        <div class="who">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/IUemvQkLgDMcBDfk0JMW2zfw.jpg" alt="">
+          <span><span class="n">Marcus Thompson</span><br><span class="r">President, Theo</span></span>
+          <span class="sig">theo</span>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="top"><span class="stars">★★★★★</span><span class="x">+</span></div>
+        <p class="qq">"Kora helped us see around corners. When everyone else was telling us to grow headcount, they helped us realize we had a conversion problem, not a capacity problem. That insight alone saved us from making a costly mistake."</p>
+        <div class="who">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/MI76ZMTeB2Mvtl0tBcBCscmA.jpg" alt="">
+          <span><span class="n">David Kim</span><br><span class="r">VP Strategy, Sitemark</span></span>
+          <span class="sig">Sitemark</span>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="top"><span class="stars">★★★★★</span><span class="x">+</span></div>
+        <p class="qq">"What sets Kora apart is their commitment to building our capabilities, not creating dependency. A year after our engagement ended, we're still using the frameworks they taught us. That's the mark of a true partner."</p>
+        <div class="who">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg" alt="">
+          <span><span class="n">Jennifer Holland</span><br><span class="r">CFO, Elevance</span></span>
+          <span class="sig">Elevance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats" data-appear>
+      <div class="stat">
+        <svg width="18" height="18"><use href="#kmark"/></svg>
+        <p class="num"><span data-count="2.4">0</span><span class="sfx">x</span></p>
+        <p class="d">Revenue increase achieved within 18 months.</p>
+      </div>
+      <div class="stat">
+        <svg width="18" height="18"><use href="#kmark"/></svg>
+        <p class="num"><span data-count="40">0</span><span class="sfx">%</span></p>
+        <p class="d">Average reduction in customer acquisition costs.</p>
+      </div>
+      <div class="stat">
+        <svg width="18" height="18"><use href="#kmark"/></svg>
+        <p class="num"><span data-count="90">0</span><span class="sfx">%</span></p>
+        <p class="d">Client retention rate.</p>
+      </div>
+      <div class="stat">
+        <svg width="18" height="18"><use href="#kmark"/></svg>
+        <p class="num"><span data-count="12">0</span><span class="sfx">+</span></p>
+        <p class="d">Portfolio companies that have raised Series B or beyond.</p>
+      </div>
+    </div>
+
+    <div class="cta-band" data-appear>
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="small">We're in the business of making things actually happen for our clients.</p>
+      </div>
+      <div class="mid">
+        <p><span class="g">I've personally led 40+ growth engagements.</span><br>Let me show you what's possible for yours.</p>
+        <div class="who">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+        </div>
+      </div>
+      <a class="btn btn--dark" href="#contact">Book a call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASE STUDY ================= -->
+<section class="case" id="case">
+  <div class="container">
+    <div class="case__grid">
+      <div class="case__left" data-appear>
+        <div class="panel">
+          <p class="date">March 18, 2026</p>
+          <h3>How Sitemark broke through an $18M plateau and grew 47% in six months.</h3>
+          <ul class="case__meta">
+            <li><span class="k"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 12.5V3l5-1.8V12.5M7 12.5h5V6H7M4 5.5h1M4 8h1M9 8h1M9 10h1" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg> Industry</span><span class="v">Enterprise Software</span></li>
+            <li><span class="k"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="5" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="10" cy="5.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 12c0-2 1.5-3.5 3.5-3.5S8.5 10 8.5 12M9 9.5c1.8 0 3 1.2 3 2.5" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg> Company Size</span><span class="v">450 Employees</span></li>
+            <li><span class="k"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="7" cy="7.5" r="4.8" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M7 5v2.7l1.8 1.2M5.5 1h3" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg> Timeline</span><span class="v">6 Months</span></li>
+          </ul>
+        </div>
+        <div class="panel case__nums" style="flex:1">
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5M10.5 1.5H13v2.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="num"><span data-count="47">0</span><span class="sfx">%</span></p>
+            <p class="d">Revenue growth in 6 months</p>
+          </div>
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="0.8" fill="currentColor"/></svg></span>
+            <p class="num"><span data-count="2.4">0</span><span class="sfx">x</span></p>
+            <p class="d">Pipeline velocity increase</p>
+          </div>
+        </div>
+      </div>
+      <div class="case__right" data-appear>
+        <div class="panel case__svc">
+          <div>
+            <p class="h">Services</p>
+            <ul class="chips">
+              <li>Growth Strategy</li><li>Revenue Operations</li><li>Pricing &amp; Packaging</li><li class="dk">+2</li>
+            </ul>
+          </div>
+          <div>
+            <span class="stars">★★★★★</span>
+            <p class="q">"Kora helped us realize we had a conversion problem, not a capacity problem."</p>
+            <div class="who">
+              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/MI76ZMTeB2Mvtl0tBcBCscmA.jpg" alt="">
+              David Kim
+            </div>
+          </div>
+        </div>
+        <div class="case__img">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg" alt="">
+          <span class="cl">✳ Sitemark</span>
+        </div>
+        <a class="btn btn--green btn--wide btn--vc" href="case-sitemark.html">View Case Study</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="pricing-sec" id="pricing">
+  <div class="pricing-sec__card">
+    <div class="in">
+      <div class="pricing-sec__head" data-appear>
+        <h2>Pricing <em>for your next stage.</em></h2>
+        <div class="trusted">
+          <span class="trusted__avatars">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt="">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt="">
+          </span>
+          <span class="cap"><span class="stars">★★★★★</span>Trusted by 50+ companies</span>
+        </div>
+      </div>
+
+      <div class="pricing__grid" data-appear>
+        <div>
+          <div class="plan-list" id="planList">
+            <button class="plan-row is-on" data-plan="0">
+              <svg class="ic" width="18" height="18"><use href="#kmark"/></svg>
+              <span><span class="nm">Growth Sprint</span><br><span class="pr">Starts at $2500/mo</span></span>
+              <span class="radio"></span>
+            </button>
+            <button class="plan-row" data-plan="1">
+              <svg class="ic" width="18" height="18"><use href="#kmark"/></svg>
+              <span><span class="nm">Growth Partnership</span><br><span class="pr">Starts at $8500/mo</span></span>
+              <span class="pop">Popular</span>
+              <span class="radio"></span>
+            </button>
+            <button class="plan-row" data-plan="2">
+              <svg class="ic" width="18" height="18"><use href="#kmark"/></svg>
+              <span><span class="nm">Custom</span><br><span class="pr">Get a quote</span></span>
+              <span class="radio"></span>
+            </button>
+          </div>
+          <p class="pricing__note">All engagements start with a <em>free</em> 30-minute discovery call. No commitment required.</p>
+          <div class="pricing__who">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vT4xPYmbaRCnYfkKyzUAbKKiR0.jpg" alt="">
+            <span><span class="n">David Wilson</span><br><span class="r">Head of Client Solutions</span></span>
+          </div>
+        </div>
+
+        <div class="plan-detail" id="planDetail">
+          <div class="plan-detail__top">
+            <p class="price" id="pdPrice">$2500<span>/mo</span></p>
+            <a class="btn" href="#contact" id="pdBtn">Get Started</a>
+          </div>
+          <p class="desc" id="pdDesc">A focused, 8-week engagement to diagnose your biggest growth blocker and build the plan to fix it.</p>
+          <ul class="feats" id="pdFeats"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+  <h2 data-appear>FAQ</h2>
+  <div class="faq__panel" data-appear>
+    <div class="faq__tabs" id="faqTabs">
+      <button class="is-active">General</button>
+      <button>Pricing</button>
+      <button>Process</button>
+      <button>Results</button>
+    </div>
+    <div class="faq__list">
+      <details class="faq-item" open>
+        <summary>What exactly does Kora do? <span class="x">+</span></summary>
+        <p class="a">We help B2B companies between $2M and $50M in revenue grow faster and more predictably. That means diagnosing what is stalling your growth, building the strategy to fix it, and working alongside your team to execute. We are not an agency that runs campaigns. We are a growth partner that works on the systems, processes, and positioning that drive sustainable revenue.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What industries do you work with? <span class="x">+</span></summary>
+        <p class="a">We work across B2B industries including SaaS, professional services, fintech, and healthtech. The common thread is companies with a strong product that need help building a repeatable growth engine. Our frameworks are industry-agnostic but we tailor every engagement to your specific market dynamics, competitive landscape, and buyer behavior.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How is Kora different from a marketing agency? <span class="x">+</span></summary>
+        <p class="a">Agencies typically execute specific tactics like paid ads, SEO, or content production. We work upstream of that. We figure out why your growth has stalled, what the highest-leverage opportunities are, and build the strategy and systems to capture them. If you need an agency for execution after that, we can help you find the right one. But most of the time, the problem is not a lack of tactics. It is a lack of clarity on what to prioritize.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Who on our team would work with Kora? <span class="x">+</span></summary>
+        <p class="a">Typically the founder or CEO, plus whoever owns revenue — whether that is a VP of Sales, Head of Marketing, or a revenue leader. We integrate into your existing team, not around it. We attend your standups, work in your tools, and collaborate directly with the people responsible for execution. Most clients say it feels like adding a senior team member, not hiring an outside consultant.</p>
+      </details>
+    </div>
+    <div class="faq__foot">
+      <span class="avs">
+        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt="">
+        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt="">
+      </span>
+      <div style="text-align:left">
+        <p class="t">More questions? Reach out anytime.</p>
+        <span class="faq__mail" data-copy="support@kora.com"><span class="ic">✳</span> support@kora.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSIGHTS ================= -->
+<section class="insights" id="insights">
+  <div class="container">
+    <div class="insights__wrap">
+      <div class="insights__left" data-appear>
+        <h2>Insights.</h2>
+        <p>Lessons, frameworks, and honest takes on what it actually takes to grow.</p>
+        <a class="btn btn--dark" href="insights.html">View All <span class="dot" style="background:var(--green)"></span></a>
+      </div>
+      <div class="insights__grid">
+        <a class="ins-card" href="insight-crm.html" data-appear>
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg" alt="">
+          <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Technology Selection</span>
+          <span class="txt">
+            <span class="meta">March 4, 2026</span>
+            <span class="t">Your CRM is not the problem. Your process is.</span>
+          </span>
+        </a>
+        <a class="ins-card" href="#" data-appear>
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/IXWqaCHPbvPQKcyZ9Mch2cWh9hU.jpg" alt="">
+          <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Implementation</span>
+          <span class="txt">
+            <span class="meta">March 3, 2026</span>
+            <span class="t">5 growth levers most companies ignore until it is too late.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact-sec" id="contact">
+  <div class="contact-sec__card">
+    <div class="contact-sec__bg">
+      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/YLqSXPwuRjvZniqgw49AQYJMSzM.png" alt="">
+    </div>
+    <div class="in">
+      <div style="display:flex;flex-direction:column">
+        <h2 data-appear>Let's find your next growth lever.</h2>
+        <ul class="feats" data-appear>
+          <li><span class="ic">✦</span>Actionable growth roadmap</li>
+          <li><span class="ic">✦</span>Channel &amp; funnel diagnostics</li>
+          <li><span class="ic">✦</span>Clear next steps &amp; timeline</li>
+        </ul>
+        <div class="q" data-appear>
+          <p class="lbl">Testimonial</p>
+          <p>"What sets Kora apart is their commitment to building our capabilities, not creating dependency."</p>
+          <div class="who">
+            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg" alt="">
+            <span>Jennifer Holland — CFO, Elevance</span>
+          </div>
+        </div>
+      </div>
+      <form class="cform" data-appear onsubmit="return false">
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="lead">No pitch decks, no pressure. <em>Tell us where you are and we'll share how we can help.</em></p>
+        <div class="row2">
+          <div><label>Name</label><input type="text" placeholder="Jane Cooper"></div>
+          <div><label>Email</label><input type="email" placeholder="name@company.com"></div>
+        </div>
+        <label>What services are you interested in?</label>
+        <div class="chips" data-chips>
+          <button type="button"><span class="rb"></span>Go-to-Market</button>
+          <button type="button"><span class="rb"></span>Growth Strategy</button>
+          <button type="button"><span class="rb"></span>Revenue Operations</button>
+          <button type="button"><span class="rb"></span>Sales Optimization</button>
+          <button type="button"><span class="rb"></span>Pricing &amp; Packaging</button>
+        </div>
+        <label>Annual revenue</label>
+        <div class="chips" data-chips="single">
+          <button type="button"><span class="rb"></span>Under $1M</button>
+          <button type="button"><span class="rb"></span>$1M - $5M</button>
+          <button type="button"><span class="rb"></span>$5M - $20M</button>
+          <button type="button" class="is-on"><span class="rb"></span>$20M+</button>
+        </div>
+        <label>Biggest growth challenge?</label>
+        <textarea placeholder="We've plateaued at $18M ARR…"></textarea>
+        <label class="terms"><input type="checkbox"> By submitting, you agree to our terms of service.</label>
+        <div class="foot">
+          <p class="note">We'll reach out within 24 hours to schedule your call.</p>
+          <button class="btn btn--dark" type="submit">Book a call <span class="dot" style="background:var(--green)"></span></button>
+        </div>
+      </form>
+    </div>
+    <div class="contact-stats">
+      <div class="cell"><p class="num"><span data-count="40">0</span><span class="sfx">+</span></p><p class="d">Long-term engagements led</p></div>
+      <div class="cell"><p class="num"><span data-count="99">0</span><span class="sfx">%</span></p><p class="d">Satisfaction rate from clients</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER (green arc rises & fills) ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="addr">2847 Mission Street<br>San Francisco, CA 94110</p>
+        <h3>Subscribe to<br>our newsletter.</h3>
+        <form class="nl" onsubmit="return false">
+          <input type="email" placeholder="Email" aria-label="Email">
+          <button class="btn btn--green">Subscribe ✳</button>
+        </form>
+        <label class="agree"><input type="checkbox"> By subscribing, you agree to our <u>privacy policy</u>.</label>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+        </div>
+        <p class="tel">(510) 895-6500</p>
+        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>kora</span></div>
+    <p class="footer__copy">© 2026 Kora All rights reserved.</p>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr31"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr31"></script>
+<script src="vendor/lenis.min.js?v=pr31"></script>
+<script src="js/shared.js?v=pr31"></script>
+<script src="js/main.js?v=pr31"></script>
+</body>
+</html>

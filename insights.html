@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr31");console.log("KORA build: pr31")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<title>Insights — Kora</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+<meta name="description" content="Kora insights — native HTML/CSS/JS rebuild." />
+<link rel="stylesheet" href="css/style.css?v=pr31" />
+<link rel="stylesheet" href="css/insights.css?v=pr31" />
+</head>
+<body>
+<script src="js/transition.js?v=pr31"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+    <!-- category icons (17px) -->
+    <symbol id="ic-roi" viewBox="0 0 17 17">
+      <rect x="2" y="2" width="13" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M5 11l2.4-2.4 1.7 1.3 2.9-3.1M10.4 6.8H12v1.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ic-impl" viewBox="0 0 17 17">
+      <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.6 1.7"/>
+      <path d="M5.8 8.7l1.8 1.8 3.6-3.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ic-tech" viewBox="0 0 17 17">
+      <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="5.4" y="5.6" width="6.2" height="4.2" rx="0.9" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <path d="M7 11.6h3M8.5 9.8v1.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ic-risk" viewBox="0 0 17 17">
+      <path d="M8.5 3v11M5.6 14h5.8M4.2 4.6h8.6M4.2 4.6 2.5 8.6a2.1 2.1 0 0 0 4.2 0L4.2 4.6ZM12.8 4.6l-1.7 4a2.1 2.1 0 0 0 4.2 0l-2.5-4Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ic-search" viewBox="0 0 17 17">
+      <rect x="2" y="2" width="13" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="7.8" cy="7.8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="m9.6 9.6 2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo" href="index.html"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About us</a>
+    <a class="lnk" href="contact.html">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="contact.html">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="https://framerusercontent.com/images/JDU4AEuAWM8QYjfyZ91Xs9q0Cu8.jpg" alt="">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main class="ins-main" id="top">
+
+<!-- ================= HERO ================= -->
+<section class="ins-hero">
+  <h1 data-appear>Insights.</h1>
+  <p class="sub" data-appear>Lessons, frameworks, and honest takes on what it actually takes to grow.</p>
+</section>
+
+<!-- ================= SHELL: featured + filter + grid ================= -->
+<section class="ins-shell" data-appear>
+
+  <!-- featured post -->
+  <a class="ins-feat" href="insight-crm.html" data-cat="Technology Selection">
+    <img class="bg" src="https://framerusercontent.com/images/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Technology Selection</span>
+    <span class="inpad">
+      <span class="meta">March 4, 2026</span>
+      <span class="t">Your CRM is not the problem. Your process is.</span>
+      <span class="who">
+        <span class="ava">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt="">
+          <span class="badge"><svg width="10" height="10"><use href="#kmark"/></svg></span>
+        </span>
+        <span class="nm"><span class="n">Alex Tanaka</span><br><span class="r">Growth Operations Lead</span></span>
+      </span>
+    </span>
+  </a>
+
+  <!-- filter bar -->
+  <div class="ins-filter">
+    <div class="fchips" id="fchips">
+      <button class="fchip fchip--all is-on" type="button" data-cat="All">All</button>
+      <button class="fchip" type="button" data-cat="ROI & Strategy"><svg width="17" height="17"><use href="#ic-roi"/></svg>ROI &amp; Strategy</button>
+      <button class="fchip" type="button" data-cat="Implementation"><svg width="17" height="17"><use href="#ic-impl"/></svg>Implementation</button>
+      <button class="fchip" type="button" data-cat="Technology Selection"><svg width="17" height="17"><use href="#ic-tech"/></svg>Technology Selection</button>
+      <button class="fchip" type="button" data-cat="Risk Management"><svg width="17" height="17"><use href="#ic-risk"/></svg>Risk Management</button>
+    </div>
+    <label class="ins-search">
+      <svg width="17" height="17"><use href="#ic-search"/></svg>
+      <input id="insSearch" type="text" placeholder="Search…" autocomplete="off">
+    </label>
+  </div>
+
+  <!-- posts grid -->
+  <div class="ins-grid" id="insGrid">
+
+    <a class="ins-post" href="#" data-cat="Implementation" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/IXWqaCHPbvPQKcyZ9Mch2cWh9hU.jpg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Implementation</span>
+      <span class="inpad">
+        <span class="meta">March 3, 2026</span>
+        <span class="t">5 growth levers most companies ignore until it is too late.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="Technology Selection" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/S2aS99cMH11aKHuGDtt8CdqYPqs.jpg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Technology Selection</span>
+      <span class="inpad">
+        <span class="meta">March 2, 2026</span>
+        <span class="t">Hiring a growth team vs. hiring a growth partner.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="ROI & Strategy" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/IQe1Ak6IQCv8JGUh2qx9RiQCBQ.jpg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>ROI &amp; Strategy</span>
+      <span class="inpad">
+        <span class="meta">February 20, 2026</span>
+        <span class="t">What a growth audit actually reveals about your business.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="Risk Management" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/MuKacYjazqkYtwK8LUQanQB1xg.jpeg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-risk"/></svg></span>Risk Management</span>
+      <span class="inpad">
+        <span class="meta">February 3, 2026</span>
+        <span class="t">Scaling too fast: the risks nobody talks about.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="Risk Management" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/Pif2nYDSD873fW1ucLhDUQ1GuU.jpeg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-risk"/></svg></span>Risk Management</span>
+      <span class="inpad">
+        <span class="meta">January 24, 2026</span>
+        <span class="t">Why most growth strategies fail within 6 months.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="ROI & Strategy" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/gEOx0H4nV830aP9scARGi9DEvc.jpg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>ROI &amp; Strategy</span>
+      <span class="inpad">
+        <span class="meta">January 15, 2026</span>
+        <span class="t">How to measure the real ROI of a growth engagement.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="Implementation" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/NbVapMiBN3O1B79hPfn55Ut68.jpg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Implementation</span>
+      <span class="inpad">
+        <span class="meta">November 5, 2025</span>
+        <span class="t">Building a sales process that actually scales.</span>
+      </span>
+    </a>
+
+    <a class="ins-post" href="#" data-cat="Technology Selection" data-appear>
+      <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/g5F6UzHD1nQOgfXK6ToLD2aIEk.jpg" alt="">
+      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Technology Selection</span>
+      <span class="inpad">
+        <span class="meta">January 28, 2025</span>
+        <span class="t">When to invest in RevOps tooling and when to wait.</span>
+      </span>
+    </a>
+
+  </div>
+  <p class="ins-empty" id="insEmpty" hidden>No articles found. Try another search.</p>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="addr">2847 Mission Street<br>San Francisco, CA 94110</p>
+        <h3>Subscribe to<br>our newsletter.</h3>
+        <form class="nl" onsubmit="return false">
+          <input type="email" placeholder="Email" aria-label="Email">
+          <button class="btn btn--green">Subscribe ✳</button>
+        </form>
+        <label class="agree"><input type="checkbox"> By subscribing, you agree to our <u>privacy policy</u>.</label>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+        </div>
+        <p class="tel">(510) 895-6500</p>
+        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>kora</span></div>
+    <p class="footer__copy">© 2026 Kora All rights reserved.</p>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr31"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr31"></script>
+<script src="vendor/lenis.min.js?v=pr31"></script>
+<script src="js/shared.js?v=pr31"></script>
+<script src="js/insights.js?v=pr31"></script>
+</body>
+</html>

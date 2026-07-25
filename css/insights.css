@@ -1,0 +1,128 @@
+/* ============================================================
+   KORA — Insights page (insights.html)
+   Fixed-px metrics measured off the original desktop layout.
+   Loaded AFTER style.css — reuses tokens, nav, buttons, footer.
+   ============================================================ */
+
+.ins-main { background: var(--paper); }
+
+/* ---------- HERO (mirrors the cases-page hero layout) ---------- */
+.ins-hero { padding: 194px 0 0; width: min(1480px, calc(100% - 48px)); margin-inline: auto; }
+.ins-hero h1 {
+  font-size: clamp(56px, 7.8vw, 120px); font-weight: 500;
+  letter-spacing: -0.04em; line-height: 1;
+}
+.ins-hero .sub {
+  margin-top: 40px; max-width: 545px;
+  font-size: clamp(20px, 2vw, 30px); font-weight: 600;
+  letter-spacing: -0.04em; line-height: 1.3; color: var(--gray);
+}
+
+/* ---------- SHELL: beige rounded container ---------- */
+.ins-shell {
+  width: min(1480px, calc(100% - 40px));
+  margin: 64px auto 0;
+  background: #f5f5e9; border-radius: 40px; padding: 10px;
+}
+
+/* ---------- FEATURED POST ---------- */
+.ins-feat {
+  position: relative; display: block;
+  border-radius: 30px; overflow: hidden;
+  aspect-ratio: 1460 / 821;
+  background: var(--dark);
+}
+.ins-feat .bg, .ins-post .bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: transform 0.8s var(--ease);
+}
+.ins-feat:hover .bg, .ins-post:hover .bg { transform: scale(1.03); }
+.ins-feat::after, .ins-post::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(13,13,13,0.05) 45%, rgba(13,13,13,0.62));
+}
+.ins-feat .inpad {
+  position: absolute; inset: 0; z-index: 2;
+  padding: 28px; display: flex; flex-direction: column; justify-content: flex-end;
+  color: var(--cream);
+}
+.ins-feat .meta, .ins-post .meta { font-size: 13px; font-weight: 600; color: var(--w75); }
+.ins-feat .t {
+  display: block; margin-top: 10px; max-width: 900px;
+  font-size: clamp(40px, 4.2vw, 80px); font-weight: 600;
+  letter-spacing: -0.04em; line-height: 1.05;
+}
+.ins-feat .who { display: flex; align-items: center; gap: 13px; margin-top: 30px; }
+.ins-feat .ava { position: relative; flex: none; }
+.ins-feat .ava img { width: 49px; height: 49px; border-radius: 50%; object-fit: cover; display: block; }
+.ins-feat .ava .badge {
+  position: absolute; left: -3px; bottom: -3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--green); color: var(--cream);
+  display: grid; place-items: center;
+}
+.ins-feat .nm .n { font-size: 15px; font-weight: 600; }
+.ins-feat .nm .r { font-size: 13px; font-weight: 500; color: #e6e6e6; }
+
+/* ---------- FILTER BAR ---------- */
+.ins-filter {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; padding: 25px 4px; flex-wrap: wrap;
+}
+.fchips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.fchip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 0; border-radius: 30px; padding: 9px 13px;
+  background: transparent; color: var(--dark);
+  font-family: var(--font); font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: background 0.3s var(--ease);
+}
+.fchip svg { flex: none; }
+.fchip:hover { background: rgba(255, 255, 250, 0.75); }
+.fchip.is-on { background: var(--green); }
+.fchip--all { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
+.ins-search {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--cream); border-radius: 30px; padding: 11px 13px;
+  color: var(--dark);
+}
+.ins-search input {
+  border: 0; background: transparent; outline: none;
+  font-family: var(--font); font-size: 13px; font-weight: 600;
+  color: var(--dark); width: 112px;
+}
+.ins-search input::placeholder { color: #82827e; }
+
+/* ---------- POSTS GRID ---------- */
+.ins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ins-post {
+  position: relative; display: block;
+  border-radius: 30px; overflow: hidden;
+  aspect-ratio: 725 / 544;
+  background: var(--dark);
+}
+.ins-post .inpad {
+  position: absolute; inset: 0; z-index: 2;
+  padding: 24px; display: flex; flex-direction: column; justify-content: flex-end;
+  color: var(--cream);
+}
+.ins-post .t {
+  display: block; margin-top: 8px; max-width: 345px;
+  font-size: clamp(22px, 1.6vw, 30px); font-weight: 600;
+  letter-spacing: -0.04em; line-height: 1.3;
+  transition: transform 0.5s var(--ease);
+}
+.ins-post:hover .t { transform: translateY(-4px); }
+
+.ins-empty { padding: 40px 24px 30px; font-size: 15px; font-weight: 600; color: var(--gray); text-align: center; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .ins-hero { padding-top: 140px; }
+  .ins-feat { aspect-ratio: 4 / 5; }
+  .ins-feat .t { font-size: clamp(30px, 7.4vw, 44px); }
+  .ins-grid { grid-template-columns: 1fr; }
+  .ins-post { aspect-ratio: 4 / 3; }
+  .ins-filter { flex-direction: column; align-items: flex-start; padding-inline: 8px; }
+  .cat-chip { top: 14px; left: 14px; }
+}

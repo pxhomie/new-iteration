@@ -1,0 +1,74 @@
+/* ============================================================
+   KORA — Contact page (contact.html)
+   Loaded AFTER style.css + cases.css.
+   Layout matched to the original desktop page: hero with a
+   3-column info row, image card with a frosted-glass form,
+   centered tabbed FAQ, separate support card.
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.ct-wrap { width: min(1480px, calc(100% - 48px)); margin-inline: auto; }
+.ct-hero { padding-top: 194px; }
+.ct-hero h1 { font-size: clamp(56px, 6.3vw, 120px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+.ct-hero .sub { margin-top: 34px; max-width: 560px; font-size: clamp(20px, 2vw, 30px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.3; color: var(--gray); }
+
+.ct-info { margin-top: 100px; display: grid; grid-template-columns: 1.9fr 1fr 1fr; gap: 40px; align-items: end; }
+.ct-info .tel { font-size: 15px; font-weight: 600; letter-spacing: -0.03em; color: var(--dark); }
+.ct-info .mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 25px; font-weight: 600; letter-spacing: -0.03em; cursor: pointer; }
+.ct-info .mail .ic { width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: var(--cream); display: grid; place-items: center; font-size: 12px; }
+.ct-info .lbl { font-size: 15px; font-weight: 600; letter-spacing: -0.03em; color: var(--gray); }
+.ct-info .val { margin-top: 12px; font-size: 15px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.5; }
+
+/* ---------- image card section (reuses homepage .contact-sec) ---------- */
+.contact-sec--page { margin-top: 60px; }
+
+/* frosted-glass form variant */
+.cform--glass {
+  background: rgba(227, 227, 227, 0.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.cform--glass input,
+.cform--glass textarea {
+  background: rgba(255, 255, 255, 0.42);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+.cform--glass input::placeholder,
+.cform--glass textarea::placeholder { color: rgba(30, 30, 28, 0.55); }
+.cform--glass .chips button { background: rgba(255, 255, 255, 0.5); }
+.cform--glass .chips button.is-on { background: var(--dark); }
+
+/* ---------- centered tabbed FAQ ---------- */
+.faq--ct { padding-top: clamp(5rem, 8vw, 8.75rem); }
+.faq--ct h2 { font-size: clamp(3.5rem, 6.3vw, 7.5rem); font-weight: 500; }
+.faq--ct .faq__panel {
+  width: min(730px, 92vw);
+  background: #f5f5e9; border: 0; border-radius: 30px;
+  padding: 16px 10px 10px;
+}
+.faq--ct .faq__list { margin-top: 16px; }
+.faq--ct .faq-item { border: 0; border-radius: 18px; margin-bottom: 8px; }
+.faq--ct .faq-item:last-child { margin-bottom: 0; }
+
+/* separate support card under the panel */
+.faq-support {
+  width: min(730px, 92vw);
+  margin: 10px auto 0;
+  background: #f5f5e9; border-radius: 30px;
+  padding: 26px 30px;
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+}
+.faq-support .avs { display: flex; flex: none; }
+.faq-support .avs img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #f5f5e9; object-fit: cover; }
+.faq-support .avs img + img { margin-left: -10px; }
+.faq-support .tx { text-align: left; }
+.faq-support .t { font-size: 13px; font-weight: 600; color: var(--gray); }
+.faq-support .faq__mail { margin-top: 4px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .ct-info { grid-template-columns: 1fr; gap: 28px; }
+  .faq-support { flex-direction: column; text-align: center; }
+  .faq-support .tx { text-align: center; }
+}

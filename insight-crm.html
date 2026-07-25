@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr31");console.log("KORA build: pr31")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<title>Your CRM is not the problem. Your process is. — Kora</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+<meta name="description" content="Kora insights article — native HTML/CSS/JS rebuild." />
+<link rel="stylesheet" href="css/style.css?v=pr31" />
+<link rel="stylesheet" href="css/insights.css?v=pr31" />
+<link rel="stylesheet" href="css/insight.css?v=pr31" />
+</head>
+<body>
+<script src="js/transition.js?v=pr31"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+    <symbol id="ic-impl" viewBox="0 0 17 17">
+      <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.6 1.7"/>
+      <path d="M5.8 8.7l1.8 1.8 3.6-3.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ic-tech" viewBox="0 0 17 17">
+      <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="5.4" y="5.6" width="6.2" height="4.2" rx="0.9" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <path d="M7 11.6h3M8.5 9.8v1.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+    </symbol>
+    <!-- social glyphs -->
+    <symbol id="ic-fb" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.5V14H11v7h2.5Z"/>
+    </symbol>
+    <symbol id="ic-x" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.8 4h2.7l-6 6.8L21.5 20h-5.5l-4.3-5.6L6.7 20H4l6.4-7.3L4.8 4h5.7l3.9 5.1L17.8 4Zm-1 14.4h1.5L8.2 5.5H6.6l10.2 12.9Z"/>
+    </symbol>
+    <symbol id="ic-in" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.9 8.6H4.2V20h2.7V8.6ZM5.6 7.4a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2ZM20 13.7c0-3-1.6-4.4-3.8-4.4-1.7 0-2.5 1-2.9 1.6V8.6h-2.7V20h2.7v-6.1c0-1.2.8-2 1.9-2s1.8.8 1.8 2V20H20v-6.3Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo" href="index.html"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About us</a>
+    <a class="lnk" href="contact.html">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="contact.html">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="https://framerusercontent.com/images/JDU4AEuAWM8QYjfyZ91Xs9q0Cu8.jpg" alt="">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main class="art-main" id="top">
+
+<!-- ================= HERO ================= -->
+<section class="art-hero">
+  <div class="art-hero__card">
+    <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg" alt="">
+    <div class="art-hero__dim"></div>
+    <div class="art-hero__in">
+      <div class="art-hero__who">
+        <span class="ava">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt="">
+          <span class="badge"><svg width="10" height="10"><use href="#kmark"/></svg></span>
+        </span>
+        <span class="nm"><span class="n">Alex Tanaka</span><br><span class="r">Growth Operations Lead</span></span>
+      </div>
+      <div class="art-hero__txt">
+        <h1>Your CRM is not the problem. Your process is.</h1>
+        <p class="sub">Swapping CRMs without fixing the underlying process just gives you the same mess in a new interface.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="art-body">
+  <aside class="art-toc" id="artToc">
+    <div class="art-toc__card">
+      <h3>Table of contents</h3>
+      <nav class="art-toc__list" id="tocList">
+        <a href="#s1" class="is-on">The CRM Migration Trap</a>
+        <a href="#s2">What Actually Causes CRM Dysfunction</a>
+        <a href="#s3">Fix the Process First</a>
+        <a href="#s4">When a New Tool Actually Makes Sense</a>
+        <a href="#s5">The One-Week Process Audit</a>
+      </nav>
+    </div>
+    <div class="art-toc__share">
+      <span class="lbl">Share</span>
+      <span class="icons">
+        <a href="#" aria-label="Facebook"><svg width="20" height="20"><use href="#ic-fb"/></svg></a>
+        <a href="#" aria-label="X"><svg width="18" height="18"><use href="#ic-x"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="20" height="20"><use href="#ic-in"/></svg></a>
+      </span>
+    </div>
+  </aside>
+
+  <article class="art-col">
+    <p class="art-date">March 4, 2026</p>
+    <h2 class="art-lede">Every quarter another company bets on a new CRM to rescue its pipeline. Six months on, the funnel leaks in the same places — only the dashboards look fresher.</h2>
+
+    <h3 id="s1">The CRM Migration Trap</h3>
+    <p>The story tends to open with a familiar grumble. Reps call the CRM clunky, nobody believes the pipeline numbers, and reporting feels like guesswork. Leadership decides the software must be the bottleneck and green-lights a migration — a fresh vendor, an implementation partner, another round of training, and a brand-new set of data headaches.</p>
+    <p>A quarter after go-live the old problems walk back in. Activities still go unlogged, stages still mean different things to different people, and forecasts are still closer to fiction than fact. The platform changed; the habits around it did not.</p>
+    <blockquote class="art-quote">We swapped platforms convinced it would cure our visibility problem. The real issue was that no two people defined a qualified opportunity the same way — something we could have fixed in a week without spending a dollar on new software.</blockquote>
+
+    <h3 id="s2">What Actually Causes CRM Dysfunction</h3>
+    <p>In nearly every audit we run, the CRM turns out to be innocent. It is simply mirroring a broken process: pipeline stages nobody defined, data entry standards nobody wrote down, data quality nobody owns, and reporting that counts activity instead of outcomes.</p>
+    <p>These are process failures wearing a technology costume. No tool on the market can rescue a team that never agreed on what each stage means, which fields matter at every step, and who is accountable for keeping the record honest.</p>
+
+    <div class="art-table">
+      <table>
+        <thead>
+          <tr><th>Symptom</th><th>Assumed Cause</th><th>Actual Cause</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Unreliable forecasts</td><td>Bad reporting tools</td><td>Inconsistent stage definitions</td></tr>
+          <tr><td>Low adoption</td><td>Clunky interface</td><td>No clear value for reps to log data</td></tr>
+          <tr><td>Duplicate records</td><td>Poor deduplication</td><td>No data governance ownership</td></tr>
+          <tr><td>Missing insights</td><td>Weak analytics</td><td>Garbage in, garbage out</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="s3">Fix the Process First</h3>
+    <p>Before you evaluate a single new tool, map your current sales process end to end — the real one, not the tidy version in the playbook. Shadow reps for a week and watch how deals actually travel through the pipeline. Note where data falls off, which stages get skipped, and where the CRM record drifts away from reality.</p>
+    <p>Then close those gaps. Give every stage explicit entry and exit criteria, standardize the required fields, put one name against data quality, and build reports that answer the questions leadership actually asks in forecast reviews. Do all of it inside the tool you already own before you even think about switching.</p>
+
+    <h3 id="s4">When a New Tool Actually Makes Sense</h3>
+    <p>Sometimes migration really is the right call. If your current platform genuinely cannot support the workflows you need, lacks integrations your stack depends on, or has been outgrown at scale, then a change is justified — but only after you have tuned the process in the existing system and still hit a wall.</p>
+    <p>The companies that switch successfully fix the process first and then pick software that supports it. The ones that fail hope the new tool will impose discipline for them. Tools do not create discipline. People do.</p>
+
+    <h3 id="s5">The One-Week Process Audit</h3>
+    <p>Most CRM dysfunction can be diagnosed in five working days. Day one, ask sales leadership what they wish the CRM could tell them. Days two and three, sit with reps and watch how they really use it. Day four, audit data quality across a sample of fifty deals. Day five, map the distance between the ideal process and the real one. The output is a prioritized list of process fixes that cost nothing but attention.</p>
+  </article>
+</section>
+
+<!-- ================= MORE INSIGHTS ================= -->
+<section class="art-more">
+  <div class="art-more__left" data-appear>
+    <h2>More insights.</h2>
+    <a class="va" href="insights.html">View All <svg width="15" height="15"><use href="#arrow"/></svg></a>
+  </div>
+  <a class="ins-post ins-post--tall" href="insights.html" data-appear>
+    <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/IXWqaCHPbvPQKcyZ9Mch2cWh9hU.jpg" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Implementation</span>
+    <span class="inpad">
+      <span class="meta">March 3, 2026</span>
+      <span class="t">5 growth levers most companies ignore until it is too late.</span>
+    </span>
+  </a>
+  <a class="ins-post ins-post--tall" href="insights.html" data-appear>
+    <img loading="lazy" decoding="async" class="bg" src="https://framerusercontent.com/images/S2aS99cMH11aKHuGDtt8CdqYPqs.jpg" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Technology Selection</span>
+    <span class="inpad">
+      <span class="meta">March 2, 2026</span>
+      <span class="t">Hiring a growth team vs. hiring a growth partner.</span>
+    </span>
+  </a>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <p class="addr">2847 Mission Street<br>San Francisco, CA 94110</p>
+        <h3>Subscribe to<br>our newsletter.</h3>
+        <form class="nl" onsubmit="return false">
+          <input type="email" placeholder="Email" aria-label="Email">
+          <button class="btn btn--green">Subscribe ✳</button>
+        </form>
+        <label class="agree"><input type="checkbox"> By subscribing, you agree to our <u>privacy policy</u>.</label>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
+          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+        </div>
+        <p class="tel">(510) 895-6500</p>
+        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>kora</span></div>
+    <p class="footer__copy">© 2026 Kora All rights reserved.</p>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr31"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr31"></script>
+<script src="vendor/lenis.min.js?v=pr31"></script>
+<script src="js/shared.js?v=pr31"></script>
+<script src="js/insight.js?v=pr31"></script>
+</body>
+</html>
