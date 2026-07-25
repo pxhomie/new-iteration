@@ -25,6 +25,7 @@
   --gray: #616161;
   --gray-2: #9a9a96;
   --line: #e6e6e2;
+  --skeleton: #e7e7df; /* neutral stand-in while an image is still loading */
   --w75: rgba(255, 255, 250, 0.78);
   --w45: rgba(255, 255, 250, 0.45);
 
@@ -283,7 +284,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
    makes the scale(340) flood snap instead of animating on some GPUs */
 .hero-ui__txt { position: absolute; left: clamp(28px, 3.4vw, 64px); top: clamp(6.25rem, 13svh, 10rem); max-width: 60rem; }
 .hero-ui__txt h1 { font-size: var(--h-hero); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; }
-.hero-ui__txt .sub { margin-top: 1.375rem; font-size: clamp(0.9375rem, 1.1vw, 1.1875rem); font-weight: 500; max-width: 20rem; line-height: 1.45; }
+.hero-ui__txt .sub { margin-top: 1.375rem; font-size: clamp(0.9375rem, 1.1vw, 1.1875rem); font-weight: 500; max-width: 34rem; line-height: 1.45; }
 .hero-ui__cta { display: flex; align-items: center; gap: 1.125rem; margin-top: 1.875rem; }
 .hero-ui__cta .arr { opacity: 0.9; }
 .hero-ui__foot {
@@ -333,7 +334,13 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   position: absolute; inset: 0; z-index: 3; display: grid; place-items: center;
   text-align: center; padding-inline: 6vw; opacity: 0; pointer-events: none;
 }
-.statement p { font-size: clamp(1.875rem, 3.3vw, 3.875rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.18; color: #fff; max-width: 17em; }
+/* The <br> in the copy is what guarantees the two sentences never share a line;
+   the measure only has to be wide enough not to break a sentence in half on top
+   of that. 26em is deliberately generous — the current copy never reaches it at
+   any width, so it costs nothing here, and it means longer statement copy can be
+   dropped in later without re-tuning this number. text-wrap: balance evens the
+   halves out whenever a sentence does have to wrap on narrow screens. */
+.statement p { font-size: clamp(1.875rem, 3.3vw, 3.875rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.18; color: #fff; max-width: 26em; text-wrap: balance; }
 .statement .w { opacity: 0; display: inline-block; }
 
 /* ============ COMPARISON ============ */
@@ -345,7 +352,12 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .compare__stick { position: sticky; top: 0; height: 100svh; overflow: clip; display: grid; place-items: center; }
 .compare__title { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; z-index: 1; }
 .compare__title .l1, .compare__title .l2 { display: block; font-size: var(--h-sec); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; color: var(--gray-2); }
-.compare__title .l1 b { font-weight: 500; color: var(--dark); }
+/* the <b> is a COLOUR emphasis only — it inherits the 600 of the surrounding
+   line instead of setting its own weight. A different weight on top of the
+   colour change read as two typefaces sharing a sentence, and at this size the
+   500 was optically thinner than the grey it sat next to, so the emphasised
+   half looked lighter than the unemphasised one. */
+.compare__title .l1 b { font-weight: inherit; color: var(--dark); }
 .compare__cards { position: absolute; inset: 0; z-index: 2; }
 .comp-card {
   position: absolute; left: 50%; top: 50%;
@@ -359,6 +371,18 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .comp-card ul { margin-top: auto; display: flex; flex-direction: column; gap: 0.875rem; }
 .comp-card li { display: flex; align-items: center; gap: 0.625rem; font-size: 0.875rem; font-weight: 600; letter-spacing: -0.01em; }
 .comp-card li .ic { width: 1.375rem; height: 1.375rem; border-radius: 50%; flex: none; display: grid; place-items: center; }
+/* The card is a FIXED height (it has to be — both cards are absolutely centred
+   and animate as one stack), and the list is bottom-aligned via margin-top:auto,
+   so anything the content can't fit spills past the rounded corner instead of
+   scrolling. With five bullets that only bites where the bullets wrap to two
+   lines AND the viewport is short — a phone in the 640px-tall class — so the
+   list tightens there rather than everywhere. Desktop spacing is left alone
+   because it still fits. */
+@media (max-height: 700px) {
+  .comp-card { height: min(40.625rem, 88svh); }
+  .comp-card ul { gap: 0.5rem; }
+  .comp-card li { font-size: 0.8125rem; }
+}
 .comp-card--before { background: var(--beige-2); border: 1px solid var(--line); color: var(--dark); z-index: 2; }
 .comp-card--after { z-index: 1; }
 .comp-card--before li .ic { background: var(--dark); color: var(--cream); font-size: 0.625rem; }
@@ -379,13 +403,14 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .chart__grid { position: absolute; inset: 0 0 2.375rem 0; pointer-events: none; }
 .chart__grid span { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed rgba(36, 36, 36, 0.16); }
 .chart__grid span:nth-child(1) { left: 0.55%; }
-.chart__grid span:nth-child(2) { left: 14.63%; }
-.chart__grid span:nth-child(3) { left: 28.71%; }
-.chart__grid span:nth-child(4) { left: 42.8%; }
-.chart__grid span:nth-child(5) { left: 56.88%; }
-.chart__grid span:nth-child(6) { left: 70.96%; }
-.chart__grid span:nth-child(7) { left: 85.05%; }
-.chart__grid span:nth-child(8) { left: 99.13%; }
+.chart__grid span:nth-child(2) { left: 12.87%; }
+.chart__grid span:nth-child(3) { left: 25.2%; }
+.chart__grid span:nth-child(4) { left: 37.52%; }
+.chart__grid span:nth-child(5) { left: 49.84%; }
+.chart__grid span:nth-child(6) { left: 62.16%; }
+.chart__grid span:nth-child(7) { left: 74.48%; }
+.chart__grid span:nth-child(8) { left: 86.81%; }
+.chart__grid span:nth-child(9) { left: 99.13%; }
 .chart__row { position: relative; height: 3.125rem; margin-bottom: 0.75rem; }
 .chart__row i {
   position: absolute; inset: 0 auto 0 0; border-radius: 0.9375rem;
@@ -393,19 +418,36 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   padding-inline: 0.9375rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em; font-style: normal;
   transform-origin: left; white-space: nowrap; overflow: hidden;
 }
-.chart__row--kora i { width: 100%; background: var(--green); color: var(--cream); }
-.chart__row--without i { width: 66%; background: #e6e6e6; color: var(--dark); }
+/* widths are the values themselves, measured on the same rail as the axis:
+   0.55% is the 0 gridline and 99.13% is the 1.6% one, so a bar of value v
+   ends at 0.55 + v * (99.13-0.55)/1.6. */
+.chart__row--redesigned i { width: 91.74%; background: var(--green); color: var(--cream); }
+.chart__row--original i { width: 53.54%; background: #e6e6e6; color: var(--dark); }
 /* axis labels sit under their gridlines (left-aligned, like the original) */
 .chart__axis { position: relative; height: 1.4rem; margin-top: 0.5625rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em; color: var(--dark); }
 .chart__axis span { position: absolute; top: 0; }
 .chart__axis span:nth-child(1) { left: calc(0.55% - 8px); }
-.chart__axis span:nth-child(2) { left: calc(14.63% - 8px); }
-.chart__axis span:nth-child(3) { left: calc(28.71% - 8px); }
-.chart__axis span:nth-child(4) { left: calc(42.8% - 8px); }
-.chart__axis span:nth-child(5) { left: calc(56.88% - 8px); }
-.chart__axis span:nth-child(6) { left: calc(70.96% - 8px); }
-.chart__axis span:nth-child(7) { left: calc(85.05% - 8px); }
-.chart__axis span:nth-child(8) { left: calc(99.13% - 8px); }
+.chart__axis span:nth-child(2) { left: calc(12.87% - 8px); }
+.chart__axis span:nth-child(3) { left: calc(25.2% - 8px); }
+.chart__axis span:nth-child(4) { left: calc(37.52% - 8px); }
+.chart__axis span:nth-child(5) { left: calc(49.84% - 8px); }
+.chart__axis span:nth-child(6) { left: calc(62.16% - 8px); }
+.chart__axis span:nth-child(7) { left: calc(74.48% - 8px); }
+.chart__axis span:nth-child(8) { left: calc(86.81% - 8px); }
+.chart__axis span:nth-child(9) { left: calc(99.13% - 8px); }
+
+/* Narrow screens. Two things stop fitting at once, both caused by the copy
+   being longer than the money figures it replaced:
+   - the grey bar is only ~53% wide and "Original 0.86% avg conversion" clips
+     out of it below ~440px, so the unit drops away and the bar reads
+     "Original  0.86%" — the axis is already in %, so nothing is lost;
+   - nine axis labels of "0.2%" sit closer together than eight of "2M" did,
+     so the axis type steps down to keep a readable gap and to stop the last
+     label hanging as far past the right edge. */
+@media (max-width: 480px) {
+  .chart__row i .u { display: none; }
+  .chart__axis { font-size: 0.6875rem; }
+}
 
 
 /* service cards — beige shell (10px padding) holding: white info card +
@@ -507,6 +549,17 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   border: 1px solid rgba(255,255,250,0.25);
 }
 .how__video .play:hover { transform: scale(1.1); }
+/* click-to-play: the poster stays a plain image until asked for, then the
+   player is dropped on top of it. The card keeps its own 1480/700 ratio so
+   nothing below it shifts when the video starts; the wider-than-16:9 gap is
+   let through to black rather than resizing the page. */
+.how__video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 2; }
+.how__video .lg, .how__video .play { transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); }
+.how__video.is-playing { cursor: default; background: #000; }
+/* !important: the appear system leaves an inline opacity:1 on these, which a
+   plain rule can't outrank */
+.how__video.is-playing .lg, .how__video.is-playing .play { opacity: 0 !important; pointer-events: none; }
+.how__video.is-playing:hover img { transform: none; }
 
 /* tagline + dark strip */
 .how__tagline {
@@ -983,12 +1036,20 @@ html.pt-in, html.pt-in body { background: #5dc39b !important; }
 /* late-loading images fade in (class added/removed by shared.js) */
 img.img-fade { opacity: 0; transition: opacity 0.6s ease; }
 img.img-fade.img-in { opacity: 1; }
-/* while an image loads, its container shows a neutral skeleton instead of
-   its own (often dark) background — kills the black flash. Overlay
-   gradients (::before/::after scrims) are hidden too: over the light
-   skeleton they read as a black card */
-.img-loading { background-color: #e7e7df !important; }
+/* While an image loads a neutral skeleton stands in for it. WHERE that
+   skeleton is painted is what decides whether it looks right — shared.js
+   measures and picks one of two homes:
+   · the image FILLS its container -> the container takes it, which also
+     hides the container's own (often dark) background and kills the black
+     flash. Overlay gradients (::before/::after scrims) are muted too: over
+     a light skeleton they read as a black card.
+   · the image sits NEXT TO other content (avatar + name, photo + caption)
+     -> the image itself takes it. A skeleton on the container would light
+     up the text beside it, and a square container behind a round avatar
+     would show its corners — which is exactly the bug this replaced. */
+.img-loading { background-color: var(--skeleton) !important; }
 .img-loading::before, .img-loading::after { opacity: 0 !important; }
+img.img-skeleton { background-color: var(--skeleton); }
 
 /* word spans produced by the deep appear cascade (shared.js) */
 .aw { display: inline-block; }
@@ -996,6 +1057,11 @@ img.img-fade.img-in { opacity: 1; }
 /* pre-paint state for the homepage load animation: the stage starts as the
    small centered card BEFORE main.js runs, so the full hero never flashes
    (class set by an inline <head> script; main.js removes it on takeover) */
-html.preload #stage { width: min(18.75rem, 30vw); height: min(13.75rem, 28svh); border-radius: 1.125rem; }
+/* the load animation pops the card out of nothing, so the pre-paint state is
+   scaled to zero — otherwise the small card flashes at full size for a frame
+   before GSAP takes over. The translate repeats .stage's own centring: a
+   transform declaration replaces it wholesale, it does not add to it. */
+html.preload #stage { width: min(18.75rem, 30vw); height: min(13.75rem, 28svh); border-radius: 1.125rem;
+  transform: translate(-50%, -50%) scale(0); }
 html.preload .hero-ui { opacity: 0; }
 html.preload .nav { opacity: 0; }

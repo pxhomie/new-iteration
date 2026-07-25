@@ -13,6 +13,31 @@
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- word splitter ----------
+     wraps every word in its own span so it can be staggered or filled one at
+     a time. Authored <br> survives: the headline is written on two lines, and
+     splitting textContent would flatten it into one. Re-entry is guarded by
+     looking for the spans themselves — a <br> counts as a child element, so
+     a children-length check would skip an unsplit heading. */
+  function splitWords(el, cls) {
+    if (!el || el.querySelector("." + cls)) return;
+    var frag = document.createDocumentFragment();
+    [].slice.call(el.childNodes).forEach(function (node) {
+      if (node.nodeName === "BR") { frag.appendChild(document.createElement("br")); return; }
+      var text = (node.textContent || "").trim();
+      if (!text) return;
+      text.split(/\s+/).forEach(function (w, i) {
+        if (i) frag.appendChild(document.createTextNode(" "));
+        var sp = document.createElement("span");
+        sp.className = cls;
+        sp.textContent = w;
+        frag.appendChild(sp);
+      });
+    });
+    el.innerHTML = "";
+    el.appendChild(frag);
+  }
+
   /* ---------- Nav: hide Book-a-call after hero ---------- */
   ScrollTrigger.create({
     trigger: "#introPin", start: "top -2%",
@@ -29,11 +54,7 @@
      at parse time — if the spans don't exist yet, the word-fill tween binds
      to an empty selector and the statement text never appears */
   var stTxt = document.getElementById("statementTxt");
-  if (stTxt && !stTxt.querySelector(".w")) {
-    stTxt.innerHTML = stTxt.textContent.trim().split(/\s+/).map(function (w) {
-      return '<span class="w">' + w + "</span>";
-    }).join(" ");
-  }
+  splitWords(stTxt, "w");
   // when the page opens already scrolled (restored position, anchor) or via
   // a page transition, the load animation must not run: it would shrink the
   // stage while the scroll timeline captures those small values as its start
@@ -73,27 +94,38 @@
     // animation smoothing must be ON so a main-thread stall pauses the
     // animation instead of jumping it. initIntroScroll switches back to 0.
     gsap.ticker.lagSmoothing(500, 33);
-    gsap.set("#stage", { width: "min(18.75rem, 30vw)", height: "min(13.75rem, 28svh)", borderRadius: "1.125rem" });
+    /* xPercent/yPercent restate .stage's CSS centring in GSAP's own terms:
+       once GSAP writes a transform for the scale it owns the whole property,
+       so the translate has to come from here or the card lands off-centre.
+       x:0/y:0 is not redundant — GSAP has already parsed the stylesheet's
+       translate(-50%,-50%) into pixel x/y, and without zeroing them the card
+       is shifted by half its size twice. clearProps on the tween hands
+       centring back to the stylesheet. */
+    gsap.set("#stage", { width: "min(18.75rem, 30vw)", height: "min(13.75rem, 28svh)", borderRadius: "1.125rem",
+      xPercent: -50, yPercent: -50, x: 0, y: 0, scale: 0 });
     gsap.set(heroUi, { opacity: 0 });
     gsap.set(".nav", { opacity: 0, y: -14 });
     /* split the hero title into word spans so it can rise word-by-word */
-    var heroH1 = document.querySelector(".hero-ui__txt h1");
-    if (heroH1 && heroH1.children.length === 0) {
-      heroH1.innerHTML = heroH1.textContent.trim().split(/\s+/).map(function (w) {
-        return '<span class="aw">' + w + "</span>";
-      }).join(" ");
-    }
+    splitWords(document.querySelector(".hero-ui__txt h1"), "aw");
     /* hide the staggered hero children EXPLICITLY at parse time — relying on
        the from-tweens' immediateRender proved unreliable (on slow machines
        the from-state wasn't applied until the tween started, so the title
        flashed visible through the fading-in parent and snapped to 0) */
-    gsap.set(".hero-ui__txt h1 .aw, .hero-ui__txt .sub, .hero-ui__cta", { y: 34, opacity: 0 });
-    gsap.set(".hero-ui__foot, .case-mini", { y: 24, opacity: 0 });
+    /* blur(10px) is the same start value the scroll-appear system uses in
+       shared.js — the hero was the only block that faded in sharp, which read
+       as a different animation language from the rest of the page. Every tween
+       below clears the filter when it lands: a left-over filter on an element
+       makes it its own stacking/containing context and would trap the pinned
+       intro timeline's fixed positioning. */
+    gsap.set(".hero-ui__txt h1 .aw, .hero-ui__txt .sub, .hero-ui__cta", { y: 34, opacity: 0, filter: "blur(10px)" });
+    gsap.set(".hero-ui__foot, .case-mini", { y: 24, opacity: 0, filter: "blur(10px)" });
     // inline styles now match the pre-paint CSS state — drop the guard class
     document.documentElement.classList.remove("preload");
     var loadTl = gsap.timeline({ delay: 0.35, onComplete: function () { initIntroScroll(); } });
     window.__loadTl = loadTl;
     loadTl
+      /* the card springs out of nothing, then unfolds into the full hero */
+      .to("#stage", { scale: 1, duration: 0.6, ease: "back.out(1.6)", clearProps: "transform" })
       .to("#stage", {
         width: function () {
           var e = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--stage-edge")) || 20;
@@ -112,22 +144,22 @@
           // starts from clean, parseable values (no inline var()/calc())
           gsap.set("#stage", { clearProps: "width,height,borderRadius" });
         }
-      })
+      }, "-=0.05")
       .to(heroUi, { opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.25")
       /* .to (not .from): the hidden start state was applied by the explicit
          gsap.set above, so these simply animate to the final values —
          no immediateRender dependence, deterministic on every machine */
       .to(".hero-ui__txt h1 .aw", {
-        y: 0, opacity: 1, stagger: 0.05, duration: 0.7, ease: "back.out(1.7)", clearProps: "transform"
+        y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.05, duration: 0.7, ease: "back.out(1.7)", clearProps: "transform,filter"
       }, "-=0.45")
       .to(".hero-ui__txt .sub, .hero-ui__cta", {
-        y: 0, opacity: 1, stagger: 0.09, duration: 0.8, ease: "back.out(1.7)", clearProps: "transform"
+        y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.09, duration: 0.8, ease: "back.out(1.7)", clearProps: "transform,filter"
       }, "-=0.75")
       /* split motion from fade: back.out on opacity finishes the fade in the
          first ~0.25s and reads as an abrupt pop — the spring stays on the
          movement, the fade gets its own longer, gentle curve */
       .to(".hero-ui__foot, .case-mini", { y: 0, duration: 0.7, ease: "back.out(1.6)", clearProps: "transform" }, "-=0.5")
-      .to(".hero-ui__foot, .case-mini", { opacity: 1, duration: 0.95, ease: "power2.inOut" }, "<")
+      .to(".hero-ui__foot, .case-mini", { opacity: 1, filter: "blur(0px)", duration: 0.95, ease: "power2.inOut", clearProps: "filter" }, "<")
       .to(".nav", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", clearProps: "transform" }, "-=0.55");
   }
 
@@ -147,11 +179,20 @@
     introInited = true;
     // load animation is over — switch to Lenis-accurate ticker timing
     if (window.Lenis && !reduced) gsap.ticker.lagSmoothing(0);
-    // last word ("it.") finishes filling at local timeline time 1.26
-    // (0.4 start + 8*0.07 stagger + 0.3 duration); pad the timeline with a
-    // no-op tween after that so the text sits fully-visible for a beat
-    // before the pin releases, instead of finishing exactly at release.
-    var TEXT_DONE_LOCAL_TIME = 1.26;
+    /* The fill occupies a FIXED window of the pin no matter how long the
+       statement is: FILL_SPAN is the spread of the word start times, so the
+       stagger is derived from the actual word count instead of being hard-coded.
+       Retuned copy therefore never changes how much scrolling the section eats
+       — a fixed per-word stagger would stretch the pin every time a word is
+       added, and the last word would finish after the hold pad was meant to
+       start. Last word finishes at 0.4 + 0.56 + 0.3 = 1.26, as before. */
+    var FILL_START = 0.4, FILL_SPAN = 0.56, FILL_DUR = 0.3;
+    var stWordCount = document.querySelectorAll("#statementTxt .w").length;
+    var stStagger = stWordCount > 1 ? FILL_SPAN / (stWordCount - 1) : 0;
+    // pad the timeline with a no-op tween after the fill so the text sits
+    // fully-visible for a beat before the pin releases, instead of finishing
+    // exactly at release.
+    var TEXT_DONE_LOCAL_TIME = FILL_START + FILL_SPAN + FILL_DUR;
     var HOLD_PAD = 1.16;  // longer hold: the fill completes well before the ride-over
     var TL_TOTAL = TEXT_DONE_LOCAL_TIME + HOLD_PAD;
 
@@ -171,7 +212,7 @@
       .to("#stageDim", { backgroundColor: "rgba(13,13,13,0.36)", duration: 0.16, ease: "none" }, 0.3)
       // statement rises from below while words fill
       .fromTo("#statement", { opacity: 0, y: "28vh" }, { opacity: 1, y: 0, duration: 0.45, ease: "none" }, 0.36)
-      .to("#statementTxt .w", { opacity: 1, stagger: 0.07, duration: 0.3, ease: "none" }, 0.4)
+      .to("#statementTxt .w", { opacity: 1, stagger: stStagger, duration: FILL_DUR, ease: "none" }, FILL_START)
       // no-op hold: keeps the fully-filled text on screen for a beat before release
       .to({}, { duration: HOLD_PAD }, TEXT_DONE_LOCAL_TIME);
     ScrollTrigger.refresh();
@@ -345,6 +386,42 @@
     p.addEventListener("mouseenter", function () { openPhase(i); });
   });
   openPhase(0);
+
+  /* ---------- Video card: click-to-play YouTube facade ----------
+     Nothing of YouTube is loaded until the visitor asks for it — the card is
+     just a poster, so the page keeps its own weight and no third-party frame
+     watches the visit. On click the player is inserted over the poster and
+     starts at the timestamp carried by the markup. */
+  var vCard = document.querySelector(".how__video[data-yt]");
+  if (vCard) {
+    vCard.addEventListener("click", function () {
+      if (vCard.classList.contains("is-playing")) return;
+      var id = encodeURIComponent(vCard.getAttribute("data-yt"));
+      var start = parseInt(vCard.getAttribute("data-yt-start"), 10) || 0;
+      /* A page opened straight from disk has no origin to send, and YouTube
+         refuses to play into it: "Error 153 — video player configuration
+         error". Nothing can fix an embed under file://, so a local preview
+         gets the video in a new tab instead. Served over http(s) — including
+         localhost — this branch never runs. */
+      if (location.protocol === "file:") {
+        window.open("https://www.youtube.com/watch?v=" + id +
+          (start ? "&t=" + start + "s" : ""), "_blank", "noopener");
+        return;
+      }
+      var fr = document.createElement("iframe");
+      fr.src = "https://www.youtube-nocookie.com/embed/" + id +
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1" +
+        (start ? "&start=" + start : "");
+      fr.title = vCard.getAttribute("data-yt-title") || "Video";
+      /* the player needs to see where it is embedded — a stricter policy set
+         page-wide later would bring back the same 153 */
+      fr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      fr.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      fr.setAttribute("allowfullscreen", "");
+      vCard.appendChild(fr);
+      vCard.classList.add("is-playing");
+    });
+  }
 
   /* ---------- Testimonial accordion cards ---------- */
   var tCards = document.querySelectorAll("#tCards .t-card");

@@ -267,17 +267,58 @@
   /* ---------- smooth image reveal ----------
      late-loading images (lazy/network) fade in instead of popping into an
      already-visible section. Scoped via classes so GSAP opacity tweens on
-     other elements are never affected. */
-  document.querySelectorAll("img").forEach(function (img) {
-    if (img.complete && img.naturalWidth > 0) return; // already rendered
-    img.classList.add("img-fade");
+     other elements are never affected.
+
+     The skeleton that stands in during loading gets ONE of two homes, decided
+     by measurement rather than by guessing from markup:
+
+       · the image fills its container -> the container takes the skeleton.
+         That also hides the container's own dark background (no black flash)
+         and lets the image cross-fade on top of it.
+       · the image only occupies part of its container -> the image itself
+         takes the skeleton. Putting it on the container there would paint a
+         pale block behind the neighbouring text, and a square container
+         behind a round avatar showed its corners until the photo landed.
+
+     A container that hosts the skeleton also borrows the image's radius when
+     it has none of its own, so a circular avatar never sits on a square. */
+  var imgs = [].slice.call(document.querySelectorAll("img")).filter(function (img) {
+    return !(img.complete && img.naturalWidth > 0); // already rendered: leave alone
+  });
+  // measure everything first, then write — so we never interleave reads and
+  // writes and thrash layout once per image
+  var plans = imgs.map(function (img) {
     var box = img.parentElement;
-    if (box) box.classList.add("img-loading"); // neutral skeleton instead of the card's dark bg
+    var ir = img.getBoundingClientRect();
+    var fills = false;
+    if (box && ir.width > 0 && ir.height > 0) {
+      var br = box.getBoundingClientRect();
+      fills = Math.abs(ir.width - br.width) < 2 && Math.abs(ir.height - br.height) < 2;
+    }
+    var radius = "";
+    if (fills) {
+      var ri = getComputedStyle(img).borderRadius;
+      var rb = getComputedStyle(box).borderRadius;
+      if (ri && parseFloat(ri) > 0 && !(parseFloat(rb) > 0)) radius = ri;
+    }
+    return { img: img, box: box, fills: fills, radius: radius };
+  });
+  plans.forEach(function (pl) {
+    var img = pl.img;
+    if (pl.fills) {
+      img.classList.add("img-fade");
+      pl.box.classList.add("img-loading");
+      if (pl.radius) pl.box.style.borderRadius = pl.radius;
+    } else {
+      img.classList.add("img-skeleton"); // clipped to the image's own shape
+    }
     var done = function () {
+      if (!pl.fills) { img.classList.remove("img-skeleton"); return; }
       img.classList.add("img-in");
       setTimeout(function () {
         img.classList.remove("img-fade", "img-in");
-        if (box) box.classList.remove("img-loading");
+        pl.box.classList.remove("img-loading");
+        if (pl.radius) pl.box.style.borderRadius = "";
       }, 500);
     };
     img.addEventListener("load", done, { once: true });
