@@ -46,6 +46,19 @@
   --h-mega: clamp(3.5rem, 5.6vw, 7.25rem);
   --h-mid: clamp(1.5rem, 2vw, 2.375rem);
   --h-card: clamp(1.3125rem, 1.5vw, 1.8125rem);
+
+  /* Subpage scale. These four clamps and the section padding were written out
+     verbatim in about/cases/contact/insight/insights.css. Naming them changes
+     nothing today — same values, same order — but the scale is now editable in
+     one place instead of eighteen. The two h2 sizes differ only in their floor
+     (44px vs 40px) and are kept apart on purpose so the difference stays
+     visible rather than being silently averaged away. */
+  --sec-pad: clamp(5rem, 8vw, 8.75rem);     /* section top/bottom rhythm */
+  --h-page: clamp(56px, 7.8vw, 120px);      /* subpage hero H1 */
+  --h-page-2: clamp(44px, 4.2vw, 80px);     /* subpage section H2 */
+  --h-page-3: clamp(40px, 4.2vw, 80px);     /* same role, 4px smaller floor */
+  --t-lead: clamp(20px, 2vw, 30px);         /* hero sub / intro lead */
+  --t-lead-2: clamp(22px, 2vw, 30px);       /* same role, 2px larger floor */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -263,7 +276,9 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   border-radius: var(--stage-r); overflow: clip;
 }
 .stage__media { position: absolute; inset: 0; }
-.stage__media img { width: 100%; height: 100%; object-fit: cover; }
+/* an image that fills its frame — used by the hero stage, the case
+   mini-cards and the contact background */
+.stage__media img, .case-mini__img img, .contact-sec__bg img { width: 100%; height: 100%; object-fit: cover; }
 /* slight permanent darkening of the hero photo (deepens on scroll via JS) */
 .stage__dim { position: absolute; inset: 0; background: rgba(13,13,13,0.34); }
 /* film grain over the hero media */
@@ -318,7 +333,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   box-shadow: 0 24px 50px rgba(13,13,13,0.14);
 }
 .case-mini__img { position: relative; width: 137px; min-height: 176px; border-radius: 20px; overflow: hidden; flex: none; }
-.case-mini__img img { width: 100%; height: 100%; object-fit: cover; }
 .case-mini__img .cl { position: absolute; inset: auto 0 10px 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; }
 .case-mini__body { display: flex; flex-direction: column; width: 241px; background: var(--cream); border-radius: 20px; overflow: hidden; }
 .case-mini__body .chip { align-self: flex-start; margin: 20px 20px 0; background: var(--dark); color: var(--cream); font-size: 13px; font-weight: 600; line-height: 1.3; border-radius: 30px; padding: 5px 9px; }
@@ -475,7 +489,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 /* beige pill with the icon in a white circle inside-left (matches original) */
 .svc-card__top .lbl {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #f5f5e9; border-radius: 6.25rem; padding: 2px 11px 2px 2px;
+  background: var(--beige-2); border-radius: 6.25rem; padding: 2px 11px 2px 2px;
   font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em;
 }
 .svc-card__top .lbl svg { color: var(--dark); flex: none; }
@@ -489,10 +503,10 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .svc-card .desc { color: var(--gray); font-size: 0.9062rem; margin-top: 0.875rem; max-width: 25rem; }
 .svc-card .offer-label { margin-top: auto; padding-top: 1.875rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.03em; }
 .svc-card .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.875rem; }
-.svc-card .chips li { background: #f5f5e9; border-radius: 0.9375rem; padding: 0.1875rem 0.5625rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em; color: var(--dark); }
+.svc-card .chips li { background: var(--beige-2); border-radius: 0.9375rem; padding: 0.1875rem 0.5625rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em; color: var(--dark); }
 .svc-card .btn--wide { margin-top: 0; height: 60px; padding: 0; border-radius: 100px; }
 .svc-card__media { position: relative; margin: 0; border-radius: 22px; overflow: hidden; min-height: 20rem; }
-.svc-card__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.svc-card__media > img, .case__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .glass-quote {
   position: absolute; right: 1.25rem; bottom: 1.25rem; max-width: 18.75rem;
   background: rgba(30,30,28,0.38); backdrop-filter: blur(0.875rem);
@@ -506,7 +520,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .glass-quote .who .r { font-size: 0.6875rem; color: var(--w75); }
 
 /* ============ HOW WE WORK ============ */
-.how { background: var(--paper); padding: clamp(5rem, 8vw, 8.75rem) 0; }
+.how { background: var(--paper); padding: var(--sec-pad) 0; }
 .how h2 { font-size: var(--h-sec); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; max-width: 15em; }
 .how .r-sub { color: var(--gray); font-size: 0.9375rem; margin-top: 1.125rem; max-width: 20rem; }
 
@@ -514,7 +528,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
    wrap #f5f5e9 r40 pad/gap 10; cards #fffffa r30 pad 45, head 17px) */
 .phases {
   display: flex; gap: 0.625rem; margin-top: clamp(1.875rem, 3vw, 3.125rem);
-  background: #f5f5e9; border-radius: 2.5rem; padding: 0.625rem;
+  background: var(--beige-2); border-radius: 2.5rem; padding: 0.625rem;
 }
 @media (max-width: 760px) { .phases { flex-direction: column; } }
 .phase {
@@ -581,7 +595,8 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .pillars .p p b { color: var(--cream); }
 
 /* ============ TEAM ============ */
-.team-sec { padding: 0 var(--edge); background: var(--paper); }
+/* full-bleed section on the paper background */
+.team-sec, .pricing-sec, .contact-sec { padding: 0 var(--edge); background: var(--paper); }
 .team-sec__card { background: var(--green); border-radius: var(--r); padding: clamp(3.125rem, 5vw, 6.25rem) 0; }
 .team-sec .in { width: min(100rem, 88%); margin-inline: auto; }
 .team-sec .logo { color: var(--cream); font-size: 1.0625rem; }
@@ -614,7 +629,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .team-hire__txt .btn { margin-top: 1.5rem; }
 
 /* ============ TESTIMONIALS ============ */
-.testi { background: var(--paper); padding: clamp(5rem, 8vw, 8.75rem) 0; }
+.testi { background: var(--paper); padding: var(--sec-pad) 0; }
 .testi__feat { position: relative; border-radius: var(--r); overflow: hidden; color: var(--cream); }
 .testi__feat > img { width: 100%; aspect-ratio: 1480 / 760; object-fit: cover; min-height: 30rem; filter: saturate(0.85) contrast(0.94) brightness(0.95); }
 /* same darkening + film grain treatment as the hero stage */
@@ -656,8 +671,10 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .t-card q, .t-card .qq { display: block; quotes: none; margin-top: 1rem; font-size: 0.9375rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.5; color: var(--gray-2); transition: color 0.4s; }
 .t-card .who { display: flex; align-items: center; gap: 0.625rem; margin-top: auto; padding-top: 1.125rem; }
 .t-card .who img { width: 2.125rem; height: 2.125rem; border-radius: 50%; object-fit: cover; }
-.t-card .who .n { font-size: 0.8438rem; font-weight: 700; }
-.t-card .who .r { font-size: 0.75rem; color: var(--gray); }
+/* person chip: name + role. Same three lines in the testimonial cards,
+   the CTA band and the footer. */
+.t-card .who .n, .cta-band .who .n, .footer .fwho .n { font-size: 0.8438rem; font-weight: 700; }
+.t-card .who .r, .cta-band .who .r, .footer .fwho .r { font-size: 0.75rem; color: var(--gray); }
 .t-card .sig { margin-left: auto; font-family: "Segoe Script", cursive; font-size: 1.1875rem; color: var(--dark); opacity: 0; transition: opacity 0.4s; }
 .t-card.is-open { flex: 2.1; background: var(--cream); }
 .t-card.is-open .qq { color: var(--dark); font-size: 1.125rem; }
@@ -670,7 +687,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .stat { border-top: 1px solid var(--line); padding-top: 1.25rem; position: relative; }
 .stat svg { position: absolute; right: 0; top: 1.25rem; color: var(--dark); opacity: 0.7; }
 .stat .num { font-size: clamp(2.25rem, 3.4vw, 3.75rem); font-weight: 500; letter-spacing: -0.03em; }
-.stat .num .sfx { color: var(--green); font-size: 0.55em; font-weight: 600; }
+.stat .num .sfx, .case__nums .num .sfx { color: var(--green); font-size: 0.55em; font-weight: 600; }
 .stat .d { color: var(--gray); font-size: 0.8125rem; margin-top: 0.625rem; max-width: 12.5rem; line-height: 1.5; }
 
 /* CTA band */
@@ -681,18 +698,17 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .cta-band .mid p { font-size: clamp(1.1875rem, 1.7vw, 1.75rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.35; }
 .cta-band .mid .g { color: var(--gray-2); }
 .cta-band .who { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.125rem; }
-.cta-band .who img { width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; }
-.cta-band .who .n { font-size: 0.8438rem; font-weight: 700; }
-.cta-band .who .r { font-size: 0.75rem; color: var(--gray); }
+.cta-band .who img, .footer .fwho img { width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; }
 .cta-band .btn { padding: 1.375rem 3.75rem; font-size: 1rem; border-radius: 1rem; }
 
 /* ============ CASE STUDY ============ */
-.case { background: var(--paper); padding-bottom: clamp(5rem, 8vw, 8.75rem); }
-.case__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+.case { background: var(--paper); padding-bottom: var(--sec-pad); }
+/* two equal columns on the standard gutter */
+.case__grid, .insights__grid, .cform .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
 @media (max-width: 860px) { .case__grid { grid-template-columns: 1fr; } }
 .case__left { display: flex; flex-direction: column; gap: 0.875rem; }
 .panel { background: var(--cream); border: 1px solid var(--line); border-radius: 1.125rem; padding: clamp(1.25rem, 2vw, 2rem); }
-.case .date { font-size: 0.8125rem; color: var(--gray); font-weight: 600; }
+.case .date, .faq__foot .t { font-size: 0.8125rem; color: var(--gray); font-weight: 600; }
 .case h3 { font-size: var(--h-mid); font-weight: 600; letter-spacing: -0.03em; line-height: 1.25; margin-top: 0.875rem; }
 .case__meta { margin-top: 1.375rem; }
 /* pill label left, value in a second left-aligned column (matches original) */
@@ -707,7 +723,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   display: grid; place-items: center; color: var(--dark); background: var(--paper);
 }
 .case__nums .num { font-size: clamp(2.25rem, 3vw, 3.375rem); font-weight: 500; letter-spacing: -0.03em; }
-.case__nums .num .sfx { color: var(--green); font-size: 0.55em; font-weight: 600; }
 .case__nums .d { color: var(--gray); font-size: 0.7812rem; margin-top: 0.5rem; }
 .case__right { display: flex; flex-direction: column; gap: 0.875rem; }
 .case__svc { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -720,7 +735,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .case__svc .who { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.625rem; font-size: 0.7812rem; color: var(--gray); }
 .case__svc .who img { width: 1.625rem; height: 1.625rem; border-radius: 50%; object-fit: cover; }
 .case__img { position: relative; border-radius: 1.125rem; overflow: hidden; flex: 1; min-height: 17.5rem; }
-.case__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .case__img .cl { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 1.625rem; font-weight: 700; letter-spacing: -0.02em; }
 .case .btn--wide { margin-top: 0; }
 /* full-pill case buttons: the pair swaps into each other — green floods to
@@ -742,14 +756,12 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .case__img { border-radius: 30px; }
 
 /* ============ PRICING ============ */
-.pricing-sec { padding: 0 var(--edge); background: var(--paper); }
 .pricing-sec__card { background: var(--dark); border-radius: var(--r); padding: clamp(3.125rem, 5vw, 6.25rem) 0; color: var(--cream); }
 .pricing-sec .in { width: min(100rem, 88%); margin-inline: auto; }
 .pricing-sec__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.875rem; flex-wrap: wrap; }
 .pricing-sec h2 { font-size: var(--h-sec); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; color: var(--cream); max-width: 9em; }
 .pricing-sec h2 em { font-style: normal; color: var(--w45); }
 .pricing-sec .trusted .cap { color: var(--w75); }
-.pricing-sec .trusted__avatars img { border-color: var(--dark); }
 .pricing__grid { display: grid; grid-template-columns: 0.9fr 1.5fr; gap: 2.5rem; margin-top: clamp(2.25rem, 4vw, 3.75rem); align-items: start; }
 @media (max-width: 860px) { .pricing__grid { grid-template-columns: 1fr; } }
 .plan-list .plan-row {
@@ -762,21 +774,40 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .plan-list .plan-row .ic { width: 1.25rem; color: var(--w75); }
 .plan-list .plan-row .nm { font-size: 1rem; font-weight: 600; }
 .plan-list .plan-row .pr { font-size: 0.7812rem; color: var(--w45); margin-top: 0.125rem; }
-.plan-list .plan-row .pop { margin-left: auto; background: var(--green); color: var(--dark); font-size: 0.6875rem; font-weight: 700; border-radius: 6.25rem; padding: 0.25rem 0.625rem; }
+.plan-list .plan-row .pop { margin-left: auto; background: var(--green); color: var(--dark); font-size: 0.6875rem; font-weight: 700; border-radius: 6.25rem; padding: 0.25rem 0.625rem;
+  /* "Most common" is two words where the template had one, and on a phone
+     the pill broke across two lines and pushed the row taller than its
+     neighbours. Keeping the pill whole lets the label beside it wrap
+     instead, which costs nothing. */
+  white-space: nowrap; }
 .plan-list .plan-row .radio { margin-left: auto; width: 1.125rem; height: 1.125rem; border-radius: 50%; border: 0.0938rem solid rgba(255,255,250,0.4); }
 .plan-list .plan-row .pop + .radio { margin-left: 0.75rem; }
 .plan-list .plan-row.is-on { background: rgba(255,255,250,0.07); border-color: rgba(255,255,250,0.3); }
 .plan-list .plan-row.is-on .radio { border-color: var(--green); background: radial-gradient(circle, var(--green) 45%, transparent 50%); }
+/* Narrow phones. "Most common" is a two-word pill where the template had the
+   one-word "Popular", and "Ongoing, month to month" is a longer sub-label than
+   "Starts at $8500/mo" — together they left the middle row so little width that
+   it wrapped to three lines and stood a head taller than the two rows around
+   it, which reads as a broken list rather than a longer label. Tightening the
+   row's own padding and gap first (that space is free), then stepping the pill
+   and sub-label down, keeps all three rows the same height down to 360px and
+   holds the middle one to two lines at 320px. */
+@media (max-width: 400px) {
+  .plan-list .plan-row { padding: 1.125rem 0.875rem; gap: 0.625rem; }
+  .plan-list .plan-row .pop { font-size: 0.625rem; padding: 0.1875rem 0.4375rem; }
+  .plan-list .plan-row .pr { font-size: 0.6875rem; }
+}
 .pricing__note { color: var(--w75); font-size: clamp(1rem, 1.3vw, 1.3125rem); font-weight: 500; margin-top: 2.125rem; max-width: 20rem; line-height: 1.45; }
 .pricing__note em { font-style: normal; color: var(--green); }
-.pricing__who { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.375rem; }
-.pricing__who img { width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; }
-.pricing__who .n { font-size: 0.8438rem; font-weight: 700; color: var(--cream); }
-.pricing__who .r { font-size: 0.75rem; color: var(--w45); }
 .plan-detail { background: rgba(255,255,250,0.05); border: 1px solid rgba(255,255,250,0.12); border-radius: 1.125rem; padding: clamp(1.375rem, 2.2vw, 2.375rem); }
 .plan-detail__top { display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 .plan-detail__top .price { font-size: clamp(2.125rem, 3vw, 3.375rem); font-weight: 500; letter-spacing: -0.03em; }
-.plan-detail__top .price span { font-size: 0.35em; color: var(--w45); font-weight: 600; }
+/* A model name is read, not scanned at a glance the way "$2500" was, so it
+   steps down from the price size. At the old size "Monthly Retainer" pushed
+   the button onto a second line at every desktop width. */
+.plan-detail__top .price--name { font-size: clamp(1.5rem, 2.2vw, 2.25rem); }
+.plan-detail .feats-label { margin-top: 1.625rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w45); }
+.plan-detail .feats-label + .feats { margin-top: 0.875rem; }
 .plan-detail__top .btn { background: var(--cream); color: var(--dark); padding: 0.9375rem 2.875rem; }
 .plan-detail .desc { color: var(--w75); font-size: 0.9062rem; margin-top: 1.125rem; max-width: 26.25rem; }
 .plan-detail .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; margin-top: 1.625rem; }
@@ -785,7 +816,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .plan-detail .feats li .ck { width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--green); color: var(--dark); display: grid; place-items: center; font-size: 0.625rem; flex: none; }
 
 /* ============ FAQ ============ */
-.faq { background: var(--paper); padding: clamp(5rem, 8vw, 8.75rem) 0; text-align: center; }
+.faq { background: var(--paper); padding: var(--sec-pad) 0; text-align: center; }
 .faq h2 { font-size: var(--h-mega); font-weight: 600; letter-spacing: -0.04em; }
 .faq__panel { width: min(51.25rem, 92vw); margin: clamp(1.875rem, 3vw, 3.125rem) auto 0; background: var(--beige-2); border: 1px solid var(--line); border-radius: 1.25rem; padding: clamp(1.125rem, 2vw, 1.875rem); text-align: left; }
 .faq__tabs { display: flex; justify-content: center; gap: 0.375rem; flex-wrap: wrap; }
@@ -803,12 +834,11 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .faq__foot .avs { display: flex; }
 .faq__foot .avs img { width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 0.125rem solid var(--beige-2); object-fit: cover; }
 .faq__foot .avs img + img { margin-left: -0.625rem; }
-.faq__foot .t { font-size: 0.8125rem; color: var(--gray); font-weight: 600; }
 .faq__mail { display: inline-flex; align-items: center; gap: 0.625rem; font-size: 1.5625rem; font-weight: 600; letter-spacing: -0.03em; cursor: pointer; }
 .faq__mail .ic { width: 1.375rem; height: 1.375rem; border-radius: 50%; background: var(--green); color: var(--cream); display: grid; place-items: center; font-size: 0.6875rem; }
 
 /* ============ INSIGHTS ============ */
-.insights { background: var(--paper); padding-bottom: clamp(5rem, 8vw, 8.75rem); }
+.insights { background: var(--paper); padding-bottom: var(--sec-pad); }
 .insights__wrap { display: grid; grid-template-columns: 0.9fr 1.5fr; gap: clamp(1.875rem, 5vw, 6.875rem); align-items: stretch; }
 @media (max-width: 860px) { .insights__wrap { grid-template-columns: 1fr; } }
 .insights__left { display: flex; flex-direction: column; align-items: flex-start; }
@@ -816,7 +846,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .insights__left p { color: var(--gray); font-size: 0.9375rem; margin-top: 1rem; max-width: 20rem; }
 .insights__left .btn { margin-top: auto; }
 @media (max-width: 860px) { .insights__left .btn { margin-top: 24px; margin-bottom: 24px; } }
-.insights__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
 @media (max-width: 560px) { .insights__grid { grid-template-columns: 1fr; } }
 .ins-card { position: relative; border-radius: 1.125rem; overflow: hidden; aspect-ratio: 3 / 4; display: flex; }
 .ins-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
@@ -833,10 +862,8 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .ins-card .t { display: block; font-size: clamp(1.125rem, 1.5vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; margin-top: 0.5rem; }
 
 /* ============ CONTACT ============ */
-.contact-sec { padding: 0 var(--edge); background: var(--paper); }
 .contact-sec__card { position: relative; border-radius: var(--r); overflow: hidden; padding: clamp(1.625rem, 3vw, 4.375rem) 0; }
 .contact-sec__bg { position: absolute; inset: 0; }
-.contact-sec__bg img { width: 100%; height: 100%; object-fit: cover; }
 .contact-sec__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(20,40,60,0.35), rgba(20,40,60,0.05) 60%); }
 .contact-sec .in { position: relative; z-index: 2; width: min(100rem, 88%); margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.875rem, 4vw, 5.625rem); }
 @media (max-width: 860px) { .contact-sec .in { grid-template-columns: 1fr; } }
@@ -859,7 +886,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .cform .logo { font-size: 1rem; }
 .cform .lead { font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.01em; margin-top: 0.875rem; line-height: 1.4; }
 .cform .lead em { font-style: normal; color: var(--gray); }
-.cform .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
 @media (max-width: 560px) { .cform .row2 { grid-template-columns: 1fr; } }
 .cform label { display: block; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em; margin: 1rem 0 0.375rem; }
 .cform input[type="text"], .cform input[type="email"], .cform textarea {
@@ -931,9 +957,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .footer .tagline { font-size: clamp(1.1875rem, 1.7vw, 1.6875rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.35; }
 .footer .tagline em { font-style: normal; color: var(--gray-2); }
 .footer .fwho { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; }
-.footer .fwho img { width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; }
-.footer .fwho .n { font-size: 0.8438rem; font-weight: 700; }
-.footer .fwho .r { font-size: 0.75rem; color: var(--gray); }
 .footer .tel { font-size: 0.875rem; font-weight: 600; color: var(--gray); margin-top: 1.625rem; }
 .footer .mail { display: inline-flex; align-items: center; gap: 0.625rem; font-size: clamp(1.1875rem, 1.6vw, 1.625rem); font-weight: 600; letter-spacing: -0.02em; margin-top: 0.5rem; cursor: pointer; }
 .footer .mail .ic { width: 1.625rem; height: 1.625rem; border-radius: 50%; background: var(--green); color: var(--cream); display: grid; place-items: center; font-size: 0.75rem; }
@@ -996,13 +1019,13 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .cat-chip {
   position: absolute; z-index: 3; top: 24px; left: 24px;
   display: inline-flex; align-items: center; gap: 8px;
-  background: #242424; color: #fff;
+  background: var(--dark); color: #fff;
   border-radius: 100px; padding: 2px 12px 2px 2px;
   font-size: 12px; font-weight: 600; white-space: nowrap;
 }
 .cat-chip .ico {
   width: 25px; height: 25px; border-radius: 50%;
-  background: #fff; color: #242424;
+  background: #fff; color: var(--dark);
   display: grid; place-items: center; flex: none;
 }
 
@@ -1027,7 +1050,7 @@ html.nav-blur main { filter: blur(12px) saturate(0.55) brightness(0.78); }
 
 /* while a page-transition entry is pending, any early paint must be green,
    not white (class is set by an inline <head> script before first paint) */
-html.pt-in, html.pt-in body { background: #5dc39b !important; }
+html.pt-in, html.pt-in body { background: var(--green) !important; }
 
 /* services head pins behind the incoming cards and shrinks as they ride over */
 .svc-head { position: sticky; top: -240px; z-index: 0; }

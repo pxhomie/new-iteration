@@ -9,12 +9,12 @@
 /* ---------- HERO ---------- */
 .cases-hero { padding: 194px 60px 0; max-width: 1530px; margin-inline: auto; }
 .cases-hero h1 {
-  font-size: clamp(56px, 7.8vw, 120px); font-weight: 400;
+  font-size: var(--h-page); font-weight: 400;
   letter-spacing: -0.04em; line-height: 1;
 }
 .cases-hero .sub {
   margin-top: 26px; max-width: 620px;
-  font-size: clamp(20px, 2vw, 30px); font-weight: 600;
+  font-size: var(--t-lead); font-weight: 600;
   letter-spacing: -0.02em; line-height: 1.35;
 }
 
@@ -27,13 +27,14 @@
 .feat__col { display: flex; flex-direction: column; gap: 10px; }
 .feat__info { background: var(--cream); border-radius: 30px; padding: 30px; flex: 1; display: flex; flex-direction: column; }
 .feat__info time { font-size: 13px; font-weight: 600; color: var(--gray); }
-.feat__info h2 { margin-top: 18px; font-size: clamp(22px, 2vw, 30px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.35; max-width: 640px; }
+.feat__info h2 { margin-top: 18px; font-size: var(--t-lead-2); font-weight: 600; letter-spacing: -0.02em; line-height: 1.35; max-width: 640px; }
 .feat__meta { margin-top: auto; padding-top: 26px; display: grid; gap: 14px; }
 .feat__meta .row {
   display: grid; grid-template-columns: 1fr 1fr; align-items: center;
   font-size: 13px; font-weight: 600;
 }
-.feat__meta .mpill {
+/* metric pill — identical on the featured card and inside a case study */
+.feat__meta .mpill, .cs-meta .mpill {
   justify-self: start; display: inline-flex; align-items: center; gap: 7px;
   background: var(--beige-2); border-radius: 100px; padding: 7px 13px; color: var(--dark);
 }
@@ -75,7 +76,7 @@
 /* ---------- CASES GRID ---------- */
 .cases-intro {
   margin: 150px auto 0; max-width: 620px; text-align: center;
-  font-size: clamp(20px, 2vw, 30px); font-weight: 600;
+  font-size: var(--t-lead); font-weight: 600;
   letter-spacing: -0.02em; line-height: 1.35; padding-inline: 24px;
 }
 .cases-intro em { font-style: normal; color: var(--gray-2); }
@@ -113,8 +114,8 @@
 .cs-wrap { max-width: calc(1480px + 48px); margin-inline: auto; padding-inline: 24px; }
 .cs-hero { padding-top: 194px; }
 .cs-hero__top { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; }
-.cs-hero__top h1 { font-size: clamp(56px, 7.8vw, 120px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
-.cs-hero__top .sub { margin-top: 100px; max-width: 650px; font-size: clamp(20px, 2vw, 30px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.3; color: var(--gray); }
+.cs-hero__top h1 { font-size: var(--h-page); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+.cs-hero__top .sub { margin-top: 100px; max-width: 650px; font-size: var(--t-lead); font-weight: 600; letter-spacing: -0.04em; line-height: 1.3; color: var(--gray); }
 /* services block sits at the level of the subtitle, chips are beige pills */
 .cs-hero__svc { align-self: end; min-width: 360px; }
 .cs-hero__svc .lbl { font-size: 13px; font-weight: 600; }
@@ -129,10 +130,6 @@
 .cs-meta__logo { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 26px; }
 .cs-meta .row { display: grid; grid-template-columns: 324px 1fr; align-items: center; padding: 12px 0; font-size: 13px; font-weight: 600; }
 .cs-meta .mv { color: var(--gray); }
-.cs-meta .mpill {
-  justify-self: start; display: inline-flex; align-items: center; gap: 7px;
-  background: var(--beige-2); border-radius: 100px; padding: 7px 13px; color: var(--dark);
-}
 .cs-metrics { min-height: 262px; }
 /* value floats mid-cell, label pinned to the bottom (like the original) */
 .cs-metrics .v { margin-top: auto; }
@@ -140,7 +137,7 @@
 
 .cs-art { padding-top: 150px; }
 .cs-art__date { display: block; font-size: 13px; font-weight: 600; margin-bottom: 26px; }
-.cs-art__title { font-size: clamp(40px, 4.2vw, 80px); font-weight: 400; letter-spacing: -0.04em; line-height: 1.05; max-width: 1200px; }
+.cs-art__title { font-size: var(--h-page-3); font-weight: 400; letter-spacing: -0.04em; line-height: 1.05; max-width: 1200px; }
 .cs-block { margin-top: 110px; display: grid; grid-template-columns: 383px 1fr; align-items: start; }
 .cs-block .lbl { padding-left: 0; }
 .lpill {
@@ -148,9 +145,8 @@
   background: var(--beige-2); border-radius: 100px; padding: 8px 15px;
   font-size: 13px; font-weight: 600; letter-spacing: -0.02em; color: var(--dark);
 }
-.cs-block .lead { max-width: 880px; font-size: clamp(26px, 2.4vw, 40px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.3; color: var(--dark); }
+.cs-block .lead, .results-intro { max-width: 880px; font-size: clamp(26px, 2.4vw, 40px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.3; color: var(--dark); }
 .cs-block .body { max-width: 880px; margin-top: 44px; font-size: 17px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.5; color: var(--gray); }
-.results-intro { max-width: 880px; font-size: clamp(26px, 2.4vw, 40px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.3; color: var(--dark); }
 .cs-block .results { max-width: 880px; margin-top: 52px; display: grid; gap: 18px; }
 .cs-block .results li {
   display: flex; align-items: center; gap: 18px;
@@ -171,7 +167,7 @@
   text-align: center;
 }
 .cs-quote__logo { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
-.cs-quote .q { max-width: 900px; margin: 70px auto 0; font-size: clamp(22px, 2vw, 30px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.3; }
+.cs-quote .q { max-width: 900px; margin: 70px auto 0; font-size: var(--t-lead-2); font-weight: 600; letter-spacing: -0.04em; line-height: 1.3; }
 .cs-quote .who { margin: 70px auto 0; display: flex; align-items: center; justify-content: center; gap: 14px; text-align: left; }
 .cs-quote .who img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
 .cs-quote .who .n { font-size: 15px; font-weight: 600; color: #fff; }
@@ -179,7 +175,7 @@
 
 .cs-more { padding-top: 170px; }
 .cs-more__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
-.cs-more__head h2 { font-size: clamp(40px, 4.2vw, 80px); font-weight: 600; letter-spacing: -0.035em; line-height: 1; }
+.cs-more__head h2 { font-size: var(--h-page-3); font-weight: 600; letter-spacing: -0.035em; line-height: 1; }
 .cs-more__head .sub { margin-top: 22px; font-size: 20px; font-weight: 600; color: var(--gray); max-width: 560px; }
 .cgrid--tight { margin-top: 60px; padding-inline: 0; max-width: none; gap: 20px; }
 

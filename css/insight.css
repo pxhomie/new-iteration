@@ -35,7 +35,7 @@
 .art-hero__who .n { font-size: 15px; font-weight: 600; }
 .art-hero__who .r { font-size: 13px; font-weight: 500; color: #e6e6e6; }
 .art-hero__txt h1 {
-  font-size: clamp(40px, 4.2vw, 80px); font-weight: 600;
+  font-size: var(--h-page-3); font-weight: 600;
   letter-spacing: -0.04em; line-height: 1.05; max-width: 900px;
 }
 .art-hero__txt .sub {
@@ -113,7 +113,7 @@
 }
 .art-more__left { display: flex; flex-direction: column; }
 .art-more__left h2 {
-  font-size: clamp(44px, 4.2vw, 80px); font-weight: 600;
+  font-size: var(--h-page-2); font-weight: 600;
   letter-spacing: -0.04em; line-height: 1.05; max-width: 320px;
 }
 .art-more__left .va {

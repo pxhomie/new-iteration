@@ -464,29 +464,32 @@
     tRowRsz = setTimeout(lockTRow, 150);
   });
 
-  /* ---------- Pricing selector ---------- */
+  /* ---------- Engagement models ----------
+     The three models are not priced, so the slot that used to hold a figure
+     holds the model name, and the check list holds the "Best for" line split
+     into its own items. Everything else about the selector is unchanged. */
   var PLANS = [
     {
-      price: "$2500<span>/mo</span>", btn: "Get Started",
-      desc: "A focused, 8-week engagement to diagnose your biggest growth blocker and build the plan to fix it.",
-      feats: ["Full-funnel diagnostic audit", "90-day growth roadmap", "Weekly strategy sessions", "Conversion optimization plan", "30-day post-engagement check-in"]
+      name: "Design Sprint", btn: "Get started",
+      desc: "One defined problem. A landing page, an onboarding flow, a set of core screens. Clear deliverable and timeline agreed before we start.",
+      feats: ["Launches", "Single flows", "Testing whether we work well together"]
     },
     {
-      price: "$8500<span>/mo</span>", btn: "Get Started",
-      desc: "Ongoing, hands-on growth partnership across strategy, operations, and execution.",
-      feats: ["Everything in Growth Sprint", "Hands-on execution support", "Revenue systems build-out", "Monthly leadership reviews", "Priority access to the team", "Quarterly strategy resets"]
+      name: "Monthly Retainer", btn: "Get started",
+      desc: "A set amount of design capacity each month, used however you need. Some months that's a feature, other months twenty small things. Priorities set together at the start of each cycle.",
+      feats: ["Products in active development", "Teams without an in-house designer"]
     },
     {
-      price: "Custom", btn: "Get a quote",
-      desc: "For complex, multi-workstream engagements that need a tailored scope and team.",
-      feats: ["Tailored engagement design", "Multiple workstreams", "Senior-led team", "Custom reporting cadence", "Flexible duration"]
+      name: "Project", btn: "Get started",
+      desc: "End to end for a complete product or redesign. Discovery, direction, full screen set, design system, handoff. Split into phases so progress is visible throughout.",
+      feats: ["Products from zero", "Full redesigns", "Rebrands"]
     }
   ];
   var planRows = document.querySelectorAll("#planList .plan-row");
   function setPlan(i) {
     planRows.forEach(function (r, j) { r.classList.toggle("is-on", i === j); });
     var p = PLANS[i];
-    document.getElementById("pdPrice").innerHTML = p.price;
+    document.getElementById("pdPrice").textContent = p.name;
     var pdBtn = document.getElementById("pdBtn");
     var bt1 = pdBtn.querySelector(".t1"), bt2 = pdBtn.querySelector(".t2");
     if (bt1) { bt1.textContent = p.btn; bt2.textContent = p.btn; }
