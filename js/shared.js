@@ -1,7 +1,8 @@
 /* ============================================================
    KORA — shared behaviors (loaded on every page, before the
    page-specific script):
-   Lenis smooth scroll · appear-on-scroll · word-fill helper ·
+   Lenis smooth scroll · appear-on-scroll · shape reveal ·
+   word-fill helper ·
    counters · pre-footer recede · footer wordmark & arc ·
    liquid-fill buttons · form chips · FAQ accordion+tabs ·
    copy email
@@ -125,6 +126,97 @@
     }
   }
 
+  /* ---------- Shape reveal: circle -> full rounded rect ----------
+     Two concentric masks on the same box. The frame itself (which carries
+     the green backing colour) opens first; the photo inside opens a beat
+     later behind it. That lag is the whole effect: for most of the run you
+     see a green shape with a smaller dark shape growing inside it, exactly
+     like the reference. Both are inset() regions that grow from a small
+     centred circle to the full box while the corner radius relaxes from
+     "fully round" to the box's own border-radius.
+
+     The photo never moves or rescales — only the masks do — so it stays
+     sharp and the whole thing reads as the frame opening up.
+
+     Plays once on the way in and is not scrubbed: scrolling back up leaves
+     the images in place rather than closing them again.
+
+     The radius has to be interpolated in px against a live measurement: a
+     % radius on a non-square region gives elliptical corners, and the end
+     state must land exactly on the CSS radius. Hence the manual onUpdate
+     instead of a plain gsap.fromTo on a clip-path string. */
+  var revealEls = document.querySelectorAll("[data-reveal]");
+  if (revealEls.length) {
+    if (reduced) {
+      revealEls.forEach(function (el) {
+        el.style.clipPath = "none";
+        var im = el.querySelector("img");
+        if (im) im.style.clipPath = "none";
+      });
+    } else {
+      var MIN = 0.07;          /* start size, as a fraction of the short side */
+      revealEls.forEach(function (el) {
+        var img = el.querySelector("img");
+        var W = 0, H = 0, rEnd = 0;
+        function measure() {
+          var r = el.getBoundingClientRect();
+          W = r.width; H = r.height;
+          rEnd = parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0;
+        }
+        function shape(p) {
+          if (!W || !H) measure();
+          var side = Math.min(W, H) * MIN;
+          var rw = side + (W - side) * p;
+          var rh = side + (H - side) * p;
+          var x = (W - rw) / 2, y = (H - rh) / 2;
+          /* p=0 -> half the short side (a circle); p=1 -> the CSS radius */
+          var rMax = Math.min(rw, rh) / 2;
+          var rad = rEnd + (rMax - rEnd) * (1 - p);
+          return "inset(" + y + "px " + x + "px " + y + "px " + x + "px round " + rad + "px)";
+        }
+        var st = { frame: 0, photo: 0 };
+        function paint() {
+          el.style.clipPath = shape(st.frame);
+          if (img) img.style.clipPath = shape(st.photo);
+        }
+        measure();
+        paint();
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 85%",
+          once: true,
+          onRefresh: function () { if (!st.frame) { measure(); paint(); } },
+          onEnter: function () {
+            /* Hold the reveal until the photo is actually decoded, otherwise
+               the mask opens onto an empty box and the image pops in after.
+               The timeout is the escape hatch: a broken or very slow image
+               must never leave the block sitting closed. */
+            if (img && !(img.complete && img.naturalWidth > 0)) {
+              var fired = false;
+              var go = function () { if (!fired) { fired = true; run(); } };
+              img.addEventListener("load", go, { once: true });
+              img.addEventListener("error", go, { once: true });
+              setTimeout(go, 1200);
+            } else { run(); }
+          }
+        });
+        function run() {
+          measure();
+          gsap.to(st, { frame: 1, duration: 0.75, ease: "power3.out", onUpdate: paint });
+          gsap.to(st, {
+            photo: 1, duration: 0.65, delay: 0.55, ease: "power3.out", onUpdate: paint,
+            /* drop the masks once we are done so a later resize can't
+               leave a stale px-based clip behind */
+            onComplete: function () {
+              el.style.clipPath = "none";
+              if (img) img.style.clipPath = "none";
+            }
+          });
+        }
+      });
+    }
+  }
+
   /* ---------- CTA title: word-by-word fill ---------- */
   fillWords(document.getElementById("ctaTitle"));
 
@@ -215,28 +307,62 @@
     });
   });
 
-  /* ---------- FAQ: single-open + bouncy open + tabs ---------- */
+  /* ---------- FAQ: single-open, animated both ways + tabs ----------
+     <details> collapses instantly the moment `open` is removed, so a closing
+     panel can't be animated from a "toggle" listener — by the time it fires the
+     content is already gone. The click on <summary> is intercepted instead:
+     opening sets `open` first and grows the answer, closing shrinks it and only
+     drops `open` when the tween lands. Enter/Space also emit a click, so the
+     keyboard path goes through the same code. */
   var faqItems = document.querySelectorAll(".faq-item");
-  var animFaqOpen = function (d) {
-    if (reduced || !window.gsap) return;
-    var a = d.querySelector(".a");
-    if (!a) return;
+  function faqBody(d) { return d.querySelector(".a"); }
+  function faqPad(a) { return parseFloat(getComputedStyle(a).paddingBottom) || 0; }
+
+  function faqOpen(d) {
+    var a = faqBody(d);
+    d.open = true;
+    if (reduced || !window.gsap || !a) return;
     gsap.killTweensOf(a);
-    var full = a.offsetHeight; /* natural height incl. padding, measured at open */
+    gsap.set(a, { clearProps: "height,paddingBottom,overflow,transform,opacity" });
+    var full = a.offsetHeight, pb = faqPad(a); /* natural size, measured while open */
     gsap.fromTo(a,
       { height: 0, paddingBottom: 0, opacity: 0, y: -10, overflow: "hidden" },
       {
-        height: full, paddingBottom: "1.25rem", opacity: 1, y: 0,
-        duration: 0.6, ease: "back.out(1.6)",
+        height: full, paddingBottom: pb, opacity: 1, y: 0,
+        duration: 0.55, ease: "back.out(1.4)",
         clearProps: "height,paddingBottom,overflow,transform,opacity"
       });
-  };
+  }
+
+  function faqClose(d) {
+    var a = faqBody(d);
+    if (reduced || !window.gsap || !a) { d.open = false; return; }
+    gsap.killTweensOf(a);
+    var full = a.offsetHeight, pb = faqPad(a);
+    /* [open] still holds until the tween ends, so the "+" would snap back late —
+       this class un-rotates it in step with the collapse. */
+    d.classList.add("is-closing");
+    gsap.fromTo(a,
+      { height: full, paddingBottom: pb, opacity: 1, y: 0, overflow: "hidden" },
+      {
+        height: 0, paddingBottom: 0, opacity: 0, y: -6,
+        duration: 0.38, ease: "power2.inOut",   /* no overshoot on the way out */
+        onComplete: function () {
+          d.open = false;
+          d.classList.remove("is-closing");
+          gsap.set(a, { clearProps: "height,paddingBottom,overflow,transform,opacity" });
+        }
+      });
+  }
+
   faqItems.forEach(function (d) {
-    d.addEventListener("toggle", function () {
-      if (d.open) {
-        faqItems.forEach(function (o) { if (o !== d) o.open = false; });
-        animFaqOpen(d);
-      }
+    var sum = d.querySelector("summary");
+    if (!sum) return;
+    sum.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (d.open) { faqClose(d); return; }
+      faqItems.forEach(function (o) { if (o !== d && o.open) faqClose(o); });
+      faqOpen(d);
     });
   });
   var tabs = document.querySelectorAll("#faqTabs button");
@@ -306,6 +432,14 @@
   plans.forEach(function (pl) {
     var img = pl.img;
     if (pl.fills) {
+      /* A [data-reveal] box paints the colour the shape reveal is supposed to
+         open onto (the green backing), and the mask IS the entrance. Both the
+         skeleton and the cross-fade fight that: the skeleton would override
+         the backing with a pale grey for as long as the photo took to arrive,
+         and the fade would make the photo materialise inside an already-open
+         mask. So those boxes are left alone; the reveal waits for the image
+         instead. */
+      if (pl.box.hasAttribute("data-reveal")) return;
       img.classList.add("img-fade");
       pl.box.classList.add("img-loading");
       if (pl.radius) pl.box.style.borderRadius = pl.radius;
@@ -338,6 +472,111 @@
     }, { rootMargin: "300% 0px" });
     document.querySelectorAll('img[loading="lazy"]').forEach(function (i) { pre.observe(i); });
   }
+
+  /* ---------- [data-play-in-view]: run a clip when its card scrolls in ----------
+     Two observers on purpose. The near one starts and stops playback at 45%
+     visibility, so the clip runs while the card is actually being looked at and
+     doesn't burn CPU off-screen. The far one only flips preload from "none" to
+     "auto" a viewport early: the file stays off the initial page load, but it is
+     buffered by the time the card arrives, so play() doesn't stall on frame one.
+     Rewinding to 0 on entry means the clip replays on every pass rather than
+     sitting on its last frame. play() is promise-based and rejects if the tab
+     denies autoplay — caught and ignored, the poster simply stays up.
+     The warm pass deliberately does NOT call load(): load() resets the element
+     and aborts any play() already in flight, which is exactly what happens when
+     both observers fire in the same tick (deep link straight to the card). */
+  var clips = document.querySelectorAll("video[data-play-in-view]");
+  if (clips.length && "IntersectionObserver" in window) {
+    var warm = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.preload = "auto";
+        warm.unobserve(en.target);
+      });
+    }, { rootMargin: "100% 0px" });
+
+    var playing = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (reduced) return;              /* motion off: hold the poster */
+          v.preload = "auto";
+          try { v.currentTime = 0; } catch (e) {}
+          var pr = v.play();
+          if (pr && pr.catch) pr.catch(function () {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.45 });
+
+    clips.forEach(function (v) { warm.observe(v); playing.observe(v); });
+  }
+
+  /* ---------- no single-word last lines in body copy ----------
+     CSS alone can't finish this job: text-wrap:balance is silently skipped by
+     Chrome once a block runs past a few lines, so long paragraphs keep
+     stranding their closing word on a line of its own. Gluing the last two
+     words together with U+00A0 makes them wrap down as a pair instead.
+     Scope is <p> only, on purpose: fillWords() and the appear splitter cut on
+     /\s+/, which also matches nbsp, so a heading treated this way would lose
+     the character outright. Paragraphs that are already word-split, or that
+     are really widgets (counters), are skipped for the same reason.
+     If the pair is wider than the column the glue would force an overflow, so
+     that case is reverted and the paragraph keeps its natural break. */
+  var tied = [];
+  function tieLastPair(p) {
+    if (p.querySelector(".w, .aw, .ch, [data-count]")) return;
+    var node = null, walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), n;
+    while ((n = walker.nextNode())) if (/\S/.test(n.textContent)) node = n;
+    if (!node) return;
+    var txt = node.textContent.replace(/\s+$/, "");
+    var m = /\s+(?=\S+$)/.exec(txt);
+    if (!m) return;                                  /* one word — nothing to tie */
+    if (p.textContent.trim().split(/\s+/).length < 2) return;
+    tied.push({ node: node, was: node.textContent });
+    node.textContent = txt.slice(0, m.index) + " " + txt.slice(m.index + m[0].length);
+    if (p.scrollWidth > p.clientWidth + 1) {         /* pair doesn't fit — undo */
+      node.textContent = tied.pop().was;
+    }
+  }
+  function retieAll() {
+    while (tied.length) { var t = tied.pop(); t.node.textContent = t.was; }
+    document.querySelectorAll("p").forEach(tieLastPair);
+  }
+  retieAll();
+  var tieTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(tieTimer);
+    tieTimer = setTimeout(retieAll, 180);
+  });
+
+  /* ---------- Nav: hide on scroll down, reveal on scroll up ----------
+     A short travel budget (acc) debounces the flip so Lenis' easing tail
+     and trackpad jitter can't strobe the nav. */
+  if (!reduced) (function () {
+    var nav = document.getElementById("nav");
+    if (!nav) return;
+    var TOP_LOCK = 120;              /* never hide this close to the top */
+    var DOWN = 10, UP = 6;           /* px of travel needed to flip state */
+    var lastY = window.scrollY || 0, acc = 0, away = false;
+    function set(v) {
+      if (v === away) return;
+      away = v;
+      nav.classList.toggle("nav--away", v);
+    }
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY || 0, d = y - lastY;
+      lastY = y;
+      if (y <= TOP_LOCK) { acc = 0; set(false); return; }
+      /* rubber-band at the document end reports phantom deltas */
+      if (y + window.innerHeight >= document.documentElement.scrollHeight - 2) return;
+      if (d > 0) { if (acc < 0) acc = 0; acc += d; if (acc > DOWN) set(true); }
+      else if (d < 0) { if (acc > 0) acc = 0; acc += d; if (acc < -UP) set(false); }
+    }, { passive: true });
+    /* a revealed nav is the only sane state to land a new page in */
+    window.addEventListener("pageshow", function () { lastY = window.scrollY || 0; acc = 0; set(false); });
+  })();
 
   /* ---------- exports for page scripts ---------- */
   window.KORA = { reduced: reduced, lenis: lenis, fillWords: fillWords };

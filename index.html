@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<script>document.documentElement.setAttribute("data-build","pr46");console.log("KORA build: pr46")</script>
+<script>document.documentElement.setAttribute("data-build","pr79");console.log("KORA build: pr79")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
 <script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("preload")}catch(e){}</script>
 <title>Kora — Growth Consulting &amp; Agency</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
 <meta name="description" content="Kora — growth consulting template. Native HTML/CSS/JS rebuild." />
-<link rel="stylesheet" href="css/style.css?v=pr46" />
+<link rel="stylesheet" href="css/style.css?v=pr79" />
 </head>
 <body>
-<script src="js/transition.js?v=pr46"></script>
+<script src="js/transition.js?v=pr79"></script>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -20,6 +20,12 @@
     <symbol id="kmark" viewBox="0 0 24 24">
       <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
       <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <!-- Dima Golovenko mark (iD glyph) -->
+    <symbol id="dgmark" viewBox="0 0 77.511 86.243">
+        <path d="M16.6095 1.59766H0V18.2071H16.6095V1.59766Z" fill="currentColor"/>
+        <path d="M16.6095 34.8165V18.207L0 34.8165V51.4259V68.0354V84.6449L16.6095 68.0354V51.4259V34.8165Z" fill="currentColor"/>
+        <path d="M44.2918 1.59766H33.2188L16.6094 18.2071H44.2918C53.4639 18.2071 60.9013 25.6445 60.9013 34.8166C60.9013 43.9887 53.4639 51.426 44.2918 51.426H33.2188L16.6094 68.0355H44.2918C62.636 68.0355 77.5107 53.1608 77.5107 34.8166C77.5107 16.4723 62.636 1.59766 44.2918 1.59766Z" fill="currentColor"/>
     </symbol>
     <symbol id="arrow" viewBox="0 0 24 24">
       <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
@@ -39,7 +45,7 @@
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <div class="nav__pill">
-    <a class="logo" href="#top"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></a>
+    <a class="logo logo--dg" href="#top" aria-label="Dima Golovenko"><svg class="mark" aria-hidden="true"><use href="#dgmark"/></svg></a>
     <a class="lnk" href="cases.html">Case studies</a>
     <a class="lnk" href="insights.html">Insights</a>
     <a class="lnk" href="about.html">About us</a>
@@ -55,7 +61,7 @@
       </span>
     </span>
     <span class="bk-ava">
-      <img src="https://framerusercontent.com/images/JDU4AEuAWM8QYjfyZ91Xs9q0Cu8.jpg" alt="">
+      <img src="assets/avatar.jpg?v=pr79" alt="Dima">
       <span class="you" aria-hidden="true">You</span>
     </span>
   </a>
@@ -85,15 +91,6 @@
         </div>
 
         <div class="hero-ui__foot">
-          <div class="trusted">
-            <span class="trusted__avatars">
-              <img src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
-              <img src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt="">
-              <img src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt="">
-              <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt="">
-            </span>
-            <span class="cap"><span class="stars">★★★★★</span>Trusted by 50+ companies</span>
-          </div>
           <div class="marquee">
             <div class="marquee__track">
               <span class="lg lg--1">Talliand</span><span class="lg lg--2">oslo.</span>
@@ -173,6 +170,32 @@
   </div>
 </section>
 
+<!-- ================= TEAM ================= -->
+<section class="team-sec" id="team">
+  <div class="team-sec__card">
+    <div class="in">
+      <span class="logo"><svg class="mark" style="color:var(--cream)"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+      <h2 data-appear>Meet the team <em>behind the growth.</em></h2>
+      <div class="team-grid" data-appear>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt=""><span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span><span class="num">01</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt=""><span><span class="n">Priya Sharma</span><br><span class="r">Head of Growth Strategy</span></span><span class="num">02</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt=""><span><span class="n">James Okoro</span><br><span class="r">Senior Growth Consultant</span></span><span class="num">03</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt=""><span><span class="n">Alex Tanaka</span><br><span class="r">Growth Operations Lead</span></span><span class="num">04</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vT4xPYmbaRCnYfkKyzUAbKKiR0.jpg" alt=""><span><span class="n">David Wilson</span><br><span class="r">Head of Client Solutions</span></span><span class="num">05</span><span class="plus">+</span></div>
+        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/HSDuVqMhSgRPV5plzbPZvxsh3c.jpg" alt=""><span><span class="n">Rachel Andersen</span><br><span class="r">Revenue Strategist</span></span><span class="num">06</span><span class="plus">+</span></div>
+      </div>
+      <div class="team-hire" data-appear>
+        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vJ0BOWZIknJPSUQfc9t1XTrJIE.jpeg" alt="">
+        <div class="team-hire__txt">
+          <h3>Join us,<br>we're hiring.</h3>
+          <p>We're looking for highly ambitious and talented people to help us drive real growth.</p>
+          <a class="btn btn--dark" href="#contact">Apply Now <span class="dot"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= SERVICES ================= -->
 <section class="services" id="services">
   <div class="container">
@@ -207,7 +230,13 @@
           <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
         </div>
         <figure class="svc-card__media">
-          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/OqCGYrjHIzy11F9CWaDgfYAzKQ.jpg" alt="">
+          <!-- muted+playsinline are what make autoplay legal in browsers; the clip
+               is started by the observer in shared.js when the card scrolls in.
+               preload="none" keeps the 2.4MB off the initial page load. -->
+          <video class="svc-card__vid" data-play-in-view muted playsinline preload="none"
+                 poster="assets/product-design-poster.jpg?v=pr79">
+            <source src="assets/product-design.mp4?v=pr79" type="video/mp4">
+          </video>
           <div class="glass-quote">
             <p>"Kora designed something that actually made our brand stronger."</p>
             <div class="who">
@@ -234,7 +263,7 @@
           <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
         </div>
         <figure class="svc-card__media">
-          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/3NdwQXmM1SRuYwMwOwL4wEa9Y.jpg" alt="">
+          <img loading="lazy" decoding="async" src="assets/web-landing.jpg?v=pr79" alt="">
           <div class="glass-quote">
             <p><span class="stars">★★★★★</span><br>"Kora didn't just give us a strategy—they helped us become a more strategic company."</p>
             <div class="who">
@@ -390,32 +419,6 @@
       <div class="p">
         <svg width="22" height="22"><use href="#kmark"/></svg>
         <p><b>Post-Launch Iteration.</b> Once traffic arrives, we fix what the data says is broken.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= TEAM ================= -->
-<section class="team-sec" id="team">
-  <div class="team-sec__card">
-    <div class="in">
-      <span class="logo"><svg class="mark" style="color:var(--cream)"><use href="#kmark"/></svg>kora<sup>™</sup></span>
-      <h2 data-appear>Meet the team <em>behind the growth.</em></h2>
-      <div class="team-grid" data-appear>
-        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt=""><span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span><span class="num">01</span><span class="plus">+</span></div>
-        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gU8yKC3ZiCyONDaKr0hgrinSY5U.jpg" alt=""><span><span class="n">Priya Sharma</span><br><span class="r">Head of Growth Strategy</span></span><span class="num">02</span><span class="plus">+</span></div>
-        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/akJQe3BhYVaYiW8D7XTtFNAS2A.jpg" alt=""><span><span class="n">James Okoro</span><br><span class="r">Senior Growth Consultant</span></span><span class="num">03</span><span class="plus">+</span></div>
-        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/gJRsKq8nmNa966w6uRWMJoB7p90.jpg" alt=""><span><span class="n">Alex Tanaka</span><br><span class="r">Growth Operations Lead</span></span><span class="num">04</span><span class="plus">+</span></div>
-        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vT4xPYmbaRCnYfkKyzUAbKKiR0.jpg" alt=""><span><span class="n">David Wilson</span><br><span class="r">Head of Client Solutions</span></span><span class="num">05</span><span class="plus">+</span></div>
-        <div class="team-row"><img loading="lazy" decoding="async" src="https://framerusercontent.com/images/HSDuVqMhSgRPV5plzbPZvxsh3c.jpg" alt=""><span><span class="n">Rachel Andersen</span><br><span class="r">Revenue Strategist</span></span><span class="num">06</span><span class="plus">+</span></div>
-      </div>
-      <div class="team-hire" data-appear>
-        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/vJ0BOWZIknJPSUQfc9t1XTrJIE.jpeg" alt="">
-        <div class="team-hire__txt">
-          <h3>Join us,<br>we're hiring.</h3>
-          <p>We're looking for highly ambitious and talented people to help us drive real growth.</p>
-          <a class="btn btn--dark" href="#contact">Apply Now <span class="dot"></span></a>
-        </div>
       </div>
     </div>
   </div>
@@ -854,10 +857,10 @@
 
 </main>
 
-<script src="vendor/gsap.min.js?v=pr46"></script>
-<script src="vendor/ScrollTrigger.min.js?v=pr46"></script>
-<script src="vendor/lenis.min.js?v=pr46"></script>
-<script src="js/shared.js?v=pr46"></script>
-<script src="js/main.js?v=pr46"></script>
+<script src="vendor/gsap.min.js?v=pr79"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr79"></script>
+<script src="vendor/lenis.min.js?v=pr79"></script>
+<script src="js/shared.js?v=pr79"></script>
+<script src="js/main.js?v=pr79"></script>
 </body>
 </html>

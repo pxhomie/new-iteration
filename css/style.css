@@ -14,6 +14,11 @@
 @font-face { font-family: "Manrope"; src: url("../assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
 
 :root {
+  /* Accent. Back to the original Kora green after the purple trials
+     (#5F5DC3 / #8F8DFF / #A1A0FF). Relative luminance 0.44: small accent text
+     on the dark sections lands at 7.2:1, dark text on an accent fill at 7.3:1,
+     and cream on an accent fill at 2.15:1 — the one weak spot, inherited
+     from the template as-is. No per-surface variants. */
   --green: #5dc39b;
   --green-soft: #a9dcc5;
   --cream: #fffffa;
@@ -41,24 +46,25 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --h-hero: clamp(2.5rem, 3.6vw, 4.625rem);
+  /* sits between the section headline scale (--h-sec) and the big display
+     scale (--h-mega): clearly larger than a section title, a step under the
+     "Testimonials" display size. */
+  --h-hero: clamp(2.9375rem, 4.4vw, 5.75rem);
   --h-sec: clamp(2.375rem, 3.4vw, 4.25rem);
   --h-mega: clamp(3.5rem, 5.6vw, 7.25rem);
   --h-mid: clamp(1.5rem, 2vw, 2.375rem);
   --h-card: clamp(1.3125rem, 1.5vw, 1.8125rem);
 
   /* Subpage scale. These four clamps and the section padding were written out
-     verbatim in about/cases/contact/insight/insights.css. Naming them changes
-     nothing today — same values, same order — but the scale is now editable in
-     one place instead of eighteen. The two h2 sizes differ only in their floor
-     (44px vs 40px) and are kept apart on purpose so the difference stays
-     visible rather than being silently averaged away. */
+     verbatim in about/cases/contact/insight/insights.css, in fixed px. They are
+     now named, and in rem, so the subpage scale rides the same fluid root as
+     the home page instead of standing still while the home page grows. The two
+     h2 scales that used to differ only in their floor (44 vs 40) are one. */
   --sec-pad: clamp(5rem, 8vw, 8.75rem);     /* section top/bottom rhythm */
-  --h-page: clamp(56px, 7.8vw, 120px);      /* subpage hero H1 */
-  --h-page-2: clamp(44px, 4.2vw, 80px);     /* subpage section H2 */
-  --h-page-3: clamp(40px, 4.2vw, 80px);     /* same role, 4px smaller floor */
-  --t-lead: clamp(20px, 2vw, 30px);         /* hero sub / intro lead */
-  --t-lead-2: clamp(22px, 2vw, 30px);       /* same role, 2px larger floor */
+  --h-page: clamp(3.5rem, 7.8vw, 7.5rem);   /* subpage hero H1 */
+  --h-page-2: clamp(2.75rem, 4.2vw, 5rem);  /* subpage section H2 */
+  --t-lead: clamp(1.25rem, 2vw, 1.875rem);  /* hero sub / intro lead */
+  --t-lead-2: clamp(1.375rem, 2vw, 1.875rem); /* longer-form lead inside a card */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -83,6 +89,17 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 ul { margin: 0; padding: 0; list-style: none; }
 h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 
+/* ---------- line breaking ----------
+   Display type must never drop a single word onto a line of its own — at
+   these sizes a hanging last word reads as a layout bug, not as typography.
+   balance is the tool that actually does it: this Chromium reports support
+   for text-wrap: pretty but still breaks the orphan off (measured, not
+   assumed), so pretty is not relied on anywhere.
+   Scope is headings plus the few lead paragraphs set large enough for the
+   same problem to show; body copy keeps its natural ragged edge. */
+h1, h2, h3, h4,
+.lead, .r-sub, .results-intro { text-wrap: balance; }
+
 .container { width: var(--container); margin-inline: auto; }
 .label { font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.01em; }
 
@@ -102,8 +119,8 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .btn {
   position: relative; overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
-  border-radius: 6.25rem; padding: 0.8125rem 1.5rem;
-  font-size: 0.9375rem; font-weight: 600; letter-spacing: -0.02em;
+  border-radius: 6.25rem; padding: 0.8125rem 1.5rem; min-height: 3.25rem;
+  font-size: 1rem; font-weight: 600; letter-spacing: -0.02em;
   transition: transform 0.4s var(--ease-spring), color 0.25s ease 0.12s, background-color 0.01s linear 0s;
 }
 /* once the flood has covered the button, silently swap the real background
@@ -111,16 +128,14 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
    On mouse-leave the swap is instant (while the fill still covers all). */
 .btn:hover { transform: translateY(-0.125rem); transition: transform 0.4s var(--ease-spring), color 0.25s ease 0.12s, background-color 0.01s linear 0.38s; }
 .btn--dark:hover, .btn--green:not(.btn--vc):hover { background-color: var(--cream); }
-.btn--light:hover { background-color: var(--dark); }
 .btn--green { background: var(--green); color: var(--cream); }
 .btn--dark { background: var(--dark); color: var(--cream); }
-.btn--light { background: var(--cream); color: var(--dark); }
 .btn--ghost { color: var(--cream); }
 .btn--wide { width: 100%; border-radius: 0.875rem; padding: 1rem; }
 .btn .dot { display: none; }
 
 /* liquid fill: the dot expands into a blob that floods the button */
-.btn .bt, .btn svg, .btn img { position: relative; z-index: 2; }
+.btn .bt, .btn svg { position: relative; z-index: 2; }
 /* the dot IS the flood: a circle that simply scales up until it covers
    the button (clipped by the pill's overflow) */
 .btn .fill {
@@ -148,7 +163,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .btn:hover .bt .t1 { transform: translateY(-200%) rotate(10deg); }
 .btn:hover .bt .t2 { transform: translateY(0) rotate(0); }
 /* room for the dot on solid buttons so the label never collides with it */
-.btn--green:not(.btn--wide), .btn--dark:not(.btn--wide), .btn--light:not(.btn--wide) { padding-right: 2.75rem; }
+.btn--green:not(.btn--wide), .btn--dark:not(.btn--wide) { padding-right: 2.75rem; }
 /* small green dot re-appears on the flooded (cream) button */
 .btn::after {
   content: ""; position: absolute; z-index: 2;
@@ -172,8 +187,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .btn--ghost:hover { color: var(--cream); } /* text stays light, no flood */
 .btn--dark .fill, .btn--green .fill { background: var(--cream); }
 .btn--dark:hover, .btn--green:hover { color: var(--dark); }
-.btn--light .fill { background: var(--dark); }
-.btn--light:hover { color: var(--cream); }
 .btn--ghost .fill { background: rgba(255,255,250,0.16); }
 .plan-detail__top .btn:hover { color: var(--cream); }
 .plan-detail__top .btn .fill { background: var(--dark); }
@@ -181,6 +194,10 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 /* ============ NAV ============ */
 /* fixed px — the original does not scale the nav on wide screens */
 .nav { position: fixed; top: 30px; left: 30px; right: 30px; z-index: 100; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+/* auto-hide: shared.js flips .nav--away on scroll direction */
+.nav { transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1); }
+.nav--away { transform: translateY(calc(-100% - 62px)); }
+@media (prefers-reduced-motion: reduce) { .nav { transition: none; } .nav--away { transform: none; } }
 .nav__pill {
   pointer-events: auto;
   display: flex; align-items: center; gap: 0;
@@ -190,6 +207,8 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   box-shadow: 0 8px 30px rgba(13,13,13,0.08);
 }
 .nav__pill .logo { font-size: 21px; margin-right: 20px; }
+/* Dima Golovenko: the green iD mark alone stands in for the wordmark */
+.logo--dg .mark { width: auto; height: 1.5em; aspect-ratio: 77.511 / 86.243; color: var(--green); }
 .nav__pill a.lnk { width: 113px; text-align: center; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; padding: 7px 0; border-radius: 100px; transition: background 0.25s; }
 /* hover bg is now the sliding green .nav-hpill (see transition.js) */
 .nav__book {
@@ -257,8 +276,10 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .nav__book.is-hidden { opacity: 0; transform: translateY(-0.5rem); pointer-events: none; }
 @media (max-width: 900px) {
   .nav { top: 14px; left: 14px; right: 14px; }
+  .nav--away { transform: translateY(calc(-100% - 30px)); }
   .nav__pill { height: 48px; }
   .nav__pill a.lnk { display: none; }
+  .nav__pill .logo--dg { margin-right: 0; }
   .nav__book { height: 44px; }
   .nav__book .bk-pill { height: 44px; padding: 0 38px 0 16px; }
   .nav__book .bk-ava { width: 50px; height: 50px; margin-left: -34px; }
@@ -297,14 +318,32 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .hero-ui__foot, .case-mini, .statement { will-change: transform, opacity; }
 /* NOTE: no will-change on .btn .fill — pre-rasterizing the tiny 8px dot
    makes the scale(340) flood snap instead of animating on some GPUs */
-.hero-ui__txt { position: absolute; left: clamp(28px, 3.4vw, 64px); top: clamp(6.25rem, 13svh, 10rem); max-width: 60rem; }
+/* The +5rem is a deliberate 80px drop from the original Kora position: the
+   block sat too close to the nav pill. It rides on the existing clamp rather
+   than replacing it, so the viewport-height behaviour is untouched, and being
+   rem it eases off on narrow screens where the root shrinks (80 → 55 → 70px). */
+.hero-ui__txt { position: absolute; left: clamp(28px, 3.4vw, 64px); top: calc(clamp(6.25rem, 13svh, 10rem) + 5rem); max-width: 74rem; }
 .hero-ui__txt h1 { font-size: var(--h-hero); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; }
+/* The hero is composed by hand: the <br> puts one sentence per line, and
+   above ~1100px that is exactly the two-line block it should be — balancing
+   there only re-splits it into three. So the hero opts out of the site-wide
+   balance while it is wide.
+   Below 1100px the authored break stops helping: each sentence wraps on its
+   own and strands its closing word ("understand.", "convert.") on a line by
+   itself. Dropping the break lets all six words reflow together, and there
+   balance is what distributes them. */
+.hero-ui__txt h1 { text-wrap: wrap; }
+@media (max-width: 1100px) {
+  .hero-ui__txt h1 { text-wrap: balance; }
+  .hero-ui__txt h1 br { display: none; }
+}
 .hero-ui__txt .sub { margin-top: 1.375rem; font-size: clamp(0.9375rem, 1.1vw, 1.1875rem); font-weight: 500; max-width: 34rem; line-height: 1.45; }
 .hero-ui__cta { display: flex; align-items: center; gap: 1.125rem; margin-top: 1.875rem; }
 .hero-ui__cta .arr { opacity: 0.9; }
 .hero-ui__foot {
   position: relative; padding: 0 clamp(28px, 3.4vw, 64px) 48px;
   display: flex; flex-direction: column; gap: 1.5rem;
+  align-items: flex-start;
 }
 .trusted { display: flex; align-items: center; gap: 0.75rem; }
 .trusted__avatars { display: flex; }
@@ -313,8 +352,12 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .trusted .cap { font-size: 0.8125rem; font-weight: 600; }
 .trusted .stars { display: block; margin-bottom: 0.125rem; }
 
-/* logo marquee — narrow, left-aligned strip (not full width, as in the original) */
-.marquee { overflow: hidden; width: min(557px, 70%); align-self: flex-start; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+/* logo marquee — narrow, left-aligned strip (not full width, as in the original).
+   Sits alone in the bottom-left foot of the hero: it replaced the
+   "Trusted by 50+ companies" avatar row that used to sit above it. The width
+   cap keeps the strip clear of the floating case card on the right, and the
+   viewport clamp stops it spilling past the gutter on phones. */
+.marquee { overflow: hidden; width: min(557px, 70%); max-width: calc(100vw - 2 * clamp(28px, 3.4vw, 64px)); align-self: flex-start; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
 .marquee__track { display: flex; gap: 4rem; width: max-content; animation: marquee 26s linear infinite; align-items: center; }
 @keyframes marquee { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .marquee .lg { color: rgba(255,255,250,0.85); font-size: 1.375rem; white-space: nowrap; }
@@ -333,7 +376,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   box-shadow: 0 24px 50px rgba(13,13,13,0.14);
 }
 .case-mini__img { position: relative; width: 137px; min-height: 176px; border-radius: 20px; overflow: hidden; flex: none; }
-.case-mini__img .cl { position: absolute; inset: auto 0 10px 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; }
+.case-mini__img .cl { position: absolute; inset: auto 0 10px 0; color: var(--cream); font-size: 12px; font-weight: 700; text-align: center; }
 .case-mini__body { display: flex; flex-direction: column; width: 241px; background: var(--cream); border-radius: 20px; overflow: hidden; }
 .case-mini__body .chip { align-self: flex-start; margin: 20px 20px 0; background: var(--dark); color: var(--cream); font-size: 13px; font-weight: 600; line-height: 1.3; border-radius: 30px; padding: 5px 9px; }
 .case-mini__body .t { margin: 10px 10px 12px 18px; font-size: 13px; font-weight: 600; letter-spacing: -0.045em; line-height: 1.5; }
@@ -354,7 +397,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
    any width, so it costs nothing here, and it means longer statement copy can be
    dropped in later without re-tuning this number. text-wrap: balance evens the
    halves out whenever a sentence does have to wrap on narrow screens. */
-.statement p { font-size: clamp(1.875rem, 3.3vw, 3.875rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.18; color: #fff; max-width: 26em; text-wrap: balance; }
+.statement p { font-size: clamp(1.875rem, 3.3vw, 3.875rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.18; color: var(--cream); max-width: 26em; text-wrap: balance; }
 .statement .w { opacity: 0; display: inline-block; }
 
 /* ============ COMPARISON ============ */
@@ -375,7 +418,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .compare__cards { position: absolute; inset: 0; z-index: 2; }
 .comp-card {
   position: absolute; left: 50%; top: 50%;
-  width: min(29.6875rem, 44vw); height: min(40.625rem, 82svh);
+  width: min(29.6875rem, 44vw); height: min(31.25rem, 82svh);
   border-radius: 1.25rem; padding: clamp(1.25rem, 2vw, 2.25rem);
   display: flex; flex-direction: column;
 }
@@ -393,9 +436,14 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
    list tightens there rather than everywhere. Desktop spacing is left alone
    because it still fits. */
 @media (max-height: 700px) {
-  .comp-card { height: min(40.625rem, 88svh); }
   .comp-card ul { gap: 0.5rem; }
   .comp-card li { font-size: 0.8125rem; }
+}
+/* On a phone every bullet wraps to two lines, so the same card that has ~300px
+   of slack on desktop has almost none here — the shortened height would spill
+   the list past the rounded corner. Below 560px it keeps the original one. */
+@media (max-width: 560px) {
+  .comp-card { height: min(40.625rem, 84svh); }
 }
 .comp-card--before { background: var(--beige-2); border: 1px solid var(--line); color: var(--dark); z-index: 2; }
 .comp-card--after { z-index: 1; }
@@ -494,7 +542,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 }
 .svc-card__top .lbl svg { color: var(--dark); flex: none; }
 .svc-card__top .lbl .ico {
-  width: 25px; height: 25px; border-radius: 50%; background: #fff;
+  width: 25px; height: 25px; border-radius: 50%; background: var(--cream);
   display: grid; place-items: center; flex: none;
 }
 .svc-card__top .lbl .pt { padding: 0; background: none; border-radius: 0; }
@@ -504,9 +552,14 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .svc-card .offer-label { margin-top: auto; padding-top: 1.875rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.03em; }
 .svc-card .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.875rem; }
 .svc-card .chips li { background: var(--beige-2); border-radius: 0.9375rem; padding: 0.1875rem 0.5625rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.025em; color: var(--dark); }
-.svc-card .btn--wide { margin-top: 0; height: 60px; padding: 0; border-radius: 100px; }
+.svc-card .btn--wide { margin-top: 0; height: 3.5rem; padding: 0; border-radius: 100px; }
 .svc-card__media { position: relative; margin: 0; border-radius: 22px; overflow: hidden; min-height: 20rem; }
-.svc-card__media > img, .case__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.svc-card__media > img, .svc-card__media > video, .case__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* The poster is a still of frame 0, so there is no empty box before playback.
+   The clip is 4:3 landscape inside a portrait slot, so cover crops ~17% off each
+   side; pushing the focal point to 78% keeps the phone whole instead of shaving
+   its right edge, and the branch still fills the left half. */
+.svc-card__vid { display: block; background: var(--skeleton); object-position: 78% 50%; }
 .glass-quote {
   position: absolute; right: 1.25rem; bottom: 1.25rem; max-width: 18.75rem;
   background: rgba(30,30,28,0.38); backdrop-filter: blur(0.875rem);
@@ -668,7 +721,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .t-card .top { display: flex; justify-content: space-between; align-items: center; }
 .t-card .x { color: var(--gray-2); font-size: 1.375rem; font-weight: 300; line-height: 1; transition: transform 0.35s var(--ease), color 0.25s; }
 .t-card:hover .x { color: var(--green); }
-.t-card q, .t-card .qq { display: block; quotes: none; margin-top: 1rem; font-size: 0.9375rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.5; color: var(--gray-2); transition: color 0.4s; }
+.t-card .qq { display: block; quotes: none; margin-top: 1rem; font-size: 0.9375rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.5; color: var(--gray-2); transition: color 0.4s; }
 .t-card .who { display: flex; align-items: center; gap: 0.625rem; margin-top: auto; padding-top: 1.125rem; }
 .t-card .who img { width: 2.125rem; height: 2.125rem; border-radius: 50%; object-fit: cover; }
 /* person chip: name + role. Same three lines in the testimonial cards,
@@ -728,18 +781,22 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .case__svc { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 @media (max-width: 560px) { .case__svc { grid-template-columns: 1fr; } }
 .case__svc .h { font-size: 0.8125rem; color: var(--gray); font-weight: 600; margin-bottom: 0.75rem; }
-.case__svc .chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
-.case__svc .chips li { border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.3125rem 0.625rem; font-size: 0.75rem; font-weight: 600; }
-.case__svc .chips li.dk { background: var(--dark); color: var(--cream); border-color: var(--dark); border-radius: 6.25rem; }
+/* Filled beige pills, no outline — the same treatment the featured card on
+   cases.html already uses (.feat__side .chips). The old outlined 8px-radius
+   chip was the odd one out on the site; matching them keeps the case block
+   consistent wherever it appears. The dark "+N" counter stays as is. */
+.case__svc .chips { display: flex; flex-wrap: wrap; gap: 0.4375rem; }
+.case__svc .chips li { background: var(--beige-2); border-radius: 6.25rem; padding: 0.3125rem 0.75rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.01em; color: var(--dark); }
+.case__svc .chips li.dk { background: var(--dark); color: var(--cream); }
 .case__svc .q { font-size: 0.8438rem; font-weight: 600; line-height: 1.5; }
 .case__svc .who { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.625rem; font-size: 0.7812rem; color: var(--gray); }
 .case__svc .who img { width: 1.625rem; height: 1.625rem; border-radius: 50%; object-fit: cover; }
 .case__img { position: relative; border-radius: 1.125rem; overflow: hidden; flex: 1; min-height: 17.5rem; }
-.case__img .cl { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 1.625rem; font-weight: 700; letter-spacing: -0.02em; }
+.case__img .cl { position: absolute; inset: 0; display: grid; place-items: center; color: var(--cream); font-size: 1.625rem; font-weight: 700; letter-spacing: -0.02em; }
 .case .btn--wide { margin-top: 0; }
 /* full-pill case buttons: the pair swaps into each other — green floods to
    dark, dark floods to green (shared by index + cases) */
-.btn--vc { height: 56px; padding: 0; border-radius: 40px; font-size: 17px; }
+.btn--vc { height: 3.5rem; padding: 0; border-radius: 40px; }
 .btn--vc.btn--green .fill { background: var(--dark); }
 .btn--vc.btn--green:hover { color: var(--cream); background-color: var(--dark); }
 /* .fill is both the resting dot and the seed of the flood (::before inherits
@@ -808,7 +865,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .plan-detail__top .price--name { font-size: clamp(1.5rem, 2.2vw, 2.25rem); }
 .plan-detail .feats-label { margin-top: 1.625rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w45); }
 .plan-detail .feats-label + .feats { margin-top: 0.875rem; }
-.plan-detail__top .btn { background: var(--cream); color: var(--dark); padding: 0.9375rem 2.875rem; }
+.plan-detail__top .btn { background: var(--cream); color: var(--dark); padding: 0.8125rem 2.875rem; }
 .plan-detail .desc { color: var(--w75); font-size: 0.9062rem; margin-top: 1.125rem; max-width: 26.25rem; }
 .plan-detail .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; margin-top: 1.625rem; }
 @media (max-width: 560px) { .plan-detail .feats { grid-template-columns: 1fr; } }
@@ -829,6 +886,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary .x { color: var(--gray-2); font-size: 1.375rem; font-weight: 300; transition: transform 0.35s var(--ease); flex: none; line-height: 1; }
 .faq-item[open] summary .x { transform: rotate(45deg); }
+.faq-item.is-closing summary .x { transform: rotate(0deg); }
 .faq-item .a { color: var(--gray); font-weight: 600; padding: 0 1.375rem 1.25rem; font-size: 0.9375rem; letter-spacing: -0.03em; line-height: 1.5; text-align: left; }
 .faq__foot { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; margin-top: 1.125rem; padding: 0.625rem 0.75rem; flex-wrap: wrap; }
 .faq__foot .avs { display: flex; }
@@ -947,7 +1005,7 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .footer h3 { font-size: var(--h-mid); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-top: 1.875rem; }
 .footer .nl { display: flex; gap: 0; margin-top: 1.375rem; max-width: 26.25rem; border: 1px solid var(--line); background: var(--cream); border-radius: 6.25rem; padding: 0.3125rem; }
 .footer .nl input { flex: 1; border: 0; background: none; font: inherit; font-size: 0.875rem; padding: 0.5rem 0.875rem; outline: none; }
-.footer .nl .btn { padding: 0.625rem 1.25rem; font-size: 0.8438rem; }
+.footer .nl .btn { padding: 0.625rem 1.25rem; font-size: 0.875rem; min-height: 0; }
 .footer .agree { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; }
 .footer .h { font-size: 0.75rem; color: var(--gray-2); font-weight: 700; margin: 2.125rem 0 0.75rem; }
 .footer .socials { display: flex; gap: 0.625rem; }
@@ -981,10 +1039,8 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
    label drift was visibly janky because layout ran every frame */
 .case-mini__img .cl { transition: transform 0.55s var(--ease-spring); }
 .case-mini:hover .case-mini__img .cl { transform: translateY(-71px); }
-.case-mini:hover .go { background: var(--green); color: #fff; border-color: var(--green); }
+.case-mini:hover .go { background: var(--green); color: var(--cream); border-color: var(--green); }
 .case-mini .go { transition: 0.3s; }
-.svc-card .chips li { transition: 0.25s; }
-.svc-card .chips li:hover { background: var(--dark); color: var(--cream); }
 .team-row { cursor: pointer; }
 .team-row img { transition: transform 0.35s var(--ease); }
 .team-row:hover img { transform: scale(1.35); }
@@ -1002,8 +1058,6 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .how__video { cursor: pointer; }
 .how__video img { transition: transform 0.9s var(--ease); }
 .how__video:hover img { transform: scale(1.03); }
-.glass-quote { transition: transform 0.5s var(--ease-spring); }
-.svc-card__media:hover .glass-quote { transform: translateY(-0.25rem); }
 .t-card:not(.is-open):hover { background: var(--beige-2); }
 .phase:not(.is-open):hover { background: var(--beige); }
 
@@ -1019,13 +1073,13 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 .cat-chip {
   position: absolute; z-index: 3; top: 24px; left: 24px;
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--dark); color: #fff;
+  background: var(--dark); color: var(--cream);
   border-radius: 100px; padding: 2px 12px 2px 2px;
   font-size: 12px; font-weight: 600; white-space: nowrap;
 }
 .cat-chip .ico {
   width: 25px; height: 25px; border-radius: 50%;
-  background: #fff; color: var(--dark);
+  background: var(--cream); color: var(--dark);
   display: grid; place-items: center; flex: none;
 }
 
