@@ -647,8 +647,90 @@ h1, h2, h3, h4,
 .pillars .p p { font-size: 0.8125rem; color: var(--w75); margin-top: 0.875rem; line-height: 1.6; }
 .pillars .p p b { color: var(--cream); }
 
+/* ============ WORK STACK (clipped case panels) ============ */
+/* Each panel is a window. The .wcard__fixed layer inside is counter-translated
+   by main.js so it holds still in the viewport while the panel scrolls past —
+   so the composition is progressively cut off by the panel edge and the next
+   case takes over. clip-path keeps the blurred, scaled backdrop inside. */
+.wstack { background: var(--paper); padding: 0; position: relative; z-index: 4; }
+
+/* The frame lives on the rail, not on the panels. --rail-rest / --rail-r-rest
+   are the resting values; JS scrubs the live --rail-inset up from 0 and clips
+   the WHOLE rail to the viewport band, so the three cases are one continuous
+   surface with exactly four rounded corners — no seam can ever show up in the
+   shape, because the shape does not know where the panels meet. */
+.wstack__rail {
+  --rail-rest: 20px; --rail-r-rest: 40px; --rail-inset: 0px;
+  background: #181818;
+}
+
+.wcard {
+  position: relative; display: block; height: 100svh;
+  background: #181818; color: var(--cream);
+  /* overflow: hidden is what makes the panel a window: it cuts off the
+     counter-translated content layer inside. The rounded frame is applied to
+     the rail above, so the panel itself stays a plain rectangle. */
+  isolation: isolate; overflow: hidden;
+}
+.wcard__bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0; filter: blur(12px); transform: scale(1.08);
+}
+.wcard__tint { position: absolute; inset: 0; z-index: 1; background: rgba(11,11,11,0.42); }
+
+.wcard__fixed { position: absolute; inset: 0; z-index: 2; pointer-events: none; will-change: transform; }
+
+.wcard__marq { position: absolute; inset: 0; display: flex; align-items: center; overflow: hidden; }
+.wcard__track { display: flex; width: max-content; animation: wmarq 26s linear infinite; }
+.wcard__title {
+  display: inline-flex; align-items: center; white-space: nowrap;
+  font-size: clamp(4.5rem, 11vw, 12.5rem); font-weight: 700;
+  letter-spacing: -0.045em; line-height: 0.9; color: rgba(255,255,250,0.30);
+}
+.wcard__title .dot { font-style: normal; font-size: 0.34em; padding: 0 0.42em; opacity: 0.75; }
+@keyframes wmarq { to { transform: translateX(-50%); } }
+
+.wcard__stage {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: space-between; align-items: stretch;
+  /* add the shape inset on top of the normal padding, so the meta rows keep
+     the same breathing room inside the visible card at any point of the morph */
+  padding: calc(var(--rail-inset) + clamp(1.5rem, 2.6vw, 2.75rem)) 0;
+}
+.wcard__row {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem;
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255,255,250,0.72);
+}
+.wcard__row > span:nth-child(2) { text-align: center; }
+.wcard__row > span:nth-child(3) { text-align: right; }
+.wcard__go { color: var(--cream); }
+.wcard__go i { font-style: normal; display: inline-block; transition: transform 0.35s var(--ease-spring); }
+.wcard:hover .wcard__go i { transform: translate(0.15rem, -0.15rem); }
+
+.wcard__window {
+  position: relative; overflow: hidden;
+  margin: clamp(2.25rem, 4.4vw, 5rem) auto;
+  flex: 1 1 auto; min-height: 0; width: 92%;
+  border-radius: clamp(0.5rem, 0.9vw, 1rem); background: rgba(255,255,250,0.05);
+  box-shadow: 0 2rem 4.5rem rgba(0,0,0,0.45);
+}
+.wcard__window img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 900px) {
+  .wstack__rail { --rail-rest: 10px; --rail-r-rest: 20px; }
+  .wcard__row { font-size: 0.625rem; letter-spacing: 0.05em; }
+  .wcard__row > span:nth-child(3) { display: none; }
+  .wcard__row { grid-template-columns: 1fr auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wcard__track { animation: none; }
+  .wcard__go i { transition: none; }
+}
+
 /* ============ TEAM ============ */
 /* full-bleed section on the paper background */
+[hidden] { display: none !important; }
 .team-sec, .pricing-sec, .contact-sec { padding: 0 var(--edge); background: var(--paper); }
 .team-sec__card { background: var(--green); border-radius: var(--r); padding: clamp(3.125rem, 5vw, 6.25rem) 0; }
 .team-sec .in { width: min(100rem, 88%); margin-inline: auto; }

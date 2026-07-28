@@ -271,6 +271,81 @@
     // are never shown-then-hidden
     .to("#afterCard li", { y: 0, opacity: 1, stagger: 0.02, duration: 0.08, ease: "back.out(1.3)" }, 0.40);
 
+  /* ---------- Work stack. Two things happen here, and they are driven from the
+     same frame so they can never disagree.
+
+     1. Pinning. Each panel is a window onto a content layer that is counter-
+        translated by the panel's own viewport offset, so the content holds still
+        on screen while the panel scrolls past and cuts it off.
+
+     2. The shape. This is the hero morph played backwards: the stack arrives
+        full-bleed and pulls itself into the same inset rounded frame the hero
+        opens out of. The frame is clipped onto the RAIL as a whole, not onto
+        the panels — one rounded rectangle for the entire stack, so the three
+        cases read as a single continuous section and no corner can degenerate
+        when a panel is down to a sliver mid-handover. ---------- */
+  (function () {
+    var rail = document.querySelector(".wstack__rail");
+    if (!rail) return;
+    var cards = gsap.utils.toArray(".wcard");
+    if (!cards.length) return;
+    var setters = cards.map(function (c) {
+      var l = c.querySelector(".wcard__fixed");
+      return l ? gsap.quickSetter(l, "y", "px") : null;
+    });
+    var lastClip = "";
+    var lastInset = -1;
+
+    function render() {
+      var vh = window.innerHeight;
+      var small = window.innerWidth <= 900;
+      var rest = small ? 10 : 20;
+      var restR = small ? 20 : 40;
+
+      /* read every rect before writing anything, so a scroll frame never
+         interleaves layout reads with style writes */
+      var railRect = rail.getBoundingClientRect();
+      var rects = [];
+      for (var i = 0; i < cards.length; i++) rects.push(cards[i].getBoundingClientRect());
+
+      /* full bleed while the stack's top edge is still at the bottom of the
+         screen, fully inset one viewport later, when the first case owns it */
+      var p = (vh - railRect.top) / vh;
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      p = p * p * (3 - 2 * p);
+      var inset = rest * p;
+      var r = restR * p;
+
+      if (inset !== lastInset) {
+        rail.style.setProperty("--rail-inset", inset.toFixed(2) + "px");
+        lastInset = inset;
+      }
+
+      /* one clip for the whole rail: the part of it that falls inside the
+         band. Corners are always the four corners of that band, so nothing
+         degenerates when a panel is reduced to a sliver at a handover. */
+      var t = inset - railRect.top; if (t < 0) t = 0;
+      var b = railRect.bottom - (vh - inset); if (b < 0) b = 0;
+      var clip = "inset(" + t.toFixed(2) + "px " + inset.toFixed(2) + "px " +
+                 b.toFixed(2) + "px " + inset.toFixed(2) + "px round " + r.toFixed(2) + "px)";
+      if (clip !== lastClip) { rail.style.clipPath = clip; lastClip = clip; }
+
+      for (var j = 0; j < cards.length; j++) {
+        var top = rects[j].top;
+        if (rects[j].bottom < -vh || top > 2 * vh) continue;
+        if (setters[j]) setters[j](-top);
+      }
+    }
+
+    ScrollTrigger.create({
+      trigger: rail,
+      start: "top bottom",
+      end: "bottom top",
+      onRefresh: render,
+      onUpdate: render
+    });
+  })();
+
   /* ---------- Services head recedes as the card stack rides over it ---------- */
   gsap.to("#svcHead", {
     scale: 0.9, opacity: 0, transformOrigin: "50% 12%", ease: "none",
