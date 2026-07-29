@@ -5,6 +5,7 @@
 (function () {
   "use strict";
   var K = window.KORA;
+  if (!K || K.degraded) return;   // shared.js ran in degraded mode: no GSAP to fill with
 
   /* story: word-fill title & lead */
   K.fillWords(document.getElementById("storyTitle"), { stagger: 0.09, end: "top 40%" });

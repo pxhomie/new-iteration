@@ -2,17 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<script>document.documentElement.setAttribute("data-build","pr86");console.log("KORA build: pr86")</script>
+<script>document.documentElement.setAttribute("data-build","pr90");console.log("KORA build: pr90")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
-<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("preload")}catch(e){}</script>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!document.documentElement.classList.contains("pt-in")){document.documentElement.classList.add("preload");window.__koraT0=performance.now()}}catch(e){}</script>
 <title>Kora — Growth Consulting &amp; Agency</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
 <meta name="description" content="Kora — growth consulting template. Native HTML/CSS/JS rebuild." />
-<link rel="stylesheet" href="css/style.css?v=pr86" />
+<script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
+   and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
+   serving a blank page. window.KORA is exported on the last line of shared.js, so it
+   is an exact "the scripts ran to completion" signal — this never fires on a healthy page. */
+(function(){var d=document.documentElement;function bail(){if(window.KORA)return;d.classList.remove("preload");d.classList.add("no-js")}
+setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e.target.tagName==="SCRIPT")setTimeout(bail,800)},true)})()</script>
+<link rel="preconnect" href="https://framerusercontent.com" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-400-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
+<link rel="stylesheet" href="css/style.css?v=pr90" />
 </head>
 <body>
-<script src="js/transition.js?v=pr86"></script>
+<script src="js/transition.js?v=pr90"></script>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -61,7 +70,7 @@
       </span>
     </span>
     <span class="bk-ava">
-      <img src="assets/avatar.jpg?v=pr86" alt="Dima">
+      <img src="assets/avatar.jpg?v=pr90" alt="Dima">
       <span class="you" aria-hidden="true">You</span>
     </span>
   </a>
@@ -74,7 +83,7 @@
   <div class="intro__stick">
     <div class="stage" id="stage">
       <div class="stage__media" id="stageMedia">
-        <img src="https://framerusercontent.com/images/IaiFRY4S4OYymE10NQ9ipQb5dwc.jpg" alt="">
+        <img src="https://framerusercontent.com/images/IaiFRY4S4OYymE10NQ9ipQb5dwc.jpg" alt="" fetchpriority="high" decoding="async">
       </div>
       <div class="stage__dim" id="stageDim"></div>
       <div class="stage__grain" aria-hidden="true"></div>
@@ -82,7 +91,7 @@
       <!-- hero UI -->
       <div class="hero-ui" id="heroUi">
         <div class="hero-ui__txt">
-          <h1>Interfaces people understand.<br>Websites that convert.</h1>
+          <h1><span class="aw">Interfaces</span> <span class="aw">people</span> <span class="aw">understand.</span><br><span class="aw">Websites</span> <span class="aw">that</span> <span class="aw">convert.</span></h1>
           <p class="sub">I design SaaS and mobile products that are intuitive to use and built to grow—combining product design, CRO, motion, and AI to maximise business impact</p>
           <div class="hero-ui__cta">
             <a class="btn btn--green" href="#services"><span class="dot"></span> Our Services</a>
@@ -134,6 +143,7 @@
 
 <!-- ================= COMPARISON ================= -->
 <section class="compare" id="comparePin">
+  <h2 class="sr-only">What changes when you work with me</h2>
   <div class="compare__stick">
     <div class="compare__title" id="compareTitle">
       <div>
@@ -174,8 +184,8 @@
 <section class="wstack" id="work">
 
   <div class="wstack__rail">
-  <a class="wcard" id="wcard1" href="case-sitemark.html" aria-label="Sitemark case study">
-    <img class="wcard__bg" src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg?v=pr86" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <a class="wcard" id="wcard1" href="case-sitemark.html">
+    <img class="wcard__bg" src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg?v=pr90" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <span class="wcard__tint" aria-hidden="true"></span>
 
     <!-- this layer is counter-translated by main.js so it stays put in the
@@ -190,7 +200,7 @@
           <span>01</span><span>Product Design — Design System</span><span>2024</span>
         </div>
         <figure class="wcard__window">
-          <img src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg?v=pr86" alt="Sitemark product screens" loading="lazy" decoding="async">
+          <img src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg?v=pr90" alt="Sitemark product screens" loading="lazy" decoding="async">
         </figure>
         <div class="wcard__row">
           <span>Sitemark</span><span class="wcard__go">View case <i aria-hidden="true">↗</i></span><span>+47% growth in six months</span>
@@ -198,8 +208,8 @@
       </div>
     </div>
   </a>
-  <a class="wcard" id="wcard2" href="cases.html" aria-label="Lightspeed case study">
-    <img class="wcard__bg" src="https://framerusercontent.com/images/CtZtT97lx3imoMOuinUNyvOUo.jpg?v=pr86" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <a class="wcard" id="wcard2" href="cases.html">
+    <img class="wcard__bg" src="https://framerusercontent.com/images/CtZtT97lx3imoMOuinUNyvOUo.jpg?v=pr90" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <span class="wcard__tint" aria-hidden="true"></span>
 
     <!-- this layer is counter-translated by main.js so it stays put in the
@@ -214,7 +224,7 @@
           <span>02</span><span>Platform Design — Web</span><span>2023</span>
         </div>
         <figure class="wcard__window">
-          <img src="https://framerusercontent.com/images/CtZtT97lx3imoMOuinUNyvOUo.jpg?v=pr86" alt="Lightspeed product screens" loading="lazy" decoding="async">
+          <img src="https://framerusercontent.com/images/CtZtT97lx3imoMOuinUNyvOUo.jpg?v=pr90" alt="Lightspeed product screens" loading="lazy" decoding="async">
         </figure>
         <div class="wcard__row">
           <span>Lightspeed</span><span class="wcard__go">View case <i aria-hidden="true">↗</i></span><span>3× revenue in 18 months</span>
@@ -222,8 +232,8 @@
       </div>
     </div>
   </a>
-  <a class="wcard" id="wcard3" href="cases.html" aria-label="Hamilton case study">
-    <img class="wcard__bg" src="https://framerusercontent.com/images/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg?v=pr86" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <a class="wcard" id="wcard3" href="cases.html">
+    <img class="wcard__bg" src="https://framerusercontent.com/images/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg?v=pr90" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <span class="wcard__tint" aria-hidden="true"></span>
 
     <!-- this layer is counter-translated by main.js so it stays put in the
@@ -238,7 +248,7 @@
           <span>03</span><span>Brand &amp; Product — Mobile</span><span>2025</span>
         </div>
         <figure class="wcard__window">
-          <img src="https://framerusercontent.com/images/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg?v=pr86" alt="Hamilton product screens" loading="lazy" decoding="async">
+          <img src="https://framerusercontent.com/images/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg?v=pr90" alt="Hamilton product screens" loading="lazy" decoding="async">
         </figure>
         <div class="wcard__row">
           <span>Hamilton</span><span class="wcard__go">View case <i aria-hidden="true">↗</i></span><span>$6M → $15.6M in a year</span>
@@ -312,9 +322,9 @@
           <!-- muted+playsinline are what make autoplay legal in browsers; the clip
                is started by the observer in shared.js when the card scrolls in.
                preload="none" keeps the 2.4MB off the initial page load. -->
-          <video class="svc-card__vid" data-play-in-view muted playsinline preload="none"
-                 poster="assets/product-design-poster.jpg?v=pr86">
-            <source src="assets/product-design.mp4?v=pr86" type="video/mp4">
+          <video class="svc-card__vid svc-card__vid--phone" data-play-in-view muted playsinline preload="none"
+                 poster="assets/product-design-poster.jpg?v=pr90">
+            <source src="assets/product-design.mp4?v=pr90" type="video/mp4">
           </video>
           <div class="glass-quote">
             <p>"Kora designed something that actually made our brand stronger."</p>
@@ -342,7 +352,7 @@
           <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
         </div>
         <figure class="svc-card__media">
-          <img loading="lazy" decoding="async" src="assets/web-landing.jpg?v=pr86" alt="">
+          <img loading="lazy" decoding="async" src="assets/web-landing.jpg?v=pr90" alt="">
           <div class="glass-quote">
             <p><span class="stars">★★★★★</span><br>"Kora didn't just give us a strategy—they helped us become a more strategic company."</p>
             <div class="who">
@@ -396,7 +406,14 @@
           <a class="btn btn--green btn--wide" href="#contact">Get Started</a>
         </div>
         <figure class="svc-card__media">
-          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/Xg3naOB3jlkrgVdI79zfTGmUpxo.jpg" alt="">
+          <!-- same pattern as card 01: muted+playsinline is what makes autoplay
+               legal, the observer in shared.js starts it when the card scrolls in,
+               and preload="none" keeps the 1MB off the initial page load. This
+               clip is framed centre, so it does not take the --phone offset. -->
+          <video class="svc-card__vid" data-play-in-view muted playsinline preload="none"
+                 poster="assets/motion-phantom-poster.jpg?v=pr90">
+            <source src="assets/motion-phantom.mp4?v=pr90" type="video/mp4">
+          </video>
           <div class="glass-quote">
             <p>"What sets Kora apart is their commitment to building our capabilities."</p>
             <div class="who">
@@ -936,10 +953,10 @@
 
 </main>
 
-<script src="vendor/gsap.min.js?v=pr86"></script>
-<script src="vendor/ScrollTrigger.min.js?v=pr86"></script>
-<script src="vendor/lenis.min.js?v=pr86"></script>
-<script src="js/shared.js?v=pr86"></script>
-<script src="js/main.js?v=pr86"></script>
+<script src="vendor/gsap.min.js?v=pr90"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr90"></script>
+<script src="vendor/lenis.min.js?v=pr90"></script>
+<script src="js/shared.js?v=pr90"></script>
+<script src="js/main.js?v=pr90"></script>
 </body>
 </html>

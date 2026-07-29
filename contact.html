@@ -2,18 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<script>document.documentElement.setAttribute("data-build","pr86");console.log("KORA build: pr86")</script>
+<script>document.documentElement.setAttribute("data-build","pr90");console.log("KORA build: pr90")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
 <title>Contact — Kora</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
 <meta name="description" content="Kora contact page — native HTML/CSS/JS rebuild." />
-<link rel="stylesheet" href="css/style.css?v=pr86" />
-<link rel="stylesheet" href="css/cases.css?v=pr86" />
-<link rel="stylesheet" href="css/contact.css?v=pr86" />
+<script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
+   and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
+   serving a blank page. window.KORA is exported on the last line of shared.js, so it
+   is an exact "the scripts ran to completion" signal — this never fires on a healthy page. */
+(function(){var d=document.documentElement;function bail(){if(window.KORA)return;d.classList.remove("preload");d.classList.add("no-js")}
+setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e.target.tagName==="SCRIPT")setTimeout(bail,800)},true)})()</script>
+<link rel="preconnect" href="https://framerusercontent.com" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-400-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
+<link rel="stylesheet" href="css/style.css?v=pr90" />
+<link rel="stylesheet" href="css/cases.css?v=pr90" />
+<link rel="stylesheet" href="css/contact.css?v=pr90" />
 </head>
 <body>
-<script src="js/transition.js?v=pr86"></script>
+<script src="js/transition.js?v=pr90"></script>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -52,7 +61,7 @@
       </span>
     </span>
     <span class="bk-ava">
-      <img src="assets/avatar.jpg?v=pr86" alt="Dima">
+      <img src="assets/avatar.jpg?v=pr90" alt="Dima">
       <span class="you" aria-hidden="true">You</span>
     </span>
   </a>
@@ -295,9 +304,9 @@
 
 </main>
 
-<script src="vendor/gsap.min.js?v=pr86"></script>
-<script src="vendor/ScrollTrigger.min.js?v=pr86"></script>
-<script src="vendor/lenis.min.js?v=pr86"></script>
-<script src="js/shared.js?v=pr86"></script>
+<script src="vendor/gsap.min.js?v=pr90"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr90"></script>
+<script src="vendor/lenis.min.js?v=pr90"></script>
+<script src="js/shared.js?v=pr90"></script>
 </body>
 </html>

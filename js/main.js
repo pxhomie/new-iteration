@@ -11,6 +11,10 @@
 (function () {
   "use strict";
 
+  /* Same guard as shared.js: without GSAP this file can only throw, and the
+     page is authored hidden. shared.js has already revealed it by this point. */
+  if (!window.gsap || !window.ScrollTrigger) return;
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- word splitter ----------
@@ -47,8 +51,8 @@
 
   /* ---------- PRELOADER (load animation, not scroll!) ----------
      page opens with a small centered card that expands into
-     the full hero; hero UI then fades in                        */
-  var heroUi = document.getElementById("heroUi");
+     the full hero; hero UI then fades in. The motion itself is CSS now —
+     see the LOAD ANIMATION block below and css/style.css.        */
   /* split the statement into word spans BEFORE any initIntroScroll() call:
      on transition arrival (pt-in) the scroll timeline is created right here
      at parse time — if the spans don't exist yet, the word-fill tween binds
@@ -58,109 +62,72 @@
   // when the page opens already scrolled (restored position, anchor) or via
   // a page transition, the load animation must not run: it would shrink the
   // stage while the scroll timeline captures those small values as its start
+  /* ---------- LOAD ANIMATION (CSS) ----------
+     The opening used to be a GSAP timeline right here, which meant the first
+     screen could not paint until ~198 KB of JS had downloaded and parsed —
+     LCP sat around 3.9 s. It now lives in css/style.css (@keyframes under
+     html.preload) and is already running by the time this file executes.
+
+     All JS has to do is take over at the end: drop html.preload, which
+     cancels every keyframe and leaves each element at its natural, already
+     final state, then start the scroll timeline. */
   var skipLoad = window.scrollY > 50 || document.documentElement.classList.contains("pt-in");
-  if (reduced || skipLoad) {
+  var handedOver = false;
+  function handOver() {
+    if (handedOver) return;
+    handedOver = true;
     document.documentElement.classList.remove("preload");
-    initIntroScroll(); // hoisted; no load animation to wait for
+    // force a style/layout flush so ScrollTrigger measures the settled
+    // geometry rather than the frame the keyframes were still holding
+    void document.documentElement.offsetHeight;
+    initIntroScroll(); // hoisted
+  }
+
+  if (reduced || skipLoad) {
+    handOver();
   }
   if (!reduced && !skipLoad) {
-    // if the visitor scrolls before the load animation ends, jump it to its
-    // final state. Guards: ignore phantom scroll events at the very top
-    // (Lenis fires some on startup), and kill the timeline after the jump —
-    // otherwise a delayed timeline would replay once its delay elapses.
-    var ffDone = false;
+    // shared.js set lagSmoothing(0) for Lenis accuracy; while the opening is
+    // on screen smoothing must be ON so a main-thread stall pauses the motion
+    // instead of jumping it. initIntroScroll switches back to 0.
+    gsap.ticker.lagSmoothing(500, 33);
+    /* insurance only: index.html ships the hero title pre-split into .aw
+       spans so the words exist before any JS. This no-ops when they do. */
+    splitWords(document.querySelector(".hero-ui__txt h1"), "aw");
+
+    /* The nav is the last thing the CSS timeline touches, so "the nav's
+       animations have finished" is the exact end-of-opening signal — and it
+       has to be handed over EXACTLY then: earlier and dropping .preload
+       cancels the keyframes mid-flight, so the stage would visibly snap.
+
+       getAnimations() is used rather than an animationend listener because
+       this file may well execute AFTER the opening has already ended, in
+       which case the event has been and gone. A filled animation stays "in
+       effect" after finishing, so it is still returned here and its .finished
+       promise is already resolved — both cases collapse to the same code.
+       The flat timeout is a backstop for browsers without getAnimations. */
+    var navEl = document.querySelector(".nav");
+    var navAnims = navEl && navEl.getAnimations ? navEl.getAnimations() : [];
+    if (navAnims.length) {
+      Promise.all(navAnims.map(function (a) { return a.finished; })).then(handOver, handOver);
+    }
+    setTimeout(handOver, 4500);
+
+    /* if the visitor scrolls before the opening ends, jump it to its final
+       state. Guard: ignore phantom scroll events at the very top (Lenis fires
+       some on startup). */
     var fastForward = function () {
-      if (ffDone) return;
-      var tl = window.__loadTl;
-      if (tl && tl.progress() >= 1) { ffDone = true; return; }
-      if (window.scrollY < 30) return;
-      ffDone = true;
-      if (tl) {
-        tl.progress(1); // fires onComplete → initIntroScroll
-        tl.kill();      // prevent delayed replay
-        // progress(1) snapped the nav to opacity 1 — ease it in instead.
-        // Safe: the nav is not part of the intro scroll timeline, so this
-        // post-tween can't poison any scrubbed start values.
-        gsap.fromTo(".nav", { opacity: 0, y: -14 },
-          { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", overwrite: true, clearProps: "transform" });
-      }
+      if (handedOver || window.scrollY < 30) return;
+      handOver();
+      /* handOver cancelled the nav keyframe mid-flight, which would snap it —
+         ease it in instead. Safe: the nav is not part of the intro scroll
+         timeline, so this post-tween can't poison any scrubbed start values. */
+      gsap.fromTo(".nav", { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", overwrite: true, clearProps: "transform" });
     };
     window.addEventListener("wheel", fastForward, { passive: true });
     window.addEventListener("touchmove", fastForward, { passive: true });
     window.addEventListener("scroll", fastForward, { passive: true });
-  }
-  if (!reduced && !skipLoad) {
-    // shared.js set lagSmoothing(0) for Lenis accuracy; during the load
-    // animation smoothing must be ON so a main-thread stall pauses the
-    // animation instead of jumping it. initIntroScroll switches back to 0.
-    gsap.ticker.lagSmoothing(500, 33);
-    /* xPercent/yPercent restate .stage's CSS centring in GSAP's own terms:
-       once GSAP writes a transform for the scale it owns the whole property,
-       so the translate has to come from here or the card lands off-centre.
-       x:0/y:0 is not redundant — GSAP has already parsed the stylesheet's
-       translate(-50%,-50%) into pixel x/y, and without zeroing them the card
-       is shifted by half its size twice. clearProps on the tween hands
-       centring back to the stylesheet. */
-    gsap.set("#stage", { width: "min(18.75rem, 30vw)", height: "min(13.75rem, 28svh)", borderRadius: "1.125rem",
-      xPercent: -50, yPercent: -50, x: 0, y: 0, scale: 0 });
-    gsap.set(heroUi, { opacity: 0 });
-    gsap.set(".nav", { opacity: 0, y: -14 });
-    /* split the hero title into word spans so it can rise word-by-word */
-    splitWords(document.querySelector(".hero-ui__txt h1"), "aw");
-    /* hide the staggered hero children EXPLICITLY at parse time — relying on
-       the from-tweens' immediateRender proved unreliable (on slow machines
-       the from-state wasn't applied until the tween started, so the title
-       flashed visible through the fading-in parent and snapped to 0) */
-    /* blur(10px) is the same start value the scroll-appear system uses in
-       shared.js — the hero was the only block that faded in sharp, which read
-       as a different animation language from the rest of the page. Every tween
-       below clears the filter when it lands: a left-over filter on an element
-       makes it its own stacking/containing context and would trap the pinned
-       intro timeline's fixed positioning. */
-    gsap.set(".hero-ui__txt h1 .aw, .hero-ui__txt .sub, .hero-ui__cta", { y: 34, opacity: 0, filter: "blur(10px)" });
-    gsap.set(".hero-ui__foot, .case-mini", { y: 24, opacity: 0, filter: "blur(10px)" });
-    // inline styles now match the pre-paint CSS state — drop the guard class
-    document.documentElement.classList.remove("preload");
-    var loadTl = gsap.timeline({ delay: 0.35, onComplete: function () { initIntroScroll(); } });
-    window.__loadTl = loadTl;
-    loadTl
-      /* the card springs out of nothing, then unfolds into the full hero */
-      .to("#stage", { scale: 1, duration: 0.6, ease: "back.out(1.6)", clearProps: "transform" })
-      .to("#stage", {
-        width: function () {
-          var e = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--stage-edge")) || 20;
-          return (document.documentElement.clientWidth - 2 * e) + "px";
-        },
-        height: function () {
-          var e = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--stage-edge")) || 20;
-          return (window.innerHeight - 2 * e) + "px";
-        },
-        borderRadius: function () {
-          return (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--stage-r")) || 40) + "px";
-        },
-        duration: 1.1, ease: "power3.inOut",
-        onComplete: function () {
-          // hand geometry back to the stylesheet so the scroll tween
-          // starts from clean, parseable values (no inline var()/calc())
-          gsap.set("#stage", { clearProps: "width,height,borderRadius" });
-        }
-      }, "-=0.05")
-      .to(heroUi, { opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.25")
-      /* .to (not .from): the hidden start state was applied by the explicit
-         gsap.set above, so these simply animate to the final values —
-         no immediateRender dependence, deterministic on every machine */
-      .to(".hero-ui__txt h1 .aw", {
-        y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.05, duration: 0.7, ease: "back.out(1.7)", clearProps: "transform,filter"
-      }, "-=0.45")
-      .to(".hero-ui__txt .sub, .hero-ui__cta", {
-        y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.09, duration: 0.8, ease: "back.out(1.7)", clearProps: "transform,filter"
-      }, "-=0.75")
-      /* split motion from fade: back.out on opacity finishes the fade in the
-         first ~0.25s and reads as an abrupt pop — the spring stays on the
-         movement, the fade gets its own longer, gentle curve */
-      .to(".hero-ui__foot, .case-mini", { y: 0, duration: 0.7, ease: "back.out(1.6)", clearProps: "transform" }, "-=0.5")
-      .to(".hero-ui__foot, .case-mini", { opacity: 1, filter: "blur(0px)", duration: 0.95, ease: "power2.inOut", clearProps: "filter" }, "<")
-      .to(".nav", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", clearProps: "transform" }, "-=0.55");
   }
 
   /* ---------- INTRO PIN (scroll) ----------

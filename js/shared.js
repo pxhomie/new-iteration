@@ -11,6 +11,16 @@
   "use strict";
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Everything below assumes GSAP. If the vendor bundle did not arrive, do not
+     throw — the page is authored hidden and a throw here leaves it blank. Reveal
+     it, mark it degraded, and publish KORA so the inline failsafe stands down. */
+  if (!window.gsap || !window.ScrollTrigger) {
+    document.documentElement.classList.remove("preload");
+    document.documentElement.classList.add("no-js");
+    window.KORA = { lenis: null, degraded: true };
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- Lenis ---------- */
