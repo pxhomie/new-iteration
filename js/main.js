@@ -424,8 +424,16 @@
     });
   }
   phases.forEach(function (p, i) {
+    /* the cards are plain divs — give the keyboard the same entry points
+       the mouse has */
+    p.setAttribute("tabindex", "0");
+    p.setAttribute("role", "button");
     p.addEventListener("click", function () { openPhase(i); });
     p.addEventListener("mouseenter", function () { openPhase(i); });
+    p.addEventListener("focus", function () { openPhase(i); });
+    p.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openPhase(i); }
+    });
   });
   openPhase(0);
 
@@ -489,11 +497,15 @@
     tRow.classList.remove("no-anim");
     tRow.style.height = max + "px";
   };
+  var openTCard = function (c) {
+    tCards.forEach(function (o) { o.classList.remove("is-open"); });
+    c.classList.add("is-open");
+  };
   tCards.forEach(function (c) {
-    c.addEventListener("mouseenter", function () {
-      tCards.forEach(function (o) { o.classList.remove("is-open"); });
-      c.classList.add("is-open");
-    });
+    /* keyboard parity with the hover behavior: tabbing onto a card opens it */
+    c.setAttribute("tabindex", "0");
+    c.addEventListener("mouseenter", function () { openTCard(c); });
+    c.addEventListener("focus", function () { openTCard(c); });
   });
   lockTRow();
   /* re-measure once the real webfont is in (fallback metrics differ) and

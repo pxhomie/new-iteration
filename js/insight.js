@@ -1,6 +1,6 @@
 /* ============================================================
    KORA — Insight article page: TOC scrollspy + share links.
-   Base behaviors (Lenis, appear, buttons, footer) come from cases.js.
+   Base behaviors (Lenis, appear, buttons, footer) come from shared.js.
    ============================================================ */
 (function () {
   var links = [].slice.call(document.querySelectorAll("#tocList a"));

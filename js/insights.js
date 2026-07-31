@@ -1,6 +1,6 @@
 /* ============================================================
    KORA — Insights page: category filter + search.
-   Base behaviors (Lenis, appear, buttons, footer) come from cases.js.
+   Base behaviors (Lenis, appear, buttons, footer) come from shared.js.
    ============================================================ */
 (function () {
   var chips = [].slice.call(document.querySelectorAll(".fchip"));

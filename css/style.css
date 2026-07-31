@@ -5,7 +5,6 @@
 
 /* discrete static weights (matches the original's font delivery — not a
    single variable-axis file, which rendered mid-weights too heavy) */
-@font-face { font-family: "Manrope"; src: url("../assets/fonts/manrope-latin-200-normal.woff2") format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
 @font-face { font-family: "Manrope"; src: url("../assets/fonts/manrope-latin-300-normal.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: "Manrope"; src: url("../assets/fonts/manrope-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Manrope"; src: url("../assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
@@ -1143,7 +1142,7 @@ h1, h2, h3, h4,
 .footer .fnav a::before { content: "• "; color: var(--dark); }
 .footer .fnav a:hover { color: var(--green); }
 .footer__giant { margin-top: clamp(1.25rem, 3vw, 3.125rem); overflow: hidden; line-height: 0.72; text-align: center; position: relative; }
-.footer__giant span { display: inline-block; font-size: clamp(8.75rem, 24vw, 29.375rem); font-weight: 600; letter-spacing: -0.04em; color: var(--green); transform: translateY(0.14em); }
+.footer__giant span { display: inline-block; text-transform: uppercase; font-size: clamp(3.25rem, 15.5vw, 19rem); /* full-bleed like the original kora: the word ("PIXELHOMIE" = 5.38em in caps) spans ~97vw and is cropped by the card edge */ font-weight: 600; letter-spacing: -0.04em; color: var(--green); transform: translateY(0.14em); }
 /* copyright floats bottom-right; the giant wordmark is cropped by the card edge */
 .footer__copy { position: absolute; right: clamp(1.25rem, 3vw, 3.75rem); bottom: 1.25rem; font-size: 0.7188rem; color: var(--gray); }
 
@@ -1346,3 +1345,12 @@ html.preload .case-mini {
              koraFadeBlur 0.95s var(--e-p2io) 1.81s both;
 }
 html.preload .nav { animation: koraNavIn 0.6s var(--e-p2o) 2.21s both; }
+
+/* ============ KEYBOARD FOCUS ============
+   Mouse clicks stay outline-free; Tab shows a green ring. */
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

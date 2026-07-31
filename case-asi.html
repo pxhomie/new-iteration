@@ -2,26 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<script>document.documentElement.setAttribute("data-build","pr90");console.log("KORA build: pr90")</script>
+<script>document.documentElement.setAttribute("data-build","pr96");console.log("KORA build: pr96")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
-<title>How Sitemark broke through an $18M plateau — Kora</title>
+<title>ASI: designing an AI tutor that lives in a student’s pocket — pixelhomie</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
-<meta name="description" content="Kora case study — native HTML/CSS/JS rebuild." />
+<meta name="description" content="Case study: a mobile AI tutoring app for Acton Street, Inc. — designed from research to developer handoff in two months." />
+<link rel="canonical" href="https://pixelhomie.com/case-asi.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="pixelhomie" />
+<meta property="og:title" content="ASI: designing an AI tutor that lives in a student’s pocket — pixelhomie" />
+<meta property="og:description" content="Case study: a mobile AI tutoring app for Acton Street, Inc. — designed from research to developer handoff in two months." />
+<meta property="og:url" content="https://pixelhomie.com/case-asi.html" />
+<meta property="og:image" content="https://pixelhomie.com/assets/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
 <script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
    and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
    serving a blank page. window.KORA is exported on the last line of shared.js, so it
    is an exact "the scripts ran to completion" signal — this never fires on a healthy page. */
 (function(){var d=document.documentElement;function bail(){if(window.KORA)return;d.classList.remove("preload");d.classList.add("no-js")}
 setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e.target.tagName==="SCRIPT")setTimeout(bail,800)},true)})()</script>
-<link rel="preconnect" href="https://framerusercontent.com" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-400-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-500-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-600-normal.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
-<link rel="stylesheet" href="css/style.css?v=pr90" />
-<link rel="stylesheet" href="css/cases.css?v=pr90" />
+<link rel="stylesheet" href="css/style.css?v=pr96" />
+<link rel="stylesheet" href="css/cases.css?v=pr96" />
 </head>
 <body>
-<script src="js/transition.js?v=pr90"></script>
+<script src="js/transition.js?v=pr96"></script>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -60,7 +71,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       </span>
     </span>
     <span class="bk-ava">
-      <img src="assets/avatar.jpg?v=pr90" alt="Dima">
+      <img src="assets/avatar.jpg?v=pr96" alt="Dima">
       <span class="you" aria-hidden="true">You</span>
     </span>
   </a>
@@ -73,49 +84,49 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
   <div class="cs-wrap">
     <div class="cs-hero__top">
       <div>
-        <h1 data-appear>Sitemark</h1>
-        <p class="sub" data-appear>Sitemark is a B2B SaaS platform serving 2,000+ enterprise customers. After three years of growth, they hit a plateau at $18M ARR.</p>
+        <h1 data-appear>ASI</h1>
+        <p class="sub" data-appear>ASI is an AI-powered learning app by Acton Street, Inc. I designed it end-to-end during my time at Halo Lab — a personal tutor that answers 24/7 and takes routine support off teachers’ plates.</p>
       </div>
       <div class="cs-hero__svc" data-appear>
         <p class="lbl">Services</p>
         <ul class="list">
-          <li>Growth Strategy</li><li>Revenue Operations</li><li>Pricing &amp; Packaging</li>
-          <li>Sales Optimization</li><li>Go-to-Market</li>
+          <li>Product Design</li><li>UX Research</li><li>User Flows &amp; Wireframes</li>
+          <li>Mobile UI</li><li>Design System</li>
         </ul>
       </div>
     </div>
 
     <div class="cs-shell" data-appear>
       <div class="cs-shell__photo">
-        <img src="https://framerusercontent.com/images/qWS4BiNWHU6BsV03nquz3LOXcM.jpeg" alt="">
-        <span class="feat__logo">✳ Sitemark</span>
+        <img src="assets/asi/hero.avif?v=pr96" alt="ASI app — AI tutor screens" fetchpriority="high" decoding="async">
+        <span class="feat__logo">✳ ASI</span>
       </div>
       <div class="cs-shell__row">
         <div class="cs-meta">
-          <p class="cs-meta__logo">✳ Sitemark</p>
+          <p class="cs-meta__logo">✳ ASI</p>
           <div class="row">
             <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 12.5V3l5-1.8V12.5M7 12.5h5V6H7M4 5.5h1M4 8h1M9 8h1M9 10h1" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Industry</span>
-            <span class="mv">Enterprise Software</span>
+            <span class="mv">EdTech · AI</span>
           </div>
           <div class="row">
-            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="5" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="10" cy="5.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 12c0-2 1.5-3.5 3.5-3.5S8.5 10 8.5 12M9 9.5c1.8 0 3 1.2 3 2.5" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Company Size</span>
-            <span class="mv">450 Employees</span>
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="5" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="10" cy="5.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 12c0-2 1.5-3.5 3.5-3.5S8.5 10 8.5 12M9 9.5c1.8 0 3 1.2 3 2.5" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Client</span>
+            <span class="mv">Acton Street, Inc.</span>
           </div>
           <div class="row">
             <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="7" cy="7.5" r="4.8" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M7 5v2.7l1.8 1.2M5.5 1h3" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Timeline</span>
-            <span class="mv">6 Months</span>
+            <span class="mv">2 Months</span>
           </div>
         </div>
         <div class="feat__metrics cs-metrics">
           <div class="cell">
             <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5M10.5 1.5H13v2.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></span>
-            <p class="v"><span data-count="47">0</span><sup>%</sup></p>
-            <p class="l">Revenue growth in 6 months</p>
+            <p class="v"><span data-count="24">0</span><sup>/7</sup></p>
+            <p class="l">AI tutor availability for students</p>
           </div>
           <div class="cell">
             <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.5 8.5 10 5M7.5 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
-            <p class="v"><span data-count="2.4" data-dec="1">0</span><sup>x</sup></p>
-            <p class="l">Pipeline velocity increase</p>
+            <p class="v"><span data-count="3">0</span></p>
+            <p class="l">Messaging platforms integrated</p>
           </div>
         </div>
       </div>
@@ -126,51 +137,51 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <!-- ================= ARTICLE ================= -->
 <section class="cs-art">
   <div class="cs-wrap">
-    <time class="cs-art__date" datetime="2026-03-18">March 18, 2026</time>
-    <h2 class="cs-art__title" data-appear>How Sitemark broke through an $18M plateau and grew 47% in six months.</h2>
+    <time class="cs-art__date" datetime="2025-06-12">June 12, 2025</time>
+    <h2 class="cs-art__title" data-appear>Designing ASI: an AI tutor that lives in a student’s pocket.</h2>
 
     <div class="cs-block" data-appear>
       <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="0.8" fill="currentColor"/></svg>The challenge</span></p>
       <div>
-        <p class="lead">Stuck at $18M for four straight quarters. Acquisition was steady, but churn and contraction were eating every gain.</p>
-        <p class="body">Sitemark was adding 40-50 new customers per quarter, but churn and contraction were eating the gains. Their sales cycle had ballooned from 25 to 42 days as they moved upmarket without adjusting their process. Reps were chasing unqualified enterprise leads while existing customers had no structured path to expand.</p>
+        <p class="lead">Every student hits a wall at some point. Most can’t afford the private tutor who would get them past it.</p>
+        <p class="body">Acton Street came with a clear brief: tutoring works, but it doesn’t scale. Students who need help at 11 p.m. get it two days later, teachers spend their evenings answering the same questions, and private tutors price out most families. The product had to put a personal AI tutor into every student’s pocket — one that answers around the clock, keeps learning engaging, and doesn’t feel like homework software.</p>
       </div>
     </div>
     <figure class="cs-fig" data-reveal>
-      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/8jCrp6UAdvY0BvbZMQ69FMrPWU.jpg" alt="">
+      <img loading="lazy" decoding="async" src="assets/asi/flow.avif?v=pr96" alt="ASI — user flows and app structure">
     </figure>
 
     <div class="cs-block" data-appear>
       <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 12h10M2 12V2m3 6 2.5-2.5L9.5 8 12 4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>The approach</span></p>
       <div>
-        <p class="lead">Kora ran a full-funnel diagnostic in the first two weeks, then focused on three high-leverage initiatives.</p>
-        <p class="body">We rebuilt their qualification framework after finding 60% of enterprise leads were a poor fit. The sales team refocused on prospects with a 3x higher close rate. We restructured customer success around expansion triggers and compressed the sales cycle by replacing the three-meeting discovery process with a live product audit on the first call.</p>
+        <p class="lead">Ten days, ten chat products, one conclusion: the tutor had to feel like a messenger the student already lives in.</p>
+        <p class="body">I started with a teardown of ten chat apps to map what makes a conversation feel effortless. Two visual directions went to the client — strict monochrome and a bright, playful one — and monochrome won: black, white and gray with blue accents, set in Inter for clean multilingual text. From there the product took shape screen by screen: onboarding that configures your personal tutor, a home built around one tap to a lesson, the Talk to Your Tutor chat, achievements with mastery tracking, and multiplayer quizzes for competing with classmates. ASI also plugs into WhatsApp, Messenger and Discord — help lives where students already talk.</p>
       </div>
     </div>
     <figure class="cs-fig" data-reveal>
-      <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/GCGprlnbGpXM6hbSFQyr2FmQhs.jpg" alt="">
+      <img loading="lazy" decoding="async" src="assets/asi/screens.avif?v=pr96" alt="ASI — mobile app screens">
     </figure>
 
     <div class="cs-block" data-appear>
       <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>The Results</span></p>
       <div>
-        <p class="results-intro">Sitemark broke through a four-quarter plateau and grew from $18M to $26.5M ARR in six months. Expansion revenue became their primary growth driver for the first time.</p>
+        <p class="results-intro">In two months the project went from brief to developer-ready: a complete mobile app with an AI tutor at its core, gamification that keeps students coming back, and a design system the dev team could ship from.</p>
         <ul class="results">
-        <li>Revenue grew from $18M to $26.5M ARR within six months</li>
-        <li>Pipeline velocity increased 2.4x through better qualification</li>
-        <li>Sales cycle compressed from 42 days to 29 days</li>
-        <li>Net revenue retention jumped from 97% to 118%</li>
-        <li>Expansion revenue became the<br>largest growth driver within 90 days</li>
+        <li>Full mobile app designed in 2 months — from research to developer handoff</li>
+        <li>24/7 AI tutor: onboarding, chat, personalized feedback, mastery tracking</li>
+        <li>Gamified learning: achievements and multiplayer quizzes with classmates</li>
+        <li>3 messaging platforms integrated: WhatsApp, Messenger and Discord</li>
+        <li>Monochrome design system with blue accents,<br>set in Inter for multilingual UI</li>
         </ul>
       </div>
     </div>
 
     <div class="cs-quote" data-appear>
-      <p class="cs-quote__logo">✳ Sitemark</p>
-      <p class="q">“Kora helped us see around corners. When everyone else was telling us to grow headcount, they helped us realize we had a conversion problem, not a capacity problem. That insight alone saved us from making a costly mistake.”</p>
+      <p class="cs-quote__logo">✳ ASI</p>
+      <p class="q">“The brief was to make AI tutoring feel human. We shaped ASI around one idea: a tutor that feels like a chat you already know — and answers at 2 a.m. before the exam.”</p>
       <div class="who">
-        <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/MI76ZMTeB2Mvtl0tBcBCscmA.jpg" alt="">
-        <span><span class="n">David Kim</span><br><span class="r">VP Strategy</span></span>
+        <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr96" alt="Dima Golovenko">
+        <span><span class="n">Dima Golovenko</span><br><span class="r">Product Designer</span></span>
       </div>
     </div>
   </div>
@@ -189,7 +200,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <div class="cgrid cgrid--tight">
       <article class="ccard" data-appear>
         <div class="ccard__img">
-          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/CtZtT97lx3imoMOuinUNyvOUo.jpg" alt="">
+          <img loading="lazy" decoding="async" src="assets/framer/CtZtT97lx3imoMOuinUNyvOUo.jpg?v=pr96" alt="">
           <span class="ccard__logo">Lightspeed</span>
         </div>
         <div class="ccard__body">
@@ -200,11 +211,11 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
             <div class="cell"><p class="v">34%</p><p class="l">Close rate (from 12%)</p></div>
           </div>
         </div>
-        <a class="btn btn--dark btn--wide btn--vc" href="case-sitemark.html">View Case Study</a>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-asi.html">View Case Study</a>
       </article>
       <article class="ccard" data-appear>
         <div class="ccard__img">
-          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg" alt="">
+          <img loading="lazy" decoding="async" src="assets/framer/CQiGiMt8KaPh7SAIXpl7ZHUpwYU.jpg?v=pr96" alt="">
           <span class="ccard__logo">HAMILTON</span>
         </div>
         <div class="ccard__body">
@@ -215,7 +226,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
             <div class="cell"><p class="v">41%</p><p class="l">Revenue from new channels</p></div>
           </div>
         </div>
-        <a class="btn btn--dark btn--wide btn--vc" href="case-sitemark.html">View Case Study</a>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-asi.html">View Case Study</a>
       </article>
     </div>
   </div>
@@ -234,15 +245,15 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
         </ul>
         <div class="q" data-appear>
           <p class="lbl">Testimonial</p>
-          <p>"What sets Kora apart is their commitment to building our capabilities, not creating dependency."</p>
+          <p>"What sets Dima apart is his commitment to building our capabilities, not creating dependency."</p>
           <div class="who">
-            <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg" alt="">
+            <img loading="lazy" decoding="async" src="assets/framer/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg?v=pr96" alt="">
             <span><span class="n">Jennifer Holland</span><br><span class="r">CFO, Elevance</span></span>
           </div>
         </div>
       </div>
       <form class="cform" data-appear onsubmit="return false">
-        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
         <p class="lead">No pitch decks, no pressure. <em>Tell us where you are and we'll share how we can help.</em></p>
         <div class="row2">
           <div><label>Name</label><input type="text" placeholder="Jane Cooper"></div>
@@ -250,14 +261,14 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
         </div>
         <label>What services are you interested in?</label>
         <div class="chips" data-chips>
-          <button type="button"><span class="rb"></span>Go-to-Market</button>
-          <button type="button"><span class="rb"></span>Growth Strategy</button>
-          <button type="button"><span class="rb"></span>Revenue Operations</button>
-          <button type="button"><span class="rb"></span>Sales Optimization</button>
-          <button type="button"><span class="rb"></span>Pricing &amp; Packaging</button>
+          <button type="button"><span class="rb"></span>Product Design</button>
+          <button type="button"><span class="rb"></span>Web &amp; Landing Pages</button>
+          <button type="button"><span class="rb"></span>Motion Design</button>
+          <button type="button"><span class="rb"></span>3D Design</button>
+          <button type="button"><span class="rb"></span>UX Audit</button>
         </div>
         <label>Biggest growth challenge?</label>
-        <textarea placeholder="We've plateaued at $18M ARR…"></textarea>
+        <textarea placeholder="We’re building a mobile app and need a designer who…"></textarea>
         <label class="terms"><input type="checkbox"> By submitting, you agree to our terms of service.</label>
         <div class="foot">
           <p class="note">We'll reach out within 24 hours to schedule your call.</p>
@@ -274,8 +285,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
   <div class="footer__card">
     <div class="footer__grid">
       <div>
-        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>kora<sup>™</sup></span>
-        <p class="addr">2847 Mission Street<br>San Francisco, CA 94110</p>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
         <h3>Subscribe to<br>our newsletter.</h3>
         <form class="nl" onsubmit="return false">
           <input type="email" placeholder="Email" aria-label="Email">
@@ -293,11 +303,10 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       <div>
         <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
         <div class="fwho">
-          <img loading="lazy" decoding="async" src="https://framerusercontent.com/images/ptzdfa8kamllLFJeEJ6fpHyKaQ.jpg" alt="">
-          <span><span class="n">Koraline Spencer</span><br><span class="r">Founder &amp; CEO</span></span>
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr96" alt="">
+          <span><span class="n">Dima Golovenko</span><br><span class="r">Founder &amp; Designer</span></span>
         </div>
-        <p class="tel">(510) 895-6500</p>
-        <span class="mail" data-copy="hello@kora.com"><span class="ic">✳</span> hello@kora.com</span>
+        <span class="mail" data-copy="me@pixelhomie.com"><span class="ic">✳</span> me@pixelhomie.com</span>
         <p class="h">Navigation</p>
         <ul class="fnav">
           <li><a href="cases.html">Case Studies</a></li>
@@ -307,16 +316,16 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
         </ul>
       </div>
     </div>
-    <div class="footer__giant" data-appear><span>kora</span></div>
-    <p class="footer__copy">© 2026 Kora All rights reserved.</p>
+    <div class="footer__giant" data-appear><span>pixelhomie</span></div>
+    <p class="footer__copy">© 2026 pixelhomie. All rights reserved.</p>
   </div>
 </footer>
 
 </main>
 
-<script src="vendor/gsap.min.js?v=pr90"></script>
-<script src="vendor/ScrollTrigger.min.js?v=pr90"></script>
-<script src="vendor/lenis.min.js?v=pr90"></script>
-<script src="js/shared.js?v=pr90"></script>
+<script src="vendor/gsap.min.js?v=pr96"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr96"></script>
+<script src="vendor/lenis.min.js?v=pr96"></script>
+<script src="js/shared.js?v=pr96"></script>
 </body>
 </html>

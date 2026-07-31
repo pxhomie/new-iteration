@@ -280,7 +280,8 @@
   }
 
   /* ---------- Liquid-fill buttons: label flip + circle blob ---------- */
-  document.querySelectorAll(".btn").forEach(function (b) {
+  var floodBtns = [].slice.call(document.querySelectorAll(".btn"));
+  floodBtns.forEach(function (b) {
     [].slice.call(b.childNodes).forEach(function (n) {
       if (n.nodeType === 3 && n.textContent.trim()) {
         var s = document.createElement("span");
@@ -294,13 +295,19 @@
     var f = document.createElement("span");
     f.className = "fill";
     b.appendChild(f);
-    /* flood disc sized to the button: edge sweeps visibly, layer stays small */
-    var sizeFlood = function () {
-      b.style.setProperty("--flood", Math.ceil(Math.max(b.offsetWidth, 60) * 2.3) + "px");
-    };
-    sizeFlood();
-    window.addEventListener("resize", sizeFlood);
   });
+  /* flood disc sized to the button: edge sweeps visibly, layer stays small.
+     One listener for all buttons — a listener per button piles up fast on
+     pages with 20+ CTAs. */
+  function sizeFloods() {
+    floodBtns.forEach(function (b) {
+      b.style.setProperty("--flood", Math.ceil(Math.max(b.offsetWidth, 60) * 2.3) + "px");
+    });
+  }
+  if (floodBtns.length) {
+    sizeFloods();
+    window.addEventListener("resize", sizeFloods);
+  }
 
   /* ---------- Form chips ---------- */
   document.querySelectorAll("[data-chips]").forEach(function (grp) {
