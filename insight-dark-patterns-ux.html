@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<script>document.documentElement.setAttribute("data-build","pr96");console.log("KORA build: pr96")</script>
+<script>document.documentElement.setAttribute("data-build","pr121");console.log("KORA build: pr121")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
-<title>Your CRM is not the problem. Your process is. — pixelhomie</title>
+<title>Dark Patterns in UX: Why They Convert Once, Then Cost You — pixelhomie</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
-<meta name="description" content="Why CRM implementations fail and what to fix first." />
-<link rel="canonical" href="https://pixelhomie.com/insight-crm.html" />
+<meta name="description" content="Dark patterns in UX explained with examples: why manipulative design lifts metrics short-term, what it costs in refunds, churn and trust, and honest patterns to use instead." />
+<link rel="canonical" href="https://pixelhomie.com/insight-dark-patterns-ux.html" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="pixelhomie" />
-<meta property="og:title" content="Your CRM is not the problem. Your process is. — pixelhomie" />
-<meta property="og:description" content="Why CRM implementations fail and what to fix first." />
-<meta property="og:url" content="https://pixelhomie.com/insight-crm.html" />
+<meta property="og:title" content="Dark Patterns in UX: Why They Convert Once, Then Cost You — pixelhomie" />
+<meta property="og:description" content="Dark patterns in UX explained with examples: why manipulative design lifts metrics short-term, what it costs in refunds, churn and trust, and honest patterns to use instead." />
+<meta property="og:url" content="https://pixelhomie.com/insight-dark-patterns-ux.html" />
 <meta property="og:image" content="https://pixelhomie.com/assets/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Dark patterns in UX: they convert once, then they cost you.", "author": {"@type": "Person", "name": "Dima Golovenko"}, "datePublished": "2026-02-03", "mainEntityOfPage": "https://pixelhomie.com/insight-dark-patterns-ux.html"}</script>
 <script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
    and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
    serving a blank page. window.KORA is exported on the last line of shared.js, so it
@@ -28,12 +29,12 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-500-normal.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-600-normal.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
-<link rel="stylesheet" href="css/style.css?v=pr96" />
-<link rel="stylesheet" href="css/insights.css?v=pr96" />
-<link rel="stylesheet" href="css/insight.css?v=pr96" />
+<link rel="stylesheet" href="css/style.css?v=pr121" />
+<link rel="stylesheet" href="css/insights.css?v=pr121" />
+<link rel="stylesheet" href="css/insight.css?v=pr121" />
 </head>
 <body>
-<script src="js/transition.js?v=pr96"></script>
+<script src="js/transition.js?v=pr121"></script>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -78,7 +79,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <a class="logo logo--dg" href="index.html" aria-label="Dima Golovenko"><svg class="mark" aria-hidden="true"><use href="#dgmark"/></svg></a>
     <a class="lnk" href="cases.html">Case studies</a>
     <a class="lnk" href="insights.html">Insights</a>
-    <a class="lnk" href="about.html">About us</a>
+    <a class="lnk" href="about.html">About</a>
     <a class="lnk" href="contact.html">Contact</a>
   </div>
   <a class="nav__book" id="navBook" href="contact.html">
@@ -91,7 +92,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       </span>
     </span>
     <span class="bk-ava">
-      <img src="assets/avatar.jpg?v=pr96" alt="Dima">
+      <img src="assets/avatar.jpg?v=pr121" alt="Dima">
       <span class="you" aria-hidden="true">You</span>
     </span>
   </a>
@@ -102,19 +103,19 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <!-- ================= HERO ================= -->
 <section class="art-hero">
   <div class="art-hero__card">
-    <img loading="lazy" decoding="async" src="assets/framer/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg?v=pr96" alt="">
+    <img loading="lazy" decoding="async" src="assets/framer/MuKacYjazqkYtwK8LUQanQB1xg.jpeg?v=pr121" alt="">
     <div class="art-hero__dim"></div>
     <div class="art-hero__in">
       <div class="art-hero__who">
         <span class="ava">
-          <img loading="lazy" decoding="async" src="assets/framer/gJRsKq8nmNa966w6uRWMJoB7p90.jpg?v=pr96" alt="">
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr121" alt="">
           <span class="badge"><svg width="10" height="10"><use href="#kmark"/></svg></span>
         </span>
-        <span class="nm"><span class="n">Alex Tanaka</span><br><span class="r">Growth Operations Lead</span></span>
+        <span class="nm"><span class="n">Dima Golovenko</span><br><span class="r">Product &amp; Web Designer</span></span>
       </div>
       <div class="art-hero__txt">
-        <h1>Your CRM is not the problem. Your process is.</h1>
-        <p class="sub">Swapping CRMs without fixing the underlying process just gives you the same mess in a new interface.</p>
+        <h1>Dark patterns in UX: they convert once, then they cost you.</h1>
+        <p class="sub">Manipulative design shows up in this month’s dashboard as a win. The invoice arrives later — in churn, refunds and trust.</p>
       </div>
     </div>
   </div>
@@ -126,11 +127,11 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <div class="art-toc__card">
       <h3>Table of contents</h3>
       <nav class="art-toc__list" id="tocList">
-        <a href="#s1" class="is-on">The CRM Migration Trap</a>
-        <a href="#s2">What Actually Causes CRM Dysfunction</a>
-        <a href="#s3">Fix the Process First</a>
-        <a href="#s4">When a New Tool Actually Makes Sense</a>
-        <a href="#s5">The One-Week Process Audit</a>
+        <a href="#s1" class="is-on">What counts as a dark pattern</a>
+        <a href="#s2">Why they work — once</a>
+        <a href="#s3">The hidden costs</a>
+        <a href="#s4">Honest patterns that convert</a>
+        <a href="#s5">Auditing your own funnel</a>
       </nav>
     </div>
     <div class="art-toc__share">
@@ -144,42 +145,32 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
   </aside>
 
   <article class="art-col">
-    <p class="art-date">March 4, 2026</p>
-    <h2 class="art-lede">Every quarter another company bets on a new CRM to rescue its pipeline. Six months on, the funnel leaks in the same places — only the dashboards look fresher.</h2>
+    <p class="art-date">February 3, 2026</p>
+    <h2 class="art-lede">Every designer meets the temptation: a pre-checked box here, a hidden unsubscribe there, a countdown that isn’t counting anything. The numbers move — that’s the trap. Dark patterns don’t fail because they don’t work; they fail because of when the bill lands.</h2>
 
-    <h3 id="s1">The CRM Migration Trap</h3>
-    <p>The story tends to open with a familiar grumble. Reps call the CRM clunky, nobody believes the pipeline numbers, and reporting feels like guesswork. Leadership decides the software must be the bottleneck and green-lights a migration — a fresh vendor, an implementation partner, another round of training, and a brand-new set of data headaches.</p>
-    <p>A quarter after go-live the old problems walk back in. Activities still go unlogged, stages still mean different things to different people, and forecasts are still closer to fiction than fact. The platform changed; the habits around it did not.</p>
-    <blockquote class="art-quote">We swapped platforms convinced it would cure our visibility problem. The real issue was that no two people defined a qualified opportunity the same way — something we could have fixed in a week without spending a dollar on new software.</blockquote>
-
-    <h3 id="s2">What Actually Causes CRM Dysfunction</h3>
-    <p>In nearly every audit we run, the CRM turns out to be innocent. It is simply mirroring a broken process: pipeline stages nobody defined, data entry standards nobody wrote down, data quality nobody owns, and reporting that counts activity instead of outcomes.</p>
-    <p>These are process failures wearing a technology costume. No tool on the market can rescue a team that never agreed on what each stage means, which fields matter at every step, and who is accountable for keeping the record honest.</p>
-
+    <h3 id="s1">What Counts as a Dark Pattern</h3>
+    <p>A dark pattern is an interface that gets users to do something they wouldn’t choose with full information: confirm-shaming, disguised ads, roach-motel subscriptions that take one tap to enter and a phone call to leave, drip pricing that reveals fees at the last step, fake urgency timers.</p>
+    <p>The honest test is symmetry: is the “no” as easy to find and press as the “yes”? If declining takes more effort than accepting, you’re not designing a choice — you’re designing an ambush.</p>
+    <h3 id="s2">Why They Work — Once</h3>
+    <p>They exploit real cognitive shortcuts: defaults feel like recommendations, urgency suppresses comparison, friction wears decisions down. First exposure converts. But users only get fooled by the same trick once, and they remember who fooled them.</p>
     <div class="art-table">
       <table>
-        <thead>
-          <tr><th>Symptom</th><th>Assumed Cause</th><th>Actual Cause</th></tr>
-        </thead>
+        <thead><tr><th>Dark pattern</th><th>Short-term gain</th><th>Long-term cost</th></tr></thead>
         <tbody>
-          <tr><td>Unreliable forecasts</td><td>Bad reporting tools</td><td>Inconsistent stage definitions</td></tr>
-          <tr><td>Low adoption</td><td>Clunky interface</td><td>No clear value for reps to log data</td></tr>
-          <tr><td>Duplicate records</td><td>Poor deduplication</td><td>No data governance ownership</td></tr>
-          <tr><td>Missing insights</td><td>Weak analytics</td><td>Garbage in, garbage out</td></tr>
+          <tr><td>Pre-checked upsell</td><td>Attach rate up</td><td>Refunds, chargebacks, support load</td></tr>
+          <tr><td>Hidden cancellation</td><td>Churn “drops”</td><td>Angry churn, bank disputes, reviews</td></tr>
+          <tr><td>Fake countdown</td><td>Session conversion up</td><td>Returning visitors see the lie</td></tr>
+          <tr><td>Drip pricing</td><td>More checkouts started</td><td>Cart abandonment at the fee reveal</td></tr>
         </tbody>
       </table>
     </div>
-
-    <h3 id="s3">Fix the Process First</h3>
-    <p>Before you evaluate a single new tool, map your current sales process end to end — the real one, not the tidy version in the playbook. Shadow reps for a week and watch how deals actually travel through the pipeline. Note where data falls off, which stages get skipped, and where the CRM record drifts away from reality.</p>
-    <p>Then close those gaps. Give every stage explicit entry and exit criteria, standardize the required fields, put one name against data quality, and build reports that answer the questions leadership actually asks in forecast reviews. Do all of it inside the tool you already own before you even think about switching.</p>
-
-    <h3 id="s4">When a New Tool Actually Makes Sense</h3>
-    <p>Sometimes migration really is the right call. If your current platform genuinely cannot support the workflows you need, lacks integrations your stack depends on, or has been outgrown at scale, then a change is justified — but only after you have tuned the process in the existing system and still hit a wall.</p>
-    <p>The companies that switch successfully fix the process first and then pick software that supports it. The ones that fail hope the new tool will impose discipline for them. Tools do not create discipline. People do.</p>
-
-    <h3 id="s5">The One-Week Process Audit</h3>
-    <p>Most CRM dysfunction can be diagnosed in five working days. Day one, ask sales leadership what they wish the CRM could tell them. Days two and three, sit with reps and watch how they really use it. Day four, audit data quality across a sample of fifty deals. Day five, map the distance between the ideal process and the real one. The output is a prioritized list of process fixes that cost nothing but attention.</p>
+    <h3 id="s3">The Hidden Costs</h3>
+    <p>The costs hide in other teams’ metrics: support tickets, refund rates, app-store reviews, deliverability of your email domain. And increasingly in law — the FTC, GDPR and consumer-protection regulators now name these patterns explicitly. What looks like a growth hack in the dashboard reads as a liability in an audit.</p>
+    <blockquote class="art-quote">A conversion you have to trick out of someone isn’t revenue — it’s a refund with a delay and worse reviews.</blockquote>
+    <h3 id="s4">Honest Patterns That Convert</h3>
+    <p>The legitimate versions of the same forces work better over time: real scarcity stated plainly, defaults that favor the user with an easy override, transparent pricing early, cancellations that take a minute — and win-back offers that actually bring people back because leaving was easy. Trust compounds; tricks discount.</p>
+    <h3 id="s5">Auditing Your Own Funnel</h3>
+    <p>Walk your funnel as a skeptic: try to say no at every step and note where the interface resists. Cancel your own product with a stopwatch. Read the checkout as if the fees were hidden from you. Anything you’d be uncomfortable explaining to a user’s face — redesign it before a regulator or a Reddit thread explains it for you.</p>
   </article>
 </section>
 
@@ -189,20 +180,20 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <h2>More insights.</h2>
     <a class="va" href="insights.html">View All <svg width="15" height="15"><use href="#arrow"/></svg></a>
   </div>
-  <a class="ins-post ins-post--tall" href="insights.html" data-appear>
-    <img loading="lazy" decoding="async" class="bg" src="assets/framer/IXWqaCHPbvPQKcyZ9Mch2cWh9hU.jpg?v=pr96" alt="">
-    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Implementation</span>
+  <a class="ins-post ins-post--tall" href="insight-why-website-redesigns-fail.html" data-appear>
+    <img loading="lazy" decoding="async" class="bg" src="assets/framer/Pif2nYDSD873fW1ucLhDUQ1GuU.jpeg?v=pr121" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-risk"/></svg></span>Product Design</span>
     <span class="inpad">
-      <span class="meta">March 3, 2026</span>
-      <span class="t">5 growth levers most companies ignore until it is too late.</span>
+      <span class="meta">January 24, 2026</span>
+      <span class="t">Why website redesigns fail — and how to avoid it.</span>
     </span>
   </a>
-  <a class="ins-post ins-post--tall" href="insights.html" data-appear>
-    <img loading="lazy" decoding="async" class="bg" src="assets/framer/S2aS99cMH11aKHuGDtt8CdqYPqs.jpg?v=pr96" alt="">
-    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Technology Selection</span>
+  <a class="ins-post ins-post--tall" href="insight-ux-metrics.html" data-appear>
+    <img loading="lazy" decoding="async" class="bg" src="assets/framer/gEOx0H4nV830aP9scARGi9DEvc.jpg?v=pr121" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>Conversion</span>
     <span class="inpad">
-      <span class="meta">March 2, 2026</span>
-      <span class="t">Hiring a growth team vs. hiring a growth partner.</span>
+      <span class="meta">January 15, 2026</span>
+      <span class="t">UX metrics that matter: how to measure design impact.</span>
     </span>
   </a>
 </section>
@@ -231,7 +222,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       <div>
         <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
         <div class="fwho">
-          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr96" alt="">
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr121" alt="">
           <span><span class="n">Dima Golovenko</span><br><span class="r">Founder &amp; Designer</span></span>
         </div>
         <span class="mail" data-copy="me@pixelhomie.com"><span class="ic">✳</span> me@pixelhomie.com</span>
@@ -239,22 +230,21 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
         <ul class="fnav">
           <li><a href="cases.html">Case Studies</a></li>
           <li><a href="insights.html">Insights</a></li>
-          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__giant" data-appear><span>pixelhomie</span></div>
-    <p class="footer__copy">© 2026 pixelhomie. All rights reserved.</p>
   </div>
 </footer>
 
 </main>
 
-<script src="vendor/gsap.min.js?v=pr96"></script>
-<script src="vendor/ScrollTrigger.min.js?v=pr96"></script>
-<script src="vendor/lenis.min.js?v=pr96"></script>
-<script src="js/shared.js?v=pr96"></script>
-<script src="js/insight.js?v=pr96"></script>
+<script src="vendor/gsap.min.js?v=pr121"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr121"></script>
+<script src="vendor/lenis.min.js?v=pr121"></script>
+<script src="js/shared.js?v=pr121"></script>
+<script src="js/insight.js?v=pr121"></script>
 </body>
 </html>

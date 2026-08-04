@@ -5,19 +5,20 @@
 <script>document.documentElement.setAttribute("data-build","pr121");console.log("KORA build: pr121")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
-<title>Insights — pixelhomie</title>
+<title>Why Website Redesigns Fail — and How to Avoid It — pixelhomie</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
-<meta name="description" content="Articles on product design, landing page conversion, UX metrics and design process — notes from solo practice by Dima Golovenko." />
-<link rel="canonical" href="https://pixelhomie.com/insights.html" />
-<meta property="og:type" content="website" />
+<meta name="description" content="The three failure modes of website redesigns: no baseline metrics, redesigning the wrong layer, treating launch as the finish line — and the sequence that works." />
+<link rel="canonical" href="https://pixelhomie.com/insight-why-website-redesigns-fail.html" />
+<meta property="og:type" content="article" />
 <meta property="og:site_name" content="pixelhomie" />
-<meta property="og:title" content="Insights — pixelhomie" />
-<meta property="og:description" content="Notes on product design, conversion and motion." />
-<meta property="og:url" content="https://pixelhomie.com/insights.html" />
+<meta property="og:title" content="Why Website Redesigns Fail — and How to Avoid It — pixelhomie" />
+<meta property="og:description" content="The three failure modes of website redesigns: no baseline metrics, redesigning the wrong layer, treating launch as the finish line — and the sequence that works." />
+<meta property="og:url" content="https://pixelhomie.com/insight-why-website-redesigns-fail.html" />
 <meta property="og:image" content="https://pixelhomie.com/assets/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Why website redesigns fail \u2014 and how to avoid it.", "author": {"@type": "Person", "name": "Dima Golovenko"}, "datePublished": "2026-01-24", "mainEntityOfPage": "https://pixelhomie.com/insight-why-website-redesigns-fail.html"}</script>
 <script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
    and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
    serving a blank page. window.KORA is exported on the last line of shared.js, so it
@@ -30,6 +31,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
 <link rel="stylesheet" href="css/style.css?v=pr121" />
 <link rel="stylesheet" href="css/insights.css?v=pr121" />
+<link rel="stylesheet" href="css/insight.css?v=pr121" />
 </head>
 <body>
 <script src="js/transition.js?v=pr121"></script>
@@ -49,11 +51,6 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <symbol id="arrow" viewBox="0 0 24 24">
       <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
     </symbol>
-    <!-- category icons (17px) -->
-    <symbol id="ic-roi" viewBox="0 0 17 17">
-      <rect x="2" y="2" width="13" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M5 11l2.4-2.4 1.7 1.3 2.9-3.1M10.4 6.8H12v1.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
     <symbol id="ic-impl" viewBox="0 0 17 17">
       <circle cx="8.5" cy="8.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.6 1.7"/>
       <path d="M5.8 8.7l1.8 1.8 3.6-3.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,13 +60,15 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       <rect x="5.4" y="5.6" width="6.2" height="4.2" rx="0.9" fill="none" stroke="currentColor" stroke-width="1.1"/>
       <path d="M7 11.6h3M8.5 9.8v1.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
     </symbol>
-    <symbol id="ic-risk" viewBox="0 0 17 17">
-      <path d="M8.5 3v11M5.6 14h5.8M4.2 4.6h8.6M4.2 4.6 2.5 8.6a2.1 2.1 0 0 0 4.2 0L4.2 4.6ZM12.8 4.6l-1.7 4a2.1 2.1 0 0 0 4.2 0l-2.5-4Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- social glyphs -->
+    <symbol id="ic-fb" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.5V14H11v7h2.5Z"/>
     </symbol>
-    <symbol id="ic-search" viewBox="0 0 17 17">
-      <rect x="2" y="2" width="13" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <circle cx="7.8" cy="7.8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="m9.6 9.6 2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <symbol id="ic-x" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.8 4h2.7l-6 6.8L21.5 20h-5.5l-4.3-5.6L6.7 20H4l6.4-7.3L4.8 4h5.7l3.9 5.1L17.8 4Zm-1 14.4h1.5L8.2 5.5H6.6l10.2 12.9Z"/>
+    </symbol>
+    <symbol id="ic-in" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.9 8.6H4.2V20h2.7V8.6ZM5.6 7.4a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2ZM20 13.7c0-3-1.6-4.4-3.8-4.4-1.7 0-2.5 1-2.9 1.6V8.6h-2.7V20h2.7v-6.1c0-1.2.8-2 1.9-2s1.8.8 1.8 2V20H20v-6.3Z"/>
     </symbol>
   </defs>
 </svg>
@@ -99,126 +98,103 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
   </a>
 </header>
 
-<main class="ins-main" id="top">
+<main class="art-main" id="top">
 
 <!-- ================= HERO ================= -->
-<section class="ins-hero">
-  <h1 data-appear>Insights.</h1>
-  <p class="sub" data-appear>Notes from solo practice — product design, conversion, and shipping without a team.</p>
-</section>
-
-<!-- ================= SHELL: featured + filter + grid ================= -->
-<section class="ins-shell" data-appear>
-
-  <!-- featured post -->
-  <a class="ins-feat" href="insight-landing-page-conversion.html" data-cat="Conversion">
-    <img class="bg" src="assets/framer/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg?v=pr121" alt="" fetchpriority="high" decoding="async">
-    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>Conversion</span>
-    <span class="inpad">
-      <span class="meta">March 4, 2026</span>
-      <span class="t">How to increase landing page conversion — without a full redesign.</span>
-      <span class="who">
+<section class="art-hero">
+  <div class="art-hero__card">
+    <img loading="lazy" decoding="async" src="assets/framer/Pif2nYDSD873fW1ucLhDUQ1GuU.jpeg?v=pr121" alt="">
+    <div class="art-hero__dim"></div>
+    <div class="art-hero__in">
+      <div class="art-hero__who">
         <span class="ava">
           <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr121" alt="">
           <span class="badge"><svg width="10" height="10"><use href="#kmark"/></svg></span>
         </span>
         <span class="nm"><span class="n">Dima Golovenko</span><br><span class="r">Product &amp; Web Designer</span></span>
+      </div>
+      <div class="art-hero__txt">
+        <h1>Why website redesigns fail — and how to avoid it.</h1>
+        <p class="sub">Most redesigns are judged by how the launch felt, not what the numbers did. That’s the root of every failure mode below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="art-body">
+  <aside class="art-toc" id="artToc">
+    <div class="art-toc__card">
+      <h3>Table of contents</h3>
+      <nav class="art-toc__list" id="tocList">
+        <a href="#s1" class="is-on">The feeling-driven redesign</a>
+        <a href="#s2">Failure mode 1: no baseline</a>
+        <a href="#s3">Failure mode 2: the wrong layer</a>
+        <a href="#s4">Failure mode 3: launch as finish line</a>
+        <a href="#s5">A redesign sequence that works</a>
+      </nav>
+    </div>
+    <div class="art-toc__share">
+      <span class="lbl">Share</span>
+      <span class="icons">
+        <a href="#" aria-label="Facebook"><svg width="20" height="20"><use href="#ic-fb"/></svg></a>
+        <a href="#" aria-label="X"><svg width="18" height="18"><use href="#ic-x"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="20" height="20"><use href="#ic-in"/></svg></a>
       </span>
+    </div>
+  </aside>
+
+  <article class="art-col">
+    <p class="art-date">January 24, 2026</p>
+    <h2 class="art-lede">Redesigns fail quietly. The new site ships, everyone congratulates everyone, and six months later someone finally opens analytics and finds the same flat line wearing new typography.</h2>
+
+    <h3 id="s1">The Feeling-Driven Redesign</h3>
+    <p>Most redesigns start with discomfort, not data: the site “feels dated”, a competitor shipped something new, a founder saw a portfolio on Awwwards. Those are real feelings and terrible briefs. A redesign scoped on taste can only be evaluated on taste — which is why so many end in arguments about fonts instead of results.</p>
+    <blockquote class="art-quote">The question I ask before any redesign: what number is this supposed to move? If nobody can answer, we’re not redesigning — we’re redecorating.</blockquote>
+    <h3 id="s2">Failure Mode 1: No Baseline</h3>
+    <p>If you don’t measure the old site, the new one can’t win. Before touching Figma, capture conversion rate by page, top drop-off points, load speed, and search rankings for pages that earn traffic. That last one matters twice: redesigns that casually change URLs and headings routinely burn years of accumulated SEO in a week.</p>
+    <h3 id="s3">Failure Mode 2: Redesigning the Wrong Layer</h3>
+    <p>Sites underperform at specific layers: message, structure, interface, or speed. A visual refresh only fixes the interface layer — but most conversion problems live in message and structure. Diagnose first; then redesign the layer that’s actually broken.</p>
+    <div class="art-table">
+      <table>
+        <thead><tr><th>Failure mode</th><th>Symptom</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>No baseline</td><td>“It feels better” is the only result</td><td>Measure before, compare after</td></tr>
+          <tr><td>Wrong layer</td><td>New look, same bounce rate</td><td>Fix message and structure first</td></tr>
+          <tr><td>SEO ignored</td><td>Traffic drops after launch</td><td>Redirect map, keep earning pages intact</td></tr>
+          <tr><td>Launch as finish</td><td>No iteration budget left</td><td>Reserve 20% for post-launch fixes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 id="s4">Failure Mode 3: Launch as the Finish Line</h3>
+    <p>The launch is the first data point, not the last milestone. Real behavior always surprises: the section everyone fought over gets skipped, the page nobody discussed becomes the entry point. Teams that spend the whole budget reaching launch have nothing left for the two weeks when learning actually starts.</p>
+    <h3 id="s5">A Redesign Sequence That Works</h3>
+    <p>Baseline the current site. Fix the message on the existing layout and measure — cheap, fast, often sufficient. If the numbers say go deeper, redesign structure, then interface, protecting every URL that earns search traffic. Ship with a redirect map, an iteration reserve, and a 90-day review where the redesign is judged by the numbers it promised to move.</p>
+  </article>
+</section>
+
+<!-- ================= MORE INSIGHTS ================= -->
+<section class="art-more">
+  <div class="art-more__left" data-appear>
+    <h2>More insights.</h2>
+    <a class="va" href="insights.html">View All <svg width="15" height="15"><use href="#arrow"/></svg></a>
+  </div>
+  <a class="ins-post ins-post--tall" href="insight-ux-metrics.html" data-appear>
+    <img loading="lazy" decoding="async" class="bg" src="assets/framer/gEOx0H4nV830aP9scARGi9DEvc.jpg?v=pr121" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>Conversion</span>
+    <span class="inpad">
+      <span class="meta">January 15, 2026</span>
+      <span class="t">UX metrics that matter: how to measure design impact.</span>
     </span>
   </a>
-
-  <!-- filter bar -->
-  <div class="ins-filter">
-    <div class="fchips" id="fchips">
-      <button class="fchip fchip--all is-on" type="button" data-cat="All">All</button>
-      <button class="fchip" type="button" data-cat="Conversion"><svg width="17" height="17"><use href="#ic-roi"/></svg>Conversion</button>
-      <button class="fchip" type="button" data-cat="Process"><svg width="17" height="17"><use href="#ic-impl"/></svg>Process</button>
-      <button class="fchip" type="button" data-cat="Tools"><svg width="17" height="17"><use href="#ic-tech"/></svg>Tools</button>
-      <button class="fchip" type="button" data-cat="Product Design"><svg width="17" height="17"><use href="#ic-risk"/></svg>Product Design</button>
-    </div>
-    <label class="ins-search">
-      <svg width="17" height="17"><use href="#ic-search"/></svg>
-      <input id="insSearch" type="text" placeholder="Search…" autocomplete="off">
-    </label>
-  </div>
-
-  <!-- posts grid -->
-  <div class="ins-grid" id="insGrid">
-
-    <a class="ins-post" href="insight-design-system-solo.html" data-cat="Process" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/IXWqaCHPbvPQKcyZ9Mch2cWh9hU.jpg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Process</span>
-      <span class="inpad">
-        <span class="meta">March 3, 2026</span>
-        <span class="t">Design system for one designer: how to stay consistent without a team.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-figma-to-code-handoff.html" data-cat="Tools" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/S2aS99cMH11aKHuGDtt8CdqYPqs.jpg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Tools</span>
-      <span class="inpad">
-        <span class="meta">March 2, 2026</span>
-        <span class="t">Figma to code handoff: a checklist that actually works.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-landing-page-audit-checklist.html" data-cat="Conversion" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/IQe1Ak6IQCv8JGUh2qx9RiQCBQ.jpg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>Conversion</span>
-      <span class="inpad">
-        <span class="meta">February 20, 2026</span>
-        <span class="t">Landing page audit checklist: 10 things to check before a redesign.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-dark-patterns-ux.html" data-cat="Product Design" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/MuKacYjazqkYtwK8LUQanQB1xg.jpeg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-risk"/></svg></span>Product Design</span>
-      <span class="inpad">
-        <span class="meta">February 3, 2026</span>
-        <span class="t">Dark patterns in UX: they convert once, then they cost you.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-why-website-redesigns-fail.html" data-cat="Product Design" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/Pif2nYDSD873fW1ucLhDUQ1GuU.jpeg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-risk"/></svg></span>Product Design</span>
-      <span class="inpad">
-        <span class="meta">January 24, 2026</span>
-        <span class="t">Why website redesigns fail — and how to avoid it.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-ux-metrics.html" data-cat="Conversion" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/gEOx0H4nV830aP9scARGi9DEvc.jpg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>Conversion</span>
-      <span class="inpad">
-        <span class="meta">January 15, 2026</span>
-        <span class="t">UX metrics that matter: how to measure design impact.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-scope-creep-design-projects.html" data-cat="Process" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/NbVapMiBN3O1B79hPfn55Ut68.jpg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Process</span>
-      <span class="inpad">
-        <span class="meta">November 5, 2025</span>
-        <span class="t">How to stop scope creep in design projects.</span>
-      </span>
-    </a>
-
-    <a class="ins-post" href="insight-ui-kit-vs-custom-design.html" data-cat="Tools" data-appear>
-      <img loading="lazy" decoding="async" class="bg" src="assets/framer/g5F6UzHD1nQOgfXK6ToLD2aIEk.jpg?v=pr121" alt="">
-      <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Tools</span>
-      <span class="inpad">
-        <span class="meta">January 28, 2025</span>
-        <span class="t">UI kits vs custom design: when to use each.</span>
-      </span>
-    </a>
-
-  </div>
-  <p class="ins-empty" id="insEmpty" hidden>No articles found. Try another search.</p>
+  <a class="ins-post ins-post--tall" href="insight-scope-creep-design-projects.html" data-appear>
+    <img loading="lazy" decoding="async" class="bg" src="assets/framer/NbVapMiBN3O1B79hPfn55Ut68.jpg?v=pr121" alt="">
+    <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-impl"/></svg></span>Process</span>
+    <span class="inpad">
+      <span class="meta">November 5, 2025</span>
+      <span class="t">How to stop scope creep in design projects.</span>
+    </span>
+  </a>
 </section>
 
 <!-- ================= FOOTER ================= -->
@@ -268,6 +244,6 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <script src="vendor/ScrollTrigger.min.js?v=pr121"></script>
 <script src="vendor/lenis.min.js?v=pr121"></script>
 <script src="js/shared.js?v=pr121"></script>
-<script src="js/insights.js?v=pr121"></script>
+<script src="js/insight.js?v=pr121"></script>
 </body>
 </html>
