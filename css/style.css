@@ -593,6 +593,14 @@ h1, h2, h3, h4,
    ~17% off each side; pushing the focal point to 78% keeps the phone whole
    instead of shaving its right edge, and the branch still fills the left half. */
 .svc-card__vid--phone { object-position: 78% 50%; }
+/* the Nomi shot is a 4:3 mockup: the phone is 84% of the frame height, so the
+   stacked mobile slot's 20rem strip (~2.5:1) would slice off its top and
+   bottom. giving this one media box the source's own ratio means cover never
+   crops vertically — on desktop the slot is narrower than 4:3, so it only
+   ever trims the meadow off the sides. */
+@media (max-width: 860px) {
+  .svc-card__media--nomi { min-height: 0; aspect-ratio: 4 / 3; }
+}
 .glass-quote {
   position: absolute; right: 1.25rem; bottom: 1.25rem; max-width: 18.75rem;
   background: rgba(30,30,28,0.38); backdrop-filter: blur(0.875rem);
@@ -741,12 +749,29 @@ h1, h2, h3, h4,
 .wcard__go i { font-style: normal; display: inline-block; transition: transform 0.35s var(--ease-spring); }
 .wcard:hover .wcard__go i { transform: translate(0.15rem, -0.15rem); }
 
+/* the window is a fixed 16:9 frame that fits inside whatever vertical room the
+   panel leaves. the outer box just claims that room; .wcard__frame is the frame
+   itself. it has to be a plain element, not the <img> — a replaced element's
+   intrinsic width wins over `height: 100%` and silently breaks the ratio. */
 .wcard__window {
-  position: relative; overflow: hidden;
+  position: relative;
   margin: clamp(2.25rem, 4.4vw, 5rem) auto;
-  flex: 1 1 auto; min-height: 0; width: 92%;
-  border-radius: clamp(0.5rem, 0.9vw, 1rem); background: rgba(255,255,250,0.05);
+  flex: 1 1 0%; min-height: 0; width: 92%;
+  display: grid; place-items: center;
+}
+.wcard__frame {
+  display: block; position: relative; overflow: hidden;
+  width: 100%; height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: clamp(0.5rem, 0.9vw, 1rem);
+  background: rgba(255,255,250,0.05);
   box-shadow: 0 2rem 4.5rem rgba(0,0,0,0.45);
+}
+/* past ~1.75 the panel runs out of height before it runs out of width, so
+   flip which axis drives the size. the crossover sits below 16/9 because the
+   panel's padding and the two meta rows eat vertical room the viewport has. */
+@media (min-aspect-ratio: 7 / 4) {
+  .wcard__frame { width: auto; height: 100%; }
 }
 .wcard__window img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
