@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<script>document.documentElement.setAttribute("data-build","pr128");console.log("KORA build: pr128")</script>
+<script>document.documentElement.setAttribute("data-build","pr231");console.log("KORA build: pr231")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
 <title>How to Stop Scope Creep in Design Projects — pixelhomie</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235dc39b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffffa'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='54' fill='%235dc39b'/%3E%3Cpath d='M42.42 24.82H29.67v12.75h12.75z' fill='%23fffffa'/%3E%3Cpath d='M42.42 50.32V37.57L29.67 50.32v38.24l12.75-12.75z' fill='%23fffffa'/%3E%3Cpath d='M63.66 24.82h-8.5L42.41 37.57h21.25a12.75 12.75 0 1 1 0 25.5h-8.5L42.41 75.81h21.25a25.5 25.5 0 0 0 0-51z' fill='%23fffffa'/%3E%3C/svg%3E" />
 <meta name="description" content="Scope creep in design projects: why it starts, the change-request flow that stops it, pricing models that protect both sides, and how to say no without losing the client." />
 <link rel="canonical" href="https://pixelhomie.com/insight-scope-creep-design-projects.html" />
 <meta property="og:type" content="article" />
@@ -29,12 +29,12 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-500-normal.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-600-normal.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
-<link rel="stylesheet" href="css/style.css?v=pr128" />
-<link rel="stylesheet" href="css/insights.css?v=pr128" />
-<link rel="stylesheet" href="css/insight.css?v=pr128" />
+<link rel="stylesheet" href="css/style.css?v=pr231" />
+<link rel="stylesheet" href="css/insights.css?v=pr231" />
+<link rel="stylesheet" href="css/insight.css?v=pr231" />
 </head>
 <body>
-<script src="js/transition.js?v=pr128"></script>
+<script src="js/transition.js?v=pr231"></script>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
@@ -43,10 +43,14 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
     </symbol>
     <!-- Dima Golovenko mark (iD glyph) -->
-    <symbol id="dgmark" viewBox="0 0 77.511 86.243">
-        <path d="M16.6095 1.59766H0V18.2071H16.6095V1.59766Z" fill="currentColor"/>
-        <path d="M16.6095 34.8165V18.207L0 34.8165V51.4259V68.0354V84.6449L16.6095 68.0354V51.4259V34.8165Z" fill="currentColor"/>
-        <path d="M44.2918 1.59766H33.2188L16.6094 18.2071H44.2918C53.4639 18.2071 60.9013 25.6445 60.9013 34.8166C60.9013 43.9887 53.4639 51.426 44.2918 51.426H33.2188L16.6094 68.0355H44.2918C62.636 68.0355 77.5107 53.1608 77.5107 34.8166C77.5107 16.4723 62.636 1.59766 44.2918 1.59766Z" fill="currentColor"/>
+    <symbol id="dgmark" viewBox="0 0 108 108">
+        <!-- assets/logo.svg inlined: green disc + white iD mark. The disc takes
+             currentColor so the CSS green token keeps driving it; the mark is
+             cream like every knockout on green. -->
+        <rect width="108" height="108" rx="54" fill="currentColor"/>
+        <path d="M42.4165 24.8184H29.668V37.5668H42.4165V24.8184Z" fill="#FFFFFA"/>
+        <path d="M42.4165 50.3159V37.5674L29.668 50.3159V63.0643V75.8128V88.5613L42.4165 75.8128V63.0643V50.3159Z" fill="#FFFFFA"/>
+        <path d="M63.6615 24.8184H55.1625L42.4141 37.5668H63.6615C70.7015 37.5668 76.41 43.2753 76.41 50.3153C76.41 57.3553 70.7015 63.0637 63.6615 63.0637H55.1625L42.4141 75.8122H63.6615C77.7414 75.8122 89.1584 64.3953 89.1584 50.3153C89.1584 36.2353 77.7414 24.8184 63.6615 24.8184Z" fill="#FFFFFA"/>
     </symbol>
     <symbol id="arrow" viewBox="0 0 24 24">
       <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
@@ -61,7 +65,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       <path d="M7 11.6h3M8.5 9.8v1.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
     </symbol>
     <!-- social glyphs -->
-    <symbol id="ic-fb" viewBox="0 0 24 24">
+    <symbol id="ic-fb" viewBox="0 1.25 24 24">
       <path fill="currentColor" d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.5V14H11v7h2.5Z"/>
     </symbol>
     <symbol id="ic-x" viewBox="0 0 24 24">
@@ -92,7 +96,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       </span>
     </span>
     <span class="bk-ava">
-      <img src="assets/avatar.jpg?v=pr128" alt="Dima">
+      <img src="assets/avatar.jpg?v=pr231" alt="Dima">
       <span class="you" aria-hidden="true">You</span>
     </span>
   </a>
@@ -103,12 +107,12 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 <!-- ================= HERO ================= -->
 <section class="art-hero">
   <div class="art-hero__card">
-    <img loading="lazy" decoding="async" src="assets/framer/NbVapMiBN3O1B79hPfn55Ut68.jpg?v=pr128" alt="">
+    <img loading="lazy" decoding="async" src="assets/framer/NbVapMiBN3O1B79hPfn55Ut68.jpg?v=pr231" alt="">
     <div class="art-hero__dim"></div>
     <div class="art-hero__in">
       <div class="art-hero__who">
         <span class="ava">
-          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr128" alt="">
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr231" alt="">
           <span class="badge"><svg width="10" height="10"><use href="#kmark"/></svg></span>
         </span>
         <span class="nm"><span class="n">Dima Golovenko</span><br><span class="r">Product &amp; Web Designer</span></span>
@@ -180,7 +184,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <a class="va" href="insights.html">View All <svg width="15" height="15"><use href="#arrow"/></svg></a>
   </div>
   <a class="ins-post ins-post--tall" href="insight-ui-kit-vs-custom-design.html" data-appear>
-    <img loading="lazy" decoding="async" class="bg" src="assets/framer/g5F6UzHD1nQOgfXK6ToLD2aIEk.jpg?v=pr128" alt="">
+    <img loading="lazy" decoding="async" class="bg" src="assets/framer/g5F6UzHD1nQOgfXK6ToLD2aIEk.jpg?v=pr231" alt="">
     <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-tech"/></svg></span>Tools</span>
     <span class="inpad">
       <span class="meta">January 28, 2025</span>
@@ -188,7 +192,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     </span>
   </a>
   <a class="ins-post ins-post--tall" href="insight-landing-page-conversion.html" data-appear>
-    <img loading="lazy" decoding="async" class="bg" src="assets/framer/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg?v=pr128" alt="">
+    <img loading="lazy" decoding="async" class="bg" src="assets/framer/ZUKAuHzqrTMon49eyQdZ9vuSDfY.jpeg?v=pr231" alt="">
     <span class="cat-chip"><span class="ico"><svg width="13" height="13"><use href="#ic-roi"/></svg></span>Conversion</span>
     <span class="inpad">
       <span class="meta">March 4, 2026</span>
@@ -204,12 +208,8 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
     <div class="footer__grid">
       <div>
         <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
-        <h3>Subscribe to<br>our newsletter.</h3>
-        <form class="nl" onsubmit="return false">
-          <input type="email" placeholder="Email" aria-label="Email">
-          <button class="btn btn--green">Subscribe ✳</button>
-        </form>
-        <label class="agree"><input type="checkbox"> By subscribing, you agree to our <u>privacy policy</u>.</label>
+        <h3>Got a product<br>on your mind?</h3>
+        <a class="btn btn--green" href="contact.html">Book a call <span class="dot"></span></a>
         <p class="h">Socials</p>
         <div class="socials">
           <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
@@ -221,7 +221,7 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
       <div>
         <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
         <div class="fwho">
-          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr128" alt="">
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr231" alt="">
           <span><span class="n">Dima Golovenko</span><br><span class="r">Founder &amp; Designer</span></span>
         </div>
         <span class="mail" data-copy="me@pixelhomie.com"><span class="ic">✳</span> me@pixelhomie.com</span>
@@ -240,10 +240,10 @@ setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e
 
 </main>
 
-<script src="vendor/gsap.min.js?v=pr128"></script>
-<script src="vendor/ScrollTrigger.min.js?v=pr128"></script>
-<script src="vendor/lenis.min.js?v=pr128"></script>
-<script src="js/shared.js?v=pr128"></script>
-<script src="js/insight.js?v=pr128"></script>
+<script src="vendor/gsap.min.js?v=pr231"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr231"></script>
+<script src="vendor/lenis.min.js?v=pr231"></script>
+<script src="js/shared.js?v=pr231"></script>
+<script src="js/insight.js?v=pr231"></script>
 </body>
 </html>

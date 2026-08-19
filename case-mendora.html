@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr231");console.log("KORA build: pr231")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<title>Mendora — A Recovery Platform That Feels Human — pixelhomie</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='54' fill='%235dc39b'/%3E%3Cpath d='M42.42 24.82H29.67v12.75h12.75z' fill='%23fffffa'/%3E%3Cpath d='M42.42 50.32V37.57L29.67 50.32v38.24l12.75-12.75z' fill='%23fffffa'/%3E%3Cpath d='M63.66 24.82h-8.5L42.41 37.57h21.25a12.75 12.75 0 1 1 0 25.5h-8.5L42.41 75.81h21.25a25.5 25.5 0 0 0 0-51z' fill='%23fffffa'/%3E%3C/svg%3E" />
+<meta name="description" content="Mendora is an AI-powered therapy platform for recovery after stroke and other neurological conditions. Case study: brand, interfaces and a design language that feels warm instead of clinical." />
+<link rel="canonical" href="https://pixelhomie.com/case-mendora.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="pixelhomie" />
+<meta property="og:title" content="Mendora — A Recovery Platform That Feels Human — pixelhomie" />
+<meta property="og:description" content="Mendora is an AI-powered therapy platform for recovery after stroke and other neurological conditions. Case study: brand, interfaces and a design language that feels warm instead of clinical." />
+<meta property="og:url" content="https://pixelhomie.com/case-mendora.html" />
+<meta property="og:image" content="https://pixelhomie.com/assets/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
+   and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
+   serving a blank page. window.KORA is exported on the last line of shared.js, so it
+   is an exact "the scripts ran to completion" signal — this never fires on a healthy page. */
+(function(){var d=document.documentElement;function bail(){if(window.KORA)return;d.classList.remove("preload");d.classList.add("no-js")}
+setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e.target.tagName==="SCRIPT")setTimeout(bail,800)},true)})()</script>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-400-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-500-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-600-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
+<link rel="stylesheet" href="css/style.css?v=pr231" />
+<link rel="stylesheet" href="css/cases.css?v=pr231" />
+</head>
+<body>
+<script src="js/transition.js?v=pr231"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <!-- Dima Golovenko mark (iD glyph) -->
+    <symbol id="dgmark" viewBox="0 0 108 108">
+        <!-- assets/logo.svg inlined: green disc + white iD mark. The disc takes
+             currentColor so the CSS green token keeps driving it; the mark is
+             cream like every knockout on green. -->
+        <rect width="108" height="108" rx="54" fill="currentColor"/>
+        <path d="M42.4165 24.8184H29.668V37.5668H42.4165V24.8184Z" fill="#FFFFFA"/>
+        <path d="M42.4165 50.3159V37.5674L29.668 50.3159V63.0643V75.8128V88.5613L42.4165 75.8128V63.0643V50.3159Z" fill="#FFFFFA"/>
+        <path d="M63.6615 24.8184H55.1625L42.4141 37.5668H63.6615C70.7015 37.5668 76.41 43.2753 76.41 50.3153C76.41 57.3553 70.7015 63.0637 63.6615 63.0637H55.1625L42.4141 75.8122H63.6615C77.7414 75.8122 89.1584 64.3953 89.1584 50.3153C89.1584 36.2353 77.7414 24.8184 63.6615 24.8184Z" fill="#FFFFFA"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo logo--dg" href="index.html" aria-label="Dima Golovenko"><svg class="mark" aria-hidden="true"><use href="#dgmark"/></svg></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About</a>
+    <a class="lnk" href="contact.html">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="#contact">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="assets/avatar.jpg?v=pr231" alt="Dima">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main class="cases-main" id="top">
+
+<!-- ================= CASE HERO ================= -->
+<section class="cs-hero">
+  <div class="cs-wrap">
+    <div class="cs-hero__top">
+      <div>
+        <h1 data-appear>Mendora</h1>
+        <p class="sub" data-appear>An AI-powered therapy platform for recovery after stroke — built to feel warm and human, not clinical.</p>
+      </div>
+      <div class="cs-hero__svc" data-appear>
+        <p class="lbl">Services</p>
+        <ul class="list">
+          <li>Branding</li><li>Product Design</li><li>Web Design</li>
+          <li>Design System</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-shell" data-appear>
+      <div class="cs-shell__photo">
+        <img src="assets/mendora/hero.webp?v=pr231" alt="Mendora — recovery platform hero shot" fetchpriority="high" decoding="async">
+        <span class="feat__logo">✳ Mendora</span>
+      </div>
+      <div class="cs-shell__row">
+        <div class="cs-meta">
+          <p class="cs-meta__logo">✳ Mendora</p>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 12.5V3l5-1.8V12.5M7 12.5h5V6H7M4 5.5h1M4 8h1M9 8h1M9 10h1" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Industry</span>
+            <span class="mv">HealthTech · AI</span>
+          </div>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="5" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="10" cy="5.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 12c0-2 1.5-3.5 3.5-3.5S8.5 10 8.5 12M9 9.5c1.8 0 3 1.2 3 2.5" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Client</span>
+            <span class="mv">Under NDA</span>
+          </div>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="7" cy="7.5" r="4.8" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M7 5v2.7l1.8 1.2M5.5 1h3" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Timeline</span>
+            <span class="mv">4 Months</span>
+          </div>
+        </div>
+        <div class="feat__metrics cs-metrics">
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5M10.5 1.5H13v2.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="v"><span data-count="4">0</span><sup>mo</sup></p>
+            <p class="l">From first concept to developer-ready handoff</p>
+          </div>
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.5 8.5 10 5M7.5 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="v"><span data-count="24">0</span><sup>/7</sup></p>
+            <p class="l">Therapy exercises available at home</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="cs-art">
+  <div class="cs-wrap">
+    <time class="cs-art__date" datetime="2024-03-21">March 21, 2024</time>
+    <h2 class="cs-art__title" data-appear>A recovery platform that feels human.</h2>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="0.8" fill="currentColor"/></svg> The challenge</span></p>
+      <div>
+        <p class="lead">Recovery is hard work — the software for it shouldn’t feel like hospital equipment.</p>
+        <p class="body">Mendora supports recovery after stroke and other neurological conditions: AI builds a personalized exercise plan, tracks progress in real time, and works both in the clinic and at home. The brief was direct — not another clinical tool. The platform had to feel warm, human and encouraging, and give a person clarity and calm on the way back.</p>
+      </div>
+    </div>
+    <figure class="cs-fig" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/f1.jpg?v=pr231" alt="Mendora — brand overview">
+    </figure>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="6.5" height="9" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.5" y="2.5" width="3" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg> The branding</span></p>
+      <div>
+        <p class="lead">Medical reliability on the outside, warmth on the inside.</p>
+        <p class="body">The identity balances the two. A geometric display face gives the brand structure and clarity, while the palette — Blaze Orange with Power Blue — brings energy and positivity into a category that usually defaults to sterile white. Emotion-driven details make the product feel supportive, never clinical.</p>
+      </div>
+    </div>
+    <figure class="cs-fig" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/f2.jpg?v=pr231" alt="Mendora — logo and identity">
+    </figure>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/duo1a.jpg?v=pr231" alt="Mendora — brand detail">
+      <img loading="lazy" decoding="async" src="assets/mendora/duo1b.jpg?v=pr231" alt="Mendora — brand detail">
+    </figure>
+    <figure class="cs-fig" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/f3.jpg?v=pr231" alt="Mendora — palette and typography">
+    </figure>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="4" y="1.5" width="6" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6 11h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> The interfaces</span></p>
+      <div>
+        <p class="lead">Designed for people whose focus and motor control are limited.</p>
+        <p class="body">Light backgrounds with sharp contrast reduce visual strain, navigation is cut to the minimum, and every flow asks as little of the user as possible. Health data is presented simply, the typography stays clean with bold accents — the interface carries the person through the exercise instead of testing them with it.</p>
+      </div>
+    </div>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/duo2a.jpg?v=pr231" alt="Mendora — interface detail">
+      <img loading="lazy" decoding="async" src="assets/mendora/duo2b.jpg?v=pr231" alt="Mendora — interface detail">
+    </figure>
+    <figure class="cs-fig" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/f4.jpg?v=pr231" alt="Mendora — product screens">
+    </figure>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/duo3a.jpg?v=pr231" alt="Mendora — screen detail">
+      <img loading="lazy" decoding="async" src="assets/mendora/duo3b.jpg?v=pr231" alt="Mendora — screen detail">
+    </figure>
+    <figure class="cs-fig" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/mendora/f5.jpg?v=pr231" alt="Mendora — platform overview">
+    </figure>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg> The results</span></p>
+      <div>
+        <p class="results-intro">Shipped as one system — brand, product and site in four months.</p>
+        <ul class="results">
+        <li>An identity that reads medical-grade<br>and human at the same time</li>
+        <li>The orange-and-blue palette became the product’s voice<br>on every screen</li>
+        <li>Flows built for limited focus and motor control —<br>nothing to figure out</li>
+        <li>Handoff as a working system: type, components<br>and states ready to build from</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-quote" data-appear>
+      <p class="cs-quote__logo">✳ Mendora</p>
+      <p class="q">“We needed a platform that’s not just functional — one that feels warm, human and encouraging, and gives a sense of clarity and calm through recovery.”</p>
+      <div class="who">
+        <img loading="lazy" decoding="async" src="assets/mendora/owner.jpg?v=pr231" alt="Anna Schöllauf">
+        <span><span class="n">Anna Schöllauf</span><br><span class="r">Product Owner</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MORE CASES ================= -->
+<section class="cs-more">
+  <div class="cs-wrap">
+    <div class="cs-more__head" data-appear>
+      <div>
+        <h2>More cases.</h2>
+        <p class="sub">Trusted by more than 50 companies, from ambitious startups to major enterprises.</p>
+      </div>
+      <a class="btn btn--dark" href="cases.html">View All</a>
+    </div>
+    <div class="cgrid cgrid--tight">
+      <article class="ccard" data-appear>
+        <div class="ccard__img">
+          <img loading="lazy" decoding="async" src="assets/nomi/cover.webp?v=pr231" alt="Nomi — AI tutor app">
+        </div>
+        <div class="ccard__body">
+          <time datetime="2025-06-12">June 12, 2025</time>
+          <h3>Nomi — an AI tutor built for studying together.</h3>
+          <div class="ccard__mrow">
+            <div class="cell"><p class="v">24/7</p><p class="l">AI tutor availability for students</p></div>
+            <div class="cell"><p class="v">2</p><p class="l">Students learning together in one session</p></div>
+          </div>
+        </div>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-nomi.html">View Case Study</a>
+      </article>
+      <article class="ccard" data-appear>
+        <div class="ccard__img">
+          <img loading="lazy" decoding="async" src="assets/copytrading/hero.webp?v=pr231" alt="Copytrading — copy-trading platform">
+        </div>
+        <div class="ccard__body">
+          <time datetime="2023-06-24">June 24, 2023</time>
+          <h3>Copytrading — trading that copies the pros for you.</h3>
+          <div class="ccard__mrow">
+            <div class="cell"><p class="v">24/7</p><p class="l">Trades mirrored in real time</p></div>
+            <div class="cell"><p class="v">3 mo</p><p class="l">Brand, site and platform shipped</p></div>
+          </div>
+        </div>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-copytrading.html">View Case Study</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DARK CTA ================= -->
+<section class="cta-dark" id="contact">
+  <div class="cta-card">
+    <div class="in">
+      <div>
+        <h2 id="ctaTitle" data-appear>Let's find your next growth lever.</h2>
+        <ul class="feats" data-appear>
+          <li><span class="ic">✦</span>Actionable growth roadmap</li>
+          <li><span class="ic">✦</span>Channel &amp; funnel diagnostics</li>
+          <li><span class="ic">✦</span>Clear next steps &amp; timeline</li>
+        </ul>
+        <div class="q" data-appear>
+          <p class="lbl">Testimonial</p>
+          <p>"What sets Dima apart is his commitment to building our capabilities, not creating dependency."</p>
+          <div class="who">
+            <img loading="lazy" decoding="async" src="assets/framer/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg?v=pr231" alt="">
+            <span><span class="n">Jennifer Holland</span><br><span class="r">CFO, Elevance</span></span>
+          </div>
+        </div>
+      </div>
+      <form class="cform" data-appear onsubmit="return false">
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
+        <p class="lead">No pitch decks, no pressure. <em>Tell us where you are and we'll share how we can help.</em></p>
+        <div class="row2">
+          <div><label>Name</label><input type="text" placeholder="Jane Cooper"></div>
+          <div><label>Email</label><input type="email" placeholder="name@company.com"></div>
+        </div>
+        <label>What services are you interested in?</label>
+        <div class="chips" data-chips>
+          <button type="button"><span class="rb"></span>Product Design</button>
+          <button type="button"><span class="rb"></span>Web &amp; Landing Pages</button>
+          <button type="button"><span class="rb"></span>Motion Design</button>
+          <button type="button"><span class="rb"></span>3D Design</button>
+          <button type="button"><span class="rb"></span>UX Audit</button>
+        </div>
+        <label>Biggest growth challenge?</label>
+        <textarea placeholder="We’re building a mobile app and need a designer who…"></textarea>
+        <label class="terms"><input type="checkbox"> By submitting, you agree to our terms of service.</label>
+        <div class="foot">
+          <p class="note">We'll reach out within 24 hours to schedule your call.</p>
+          <button class="btn btn--dark" type="submit">Book a call <span class="dot" style="background:var(--green)"></span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
+        <h3>Got a product<br>on your mind?</h3>
+        <a class="btn btn--green" href="contact.html">Book a call <span class="dot"></span></a>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr231" alt="">
+          <span><span class="n">Dima Golovenko</span><br><span class="r">Founder &amp; Designer</span></span>
+        </div>
+        <span class="mail" data-copy="me@pixelhomie.com"><span class="ic">✳</span> me@pixelhomie.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>pixelhomie</span></div>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr231"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr231"></script>
+<script src="vendor/lenis.min.js?v=pr231"></script>
+<script src="js/shared.js?v=pr231"></script>
+</body>
+</html>

@@ -97,6 +97,10 @@
 /* Root scale: 1rem = 16px at 1920w, grows proportionally on 2K/4K,
    shrinks on smaller screens (min 11px), fixed on mobile */
 html { font-size: clamp(11px, 0.8333vw, 30px); }
+/* Android Chrome "font boosting" inflates text in blocks it deems wide,
+   which was blowing the phone hero up to one word per line and wrapping the
+   CTA buttons — the layout is authored responsive, so boosting is noise. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (max-width: 900px) { html { font-size: 14px; } :root { --stage-edge: 10px; --stage-r: 20px; } }
 
 html.lenis, html.lenis body { height: auto; }
@@ -143,7 +147,7 @@ h1, h2, h3, h4,
 .logo sup { font-size: 0.45em; font-weight: 600; letter-spacing: 0; transform: translateY(-0.2em); }
 
 /* stars */
-.stars { color: var(--green); font-size: 0.6875rem; letter-spacing: 0.125rem; }
+.stars { color: var(--green); font-size: 0.9375rem; letter-spacing: 0.125rem; }
 
 /* ============ BUTTONS ============ */
 .btn {
@@ -238,7 +242,7 @@ h1, h2, h3, h4,
 }
 .nav__pill .logo { font-size: 21px; margin-right: 20px; }
 /* Dima Golovenko: the green iD mark alone stands in for the wordmark */
-.logo--dg .mark { width: auto; height: 1.5em; aspect-ratio: 77.511 / 86.243; color: var(--green); }
+.logo--dg .mark { width: auto; height: 1.6em; aspect-ratio: 1 / 1; color: var(--green); }
 .nav__pill a.lnk { width: 113px; text-align: center; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; padding: 7px 0; border-radius: 100px; transition: background 0.25s; }
 /* hover bg is now the sliding green .nav-hpill (see transition.js) */
 .nav__book {
@@ -317,6 +321,10 @@ h1, h2, h3, h4,
 
 /* ============ INTRO PIN ============ */
 .intro { position: relative; height: 330vh; background: var(--paper); }
+/* the pin is scroll distance, not content: on a phone 330vh of thumb-swiping
+   for one statement reads as a stuck page, so the morph runs its whole
+   timeline in ~2 screens instead of ~3.3. */
+@media (max-width: 760px) { .intro { height: 220vh; } }
 .intro__stick { position: sticky; top: 0; height: 100svh; overflow: clip; }
 
 
@@ -330,8 +338,12 @@ h1, h2, h3, h4,
 /* an image that fills its frame — used by the hero stage, the case
    mini-cards and the contact background */
 .stage__media img, .case-mini__img img, .contact-sec__bg img { width: 100%; height: 100%; object-fit: cover; }
+/* Hero canvas is a gradient, not a photo: a deep navy at the top easing into
+   a brighter cobalt at the foot, so the cream headline sits on the darkest
+   part of the field and the CTA row on the lighter one. */
+.stage__media--grad { background: linear-gradient(180deg, #0f3a86 0%, #12459b 42%, #1560cd 100%); }
 /* slight permanent darkening of the hero photo (deepens on scroll via JS) */
-.stage__dim { position: absolute; inset: 0; background: rgba(13,13,13,0.34); }
+.stage__dim { position: absolute; inset: 0; background: rgba(13,13,13,0.12); }
 /* film grain over the hero media */
 .stage__grain {
   position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.55;
@@ -388,9 +400,19 @@ h1, h2, h3, h4,
    cap keeps the strip clear of the floating case card on the right, and the
    viewport clamp stops it spilling past the gutter on phones. */
 .marquee { overflow: hidden; width: min(557px, 70%); max-width: calc(100vw - 2 * clamp(28px, 3.4vw, 64px)); align-self: flex-start; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.marquee__track { display: flex; gap: 4rem; width: max-content; animation: marquee 26s linear infinite; align-items: center; }
+.marquee__track { display: flex; gap: 3rem; width: max-content; animation: marquee 26s linear infinite; align-items: center; }
 @keyframes marquee { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .marquee .lg { color: rgba(255,255,250,0.85); font-size: 1.375rem; white-space: nowrap; }
+/* real client/employer logos riding in the same strip: normalized to a flat
+   cream silhouette on the dark hero, and to a dark one on light-bg strips */
+.marquee .lgi { height: 1.5rem; width: auto; flex: none; filter: brightness(0) invert(1); opacity: 0.85; }
+.marquee--page .lgi, .ab-mq .lgi { filter: brightness(0); opacity: 0.55; }
+/* the Nokia wordmark is set much larger on its canvas than the others —
+   one size step down brings its optical weight in line with the strip */
+.marquee .lgi[src*="nokia"] { height: 1.05rem; }
+.marquee .lgi[src*="onepagecrm"], .marquee .lgi[src*="halo"] { height: 1.8rem; }
+.marquee .lgi[src*="nyra"] { height: 1.6rem; }
+.marquee .lgi[src*="adwa"] { height: 1.1rem; }
 .lg--1 { font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; font-size: 1.125rem !important; }
 .lg--2 { font-weight: 800; letter-spacing: -0.02em; }
 .lg--3 { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -413,8 +435,62 @@ h1, h2, h3, h4,
 .case-mini__metric { display: flex; align-items: center; gap: 10px; margin-top: auto; padding: 10px 15px 10px 20px; border-top: 1px solid var(--line); }
 .case-mini__metric b { font-size: 30px; font-weight: 600; letter-spacing: -0.03em; }
 .case-mini__metric span { font-size: 13px; color: var(--gray); font-weight: 600; line-height: 1.3; }
-.case-mini__metric .go { margin-left: auto; width: 40px; height: 40px; flex: none; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--dark); }
-@media (max-width: 760px) { .case-mini { display: none; } }
+.case-mini__metric .go {
+  margin-left: auto; width: 40px; height: 40px; flex: none; aspect-ratio: 1;
+  border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center;
+  color: var(--dark); position: relative; overflow: hidden;
+}
+/* same language as .btn: a green circle floods out from the middle, and the
+   arrow leaves to the right while its clone flies in from the left */
+.case-mini__metric .go .go__fill {
+  position: absolute; z-index: 0; left: 50%; top: 50%;
+  width: 100%; height: 100%; border-radius: 50%; background: var(--green);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s var(--ease);
+}
+.case-mini:hover .go .go__fill { transform: translate(-50%, -50%) scale(1); }
+.case-mini__metric .go .go__arrows { position: relative; z-index: 1; display: block; width: 15px; height: 15px; }
+.case-mini__metric .go .go__arrows svg { position: absolute; inset: 0; display: block; transition: transform 0.45s var(--ease-spring); }
+.case-mini__metric .go .go__arrows .a2 { transform: translateX(-160%); }
+.case-mini:hover .go .go__arrows svg { transform: translateX(160%); }
+.case-mini:hover .go .go__arrows .a2 { transform: translateX(0); }
+/* On phones the original keeps the case card, stacked full-width under the
+   hero copy. Absolute pinning collided with the copy on shorter screens, so
+   the phone hero becomes ONE flex column — copy, card, marquee — and the
+   card physically cannot overlap anything: it takes its place in the flow,
+   margin-top:auto soaks up whatever height the screen has to spare. The copy
+   drops its absolute position for the same reason. On screens shorter than
+   700px there is no spare height at all and the card bows out. */
+@media (max-width: 760px) {
+  .case-mini { display: none; }
+  .hero-ui { justify-content: flex-start; }
+  .hero-ui__txt { position: static; margin: clamp(4.5rem, 10svh, 7rem) 20px 0; }
+  /* one full step below --h-hero's floor: at phone measure the full-size
+     heading ran to five lines, and the CTA pair must hold one row. */
+  .hero-ui__txt h1 { font-size: 2.375rem; }
+  .hero-ui__cta { flex-wrap: nowrap; gap: 0.875rem; }
+  .hero-ui__cta .btn { white-space: nowrap; padding-inline: 1.125rem; }
+  /* order: copy → marquee → case card at the very bottom (as asked) */
+  .hero-ui__foot { order: 1; margin-top: auto; }
+}
+@media (max-width: 760px) and (min-height: 700px) {
+  .case-mini {
+    display: flex; position: static; order: 2;
+    margin: 0.875rem 16px 14px; width: auto; padding: 8px; gap: 8px;
+  }
+  .case-mini__img { width: 108px; min-height: 150px; }
+  .case-mini__body { width: auto; flex: 1; }
+}
+/* sub-380 phones: the body column is narrow enough that the metric text
+   wraps deep and the card grows past what the hero column can spare —
+   everything inside steps down one size so the marquee keeps its footing. */
+@media (max-width: 380px) {
+  .case-mini__img { width: 92px; min-height: 128px; }
+  .case-mini__body .chip { margin: 12px 12px 0; font-size: 12px; }
+  .case-mini__body .t { margin: 8px 10px 10px 12px; font-size: 12px; }
+  .case-mini__metric { padding: 8px 12px 8px 14px; }
+  .case-mini__metric b { font-size: 22px; }
+}
 
 /* statement (over blurred stage) */
 .statement {
@@ -481,6 +557,27 @@ h1, h2, h3, h4,
 .comp-card--after { background: var(--green); color: var(--cream); }
 .comp-card--after .label { color: rgba(255,255,250,0.8); }
 .comp-card--after li .ic { background: var(--cream); color: var(--green); font-size: 0.6875rem; }
+/* ---------- comparison: static stack on phones ---------- */
+/* The desktop section is a 340vh scroll morph: both cards absolutely centred
+   and fanned apart by JS. At phone widths min(29.6875rem, 44vw) leaves a
+   ~170px card and the fan has nowhere to go, so — like the original template —
+   the phone layout is the plain document: title, Before, After, in normal
+   flow. The JS timeline is only created above 760px (main.js); the !importants
+   below also neutralise inline styles left by a mid-session resize. */
+@media (max-width: 760px) {
+  .compare { height: auto; margin-top: 0; padding: 4rem 0 0.5rem; }
+  .compare__stick { position: static; height: auto; overflow: visible; display: block; padding-inline: 20px; }
+  .compare__title { position: static; display: block; margin-bottom: 1.875rem; }
+  .compare__title .l1, .compare__title .l2 { transform: none !important; opacity: 1 !important; }
+  .compare__cards { position: static; }
+  .comp-card {
+    position: static; width: 100%; height: auto; min-height: 0;
+    transform: none !important; opacity: 1 !important; filter: none !important;
+  }
+  .comp-card + .comp-card { margin-top: 0.875rem; }
+  .comp-card ul { margin-top: 1.75rem; }
+  .comp-card--before > *, .comp-card--after li { opacity: 1 !important; transform: none !important; }
+}
 
 /* ============ SERVICES ============ */
 .services { background: var(--paper); padding: clamp(4.375rem, 7vw, 7.5rem) 0 0; }
@@ -560,7 +657,14 @@ h1, h2, h3, h4,
   display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px; overflow: hidden;
   min-height: min(680px, 78svh);
 }
-@media (max-width: 860px) { .svc-card { grid-template-columns: 1fr; row-gap: 10px; min-height: 0; } .svc-stack { gap: 1.625rem; } }
+@media (max-width: 860px) {
+  /* static, not sticky: with the single-column card taller than the viewport,
+     stacking meant the next card started covering this one before its lower
+     half had ever been on screen. The phone column just scrolls. */
+  .svc-card { grid-template-columns: 1fr; row-gap: 10px; min-height: 0; position: static; }
+  .svc-stack { gap: 1.625rem; }
+  .svc-card__media .glass-quote { display: none; }
+}
 .svc-card__info { display: flex; flex-direction: column; gap: 10px; }
 .svc-card__box { background: var(--cream); border-radius: 30px; padding: clamp(24px, 2.6vw, 50px); flex: 1; display: flex; flex-direction: column; }
 .svc-card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.375rem; }
@@ -593,13 +697,13 @@ h1, h2, h3, h4,
    ~17% off each side; pushing the focal point to 78% keeps the phone whole
    instead of shaving its right edge, and the branch still fills the left half. */
 .svc-card__vid--phone { object-position: 78% 50%; }
-/* the Nomi shot is a 4:3 mockup: the phone is 84% of the frame height, so the
-   stacked mobile slot's 20rem strip (~2.5:1) would slice off its top and
-   bottom. giving this one media box the source's own ratio means cover never
-   crops vertically — on desktop the slot is narrower than 4:3, so it only
-   ever trims the meadow off the sides. */
+/* On the stacked phone layout the original template puts each service's image
+   ABOVE its text card, as its own rounded block. order:-1 restores that (the
+   DOM keeps info first for desktop), and every media box takes a 4:3 ratio
+   instead of the 20rem strip: the Nomi shot is natively 4:3 (phone is 84% of
+   frame height, a ~2.5:1 strip would slice it), and the clips crop evenly. */
 @media (max-width: 860px) {
-  .svc-card__media--nomi { min-height: 0; aspect-ratio: 4 / 3; }
+  .svc-card__media { order: -1; min-height: 0; aspect-ratio: 4 / 3; }
 }
 .glass-quote {
   position: absolute; right: 1.25rem; bottom: 1.25rem; max-width: 18.75rem;
@@ -645,10 +749,28 @@ h1, h2, h3, h4,
 .phase.is-open .head { color: var(--cream); }
 .phase.is-open .head b { color: rgba(255, 255, 250, 0.55); }
 .phase.is-open .body { opacity: 1; transform: none; transition-delay: 0.15s; }
+/* stacked phone accordion: a closed phase is a slim bar (its head only), not a
+   22.5rem blank. The min-height only makes sense for the horizontal desktop
+   accordion where closed cards are narrow columns; the body has to leave the
+   layout entirely because at opacity 0 it still holds its height. This block
+   sits after the base rules on purpose — .phase{min-height:0} has the same
+   specificity as the base .phase and must win by order. */
+@media (max-width: 760px) {
+  .phase { min-height: 0; }
+  .phase:not(.is-open) { padding-block: 1.375rem; }
+  .phase:not(.is-open) .body { display: none; }
+  .phase.is-open { min-height: 20rem; }
+}
 
 /* video card */
 .how__video { position: relative; border-radius: 1.25rem; overflow: hidden; margin-top: 0.875rem; }
 .how__video img { width: 100%; aspect-ratio: 1480 / 700; object-fit: cover; }
+/* the self-hosted showreel is 16:9 — the card takes the clip's own ratio so
+   nothing is cropped and no letterbox bars appear when it starts playing */
+.how__video--file img { aspect-ratio: 16 / 9; }
+.how__video video { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; display: block; background: #000; }
+/* self-starting and silent: no play affordance to offer */
+.how__video--file .play { display: none; }
 .how__video .lg { position: absolute; top: 1.5rem; left: 1.625rem; color: var(--cream); font-size: 1.1875rem; }
 .how__video .play {
   position: absolute; inset: 0; margin: auto; width: 4.25rem; height: 4.25rem; border-radius: 50%;
@@ -828,7 +950,7 @@ h1, h2, h3, h4,
 /* same darkening + film grain treatment as the hero stage */
 .testi__feat::before {
   content: ""; position: absolute; inset: 0; z-index: 1;
-  background: rgba(13, 13, 13, 0.34); pointer-events: none;
+  background: rgba(13, 13, 13, 0.48); pointer-events: none;
 }
 .testi__feat::after {
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.55;
@@ -847,14 +969,27 @@ h1, h2, h3, h4,
 .testi__feat .rate b { font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 500; letter-spacing: -0.03em; }
 .testi__feat .rate b span { font-size: 0.4em; color: var(--w75); }
 .testi__feat .rate .cap { font-size: 0.75rem; color: var(--w75); }
+/* phone: the quote takes the full card width with even 16px gutters (it used
+   to run its desktop max-width into the right edge), and the rating drops
+   into the cleared strip underneath it. */
+@media (max-width: 560px) {
+  .testi__feat > img { min-height: 34rem; }
+  .testi__feat .glass-quote { left: 16px; right: 16px; max-width: none; bottom: 6rem; }
+  .testi__feat .rate { right: 16px; bottom: 1.25rem; }
+}
 
 /* testimonial accordion cards */
-.t-cards { display: flex; gap: 0.875rem; margin-top: 1rem; }
+/* beige shell around the row, exactly like the services stack and the phase
+   accordion: 10px of padding and gap, cream cards inside, one big radius. */
+.t-cards {
+  display: flex; gap: 0.625rem; margin-top: 1rem;
+  background: var(--beige-2); border-radius: 2rem; padding: 0.625rem;
+}
 .t-cards.no-anim, .t-cards.no-anim * { transition: none !important; } /* for height measurement */
 @media (max-width: 860px) { .t-cards { flex-direction: column; } }
 .t-card {
-  flex: 1; background: var(--cream); border: 1px solid var(--line); border-radius: 1.125rem;
-  padding: 1.375rem; cursor: pointer; overflow: hidden; position: relative;
+  flex: 1; background: var(--cream); border: 0; border-radius: 1.5rem;
+  padding: 1.5rem; cursor: pointer; overflow: hidden; position: relative;
   transition: flex 0.6s var(--ease), background 0.4s;
   min-height: 15rem; display: flex; flex-direction: column;
 }
@@ -1062,12 +1197,22 @@ h1, h2, h3, h4,
 /* ============ CONTACT ============ */
 .contact-sec__card { position: relative; border-radius: var(--r); overflow: hidden; padding: clamp(1.625rem, 3vw, 4.375rem) 0; }
 .contact-sec__bg { position: absolute; inset: 0; }
-.contact-sec__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(20,40,60,0.35), rgba(20,40,60,0.05) 60%); }
+/* same treatment as the hero stage: flat 34% dim + film grain, so the cream
+   text and the glass form sit on the photo the way they do up top */
+.contact-sec__bg::after { content: ""; position: absolute; inset: 0; background: rgba(13,13,13,0.48); }
+.contact-sec__bg::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.14 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 20rem;
+}
 .contact-sec .in { position: relative; z-index: 2; width: min(100rem, 88%); margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.875rem, 4vw, 5.625rem); }
 @media (max-width: 860px) { .contact-sec .in { grid-template-columns: 1fr; } }
 .contact-sec h2 { color: var(--cream); font-size: var(--h-sec); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; max-width: 8em; }
 .contact-sec .feats { margin-top: 1.875rem; display: flex; flex-direction: column; gap: 0.875rem; }
 .contact-sec .feats li { display: flex; align-items: center; gap: 0.75rem; color: var(--cream); font-weight: 600; font-size: 0.9375rem; letter-spacing: -0.03em; }
+/* the ✦ chips read as decoration next to three short lines — the list holds
+   on its own, so the markers are dropped and the text keeps the left edge */
+.contact-sec .feats li .ic { display: none; }
 .contact-sec .feats li .ic { width: 1.625rem; height: 1.625rem; border-radius: 0.5rem; background: rgba(255,255,250,0.15); backdrop-filter: blur(0.25rem); display: grid; place-items: center; font-size: 0.75rem; flex: none; }
 .contact-sec .q { margin-top: auto; padding-top: 3.75rem; color: var(--cream); max-width: 23.75rem; }
 .contact-sec .q .lbl { color: var(--green-soft); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -1075,6 +1220,7 @@ h1, h2, h3, h4,
 .contact-sec .q .who { display: flex; align-items: center; gap: 0.625rem; margin-top: 1rem; font-size: 0.8125rem; color: var(--w75); }
 .contact-sec .q .who img { width: 2rem; height: 2rem; border-radius: 50%; object-fit: cover; }
 .cform {
+  align-self: start; /* hug the content instead of stretching to the column */
   /* glass panel matched to the original: rgba(227,227,227,.45) + blur(10) */
   background: rgba(227, 227, 227, 0.45);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
@@ -1154,6 +1300,9 @@ h1, h2, h3, h4,
 .footer .socials { display: flex; gap: 0.625rem; }
 .footer .socials a { width: 2.125rem; height: 2.125rem; border-radius: 50%; border: 1px solid rgba(30,30,28,0.18); display: grid; place-items: center; transition: 0.25s; }
 .footer .socials a:hover { background: var(--dark); color: var(--cream); }
+/* the newsletter block became a single CTA: give the button the same rhythm
+   the form had, so the Socials heading below keeps its distance */
+.footer__grid > div > .btn--green { margin-top: 1.375rem; }
 .footer .legal { display: flex; gap: 1.375rem; font-size: 0.8125rem; font-weight: 600; }
 .footer .tagline { font-size: clamp(1.1875rem, 1.7vw, 1.6875rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.35; }
 .footer .tagline em { font-style: normal; color: var(--gray-ink); }
@@ -1182,8 +1331,9 @@ h1, h2, h3, h4,
    label drift was visibly janky because layout ran every frame */
 .case-mini__img .cl { transition: transform 0.55s var(--ease-spring); }
 .case-mini:hover .case-mini__img .cl { transform: translateY(-71px); }
-.case-mini:hover .go { background: var(--green); color: var(--cream); border-color: var(--green); }
-.case-mini .go { transition: 0.3s; }
+/* the circle itself only shifts colour/border — the green arrives via .go__fill */
+.case-mini:hover .go { color: var(--cream); border-color: var(--green); }
+.case-mini .go { transition: color 0.3s ease 0.12s, border-color 0.3s; }
 .team-row { cursor: pointer; }
 .team-row img { transition: transform 0.35s var(--ease); }
 .team-row:hover img { transform: scale(1.35); }
@@ -1383,11 +1533,15 @@ textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible {
 
 /* ---------- case covers: wordmark on a bright product shot ---------- */
 /* the Kora covers were dark stock photos, so a plain cream wordmark read fine.
-   the Nomi cover is a bright mockup — the mark now sits in a frosted pill,
-   out of the phone screen, the same way the case hero badge does. */
+   the Nomi cover is a bright mockup, so the mark now sits in a frosted pill.
+   the pill is what makes it readable over the phone screen, so it stays
+   centred on the cover the way the original wordmark was. */
 .case__img .cl {
-  inset: auto auto 1.25rem 1.25rem;
-  display: inline-block;
+  inset: auto 0 1.25rem 0;
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
   font-size: 1rem;
   padding: 0.5rem 0.9375rem;
   border-radius: 999px;
@@ -1396,8 +1550,14 @@ textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible {
   backdrop-filter: blur(0.5rem);
 }
 .case-mini__img .cl {
-  inset: auto auto 10px 10px;
-  text-align: left;
+  /* centred without a transform: the hover state animates translateY on this
+     same element, so left:50%/translateX would fight it. auto margins inside a
+     left:0/right:0 box centre a fit-content absolute element just as well. */
+  inset: auto 0 10px 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+  text-align: center;
   padding: 4px 9px;
   border-radius: 999px;
   background: rgba(36, 36, 36, 0.55);

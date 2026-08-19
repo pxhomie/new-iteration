@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.setAttribute("data-build","pr231");console.log("KORA build: pr231")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(sessionStorage.getItem("kora-pt")==="1")document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<title>CRO Program — Thirty Winning Tests for One Product — pixelhomie</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='54' fill='%235dc39b'/%3E%3Cpath d='M42.42 24.82H29.67v12.75h12.75z' fill='%23fffffa'/%3E%3Cpath d='M42.42 50.32V37.57L29.67 50.32v38.24l12.75-12.75z' fill='%23fffffa'/%3E%3Cpath d='M63.66 24.82h-8.5L42.41 37.57h21.25a12.75 12.75 0 1 1 0 25.5h-8.5L42.41 75.81h21.25a25.5 25.5 0 0 0 0-51z' fill='%23fffffa'/%3E%3C/svg%3E" />
+<meta name="description" content="A year and a half of A/B testing for one desktop-software product: 30 winning tests at 95%+ significance, with lifts up to +143%. Every design decision shipped with a number attached." />
+<link rel="canonical" href="https://pixelhomie.com/case-cro.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="pixelhomie" />
+<meta property="og:title" content="CRO Program — Thirty Winning Tests for One Product — pixelhomie" />
+<meta property="og:description" content="A year and a half of A/B testing for one desktop-software product: 30 winning tests at 95%+ significance, with lifts up to +143%. Every design decision shipped with a number attached." />
+<meta property="og:url" content="https://pixelhomie.com/case-cro.html" />
+<meta property="og:image" content="https://pixelhomie.com/assets/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<script>/* Failsafe: the whole page is authored hidden (html.preload, [data-appear]{opacity:0})
+   and revealed by JS. If GSAP or shared.js never arrive, show everything instead of
+   serving a blank page. window.KORA is exported on the last line of shared.js, so it
+   is an exact "the scripts ran to completion" signal — this never fires on a healthy page. */
+(function(){var d=document.documentElement;function bail(){if(window.KORA)return;d.classList.remove("preload");d.classList.add("no-js")}
+setTimeout(bail,3000);window.addEventListener("error",function(e){if(e.target&&e.target.tagName==="SCRIPT")setTimeout(bail,800)},true)})()</script>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-400-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-500-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-600-normal.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin-700-normal.woff2" crossorigin />
+<link rel="stylesheet" href="css/style.css?v=pr231" />
+<link rel="stylesheet" href="css/cases.css?v=pr231" />
+</head>
+<body>
+<script src="js/transition.js?v=pr231"></script>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="kmark" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 6v12M6.8 9l10.4 6M17.2 9 6.8 15" stroke="currentColor" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <!-- Dima Golovenko mark (iD glyph) -->
+    <symbol id="dgmark" viewBox="0 0 108 108">
+        <!-- assets/logo.svg inlined: green disc + white iD mark. The disc takes
+             currentColor so the CSS green token keeps driving it; the mark is
+             cream like every knockout on green. -->
+        <rect width="108" height="108" rx="54" fill="currentColor"/>
+        <path d="M42.4165 24.8184H29.668V37.5668H42.4165V24.8184Z" fill="#FFFFFA"/>
+        <path d="M42.4165 50.3159V37.5674L29.668 50.3159V63.0643V75.8128V88.5613L42.4165 75.8128V63.0643V50.3159Z" fill="#FFFFFA"/>
+        <path d="M63.6615 24.8184H55.1625L42.4141 37.5668H63.6615C70.7015 37.5668 76.41 43.2753 76.41 50.3153C76.41 57.3553 70.7015 63.0637 63.6615 63.0637H55.1625L42.4141 75.8122H63.6615C77.7414 75.8122 89.1584 64.3953 89.1584 50.3153C89.1584 36.2353 77.7414 24.8184 63.6615 24.8184Z" fill="#FFFFFA"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 12h15m0 0-5-5m5 5-5 5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__pill">
+    <a class="logo logo--dg" href="index.html" aria-label="Dima Golovenko"><svg class="mark" aria-hidden="true"><use href="#dgmark"/></svg></a>
+    <a class="lnk" href="cases.html">Case studies</a>
+    <a class="lnk" href="insights.html">Insights</a>
+    <a class="lnk" href="about.html">About</a>
+    <a class="lnk" href="contact.html">Contact</a>
+  </div>
+  <a class="nav__book" id="navBook" href="#contact">
+    <span class="bk-pill">
+      <span class="bk-fill" aria-hidden="true"></span>
+      <span class="bk-t"><span class="t1">Book a call</span><span class="t2" aria-hidden="true">Book a call</span></span>
+      <span class="bk-ic" aria-hidden="true">
+        <svg class="i-minus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-plus" width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6h9M6 1.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </span>
+    <span class="bk-ava">
+      <img src="assets/avatar.jpg?v=pr231" alt="Dima">
+      <span class="you" aria-hidden="true">You</span>
+    </span>
+  </a>
+</header>
+
+<main class="cases-main" id="top">
+
+<!-- ================= CASE HERO ================= -->
+<section class="cs-hero">
+  <div class="cs-wrap">
+    <div class="cs-hero__top">
+      <div>
+        <h1 data-appear>CRO Program</h1>
+        <p class="sub" data-appear>Thirty winning A/B tests for one desktop-software product — every design decision shipped with a number attached.</p>
+      </div>
+      <div class="cs-hero__svc" data-appear>
+        <p class="lbl">Services</p>
+        <ul class="list">
+          <li>CRO</li><li>A/B Testing</li><li>Landing Pages</li>
+          <li>UX Research</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-shell" data-appear>
+      <div class="cs-shell__photo">
+        <img src="assets/cro/hero.webp?v=pr231" alt="Control and variant of the hero test, side by side" fetchpriority="high" decoding="async">
+        <span class="feat__logo">✳ CRO Program</span>
+      </div>
+      <div class="cs-shell__row">
+        <div class="cs-meta">
+          <p class="cs-meta__logo">✳ CRO Program</p>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 12.5V3l5-1.8V12.5M7 12.5h5V6H7M4 5.5h1M4 8h1M9 8h1M9 10h1" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Industry</span>
+            <span class="mv">SaaS · Desktop Tools</span>
+          </div>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="5" cy="4.5" r="2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="10" cy="5.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 12c0-2 1.5-3.5 3.5-3.5S8.5 10 8.5 12M9 9.5c1.8 0 3 1.2 3 2.5" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Client</span>
+            <span class="mv">Under NDA</span>
+          </div>
+          <div class="row">
+            <span class="mpill"><svg width="13" height="13" viewBox="0 0 14 14"><circle cx="7" cy="7.5" r="4.8" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M7 5v2.7l1.8 1.2M5.5 1h3" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg>Timeline</span>
+            <span class="mv">1.5 Years</span>
+          </div>
+        </div>
+        <div class="feat__metrics cs-metrics">
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5M10.5 1.5H13v2.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="v"><span data-count="30">0</span></p>
+            <p class="l">Winning tests at 95%+ significance</p>
+          </div>
+          <div class="cell">
+            <span class="mi"><svg width="15" height="15" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.5 8.5 10 5M7.5 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/></svg></span>
+            <p class="v"><span data-count="56">0</span><sup>%</sup></p>
+            <p class="l">Lift from one hero test on 160k visits</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="cs-art">
+  <div class="cs-wrap">
+    <time class="cs-art__date" datetime="2023-08-01">2021 — 2023</time>
+    <h2 class="cs-art__title" data-appear>Design that ships with proof.</h2>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="7.5" r="0.8" fill="currentColor"/></svg> The challenge</span></p>
+      <div>
+        <p class="lead">On a mature product, a redesign by taste is a bet with real money on the table.</p>
+        <p class="body">The client — a desktop-software maker with millions of visits a year — sells directly from its landing pages. At that scale even one percent of conversion is real revenue, so nothing ships on opinion: every change to a page goes out as an A/B test against the current version, and only a win at 95%+ significance stays.</p>
+      </div>
+    </div>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="6.5" height="9" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.5" y="2.5" width="3" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg> The process</span></p>
+      <div>
+        <p class="lead">Pattern, hypothesis, split, verdict — then again.</p>
+        <p class="body">Each test starts from a pattern library built on hundreds of past experiments: what tends to win on pricing pages, on heroes, on forms. A hypothesis becomes a variant, traffic splits 50/50, and the numbers decide. Losers aren’t waste — they’re the map of what this audience ignores.</p>
+      </div>
+    </div>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1.5 8.6 5l3.9.3-3 2.6.9 3.8L7 9.6l-3.4 2.1.9-3.8-3-2.6L5.4 5 7 1.5Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg> The tests</span></p>
+      <div>
+        <p class="lead">Four of the thirty — control on the left, winner on the right.</p>
+        <p class="body">A second CTA in the hero — “Free Download” next to “Buy Now” — lifted conversions by 56% on 160,000 visits: from 10,825 to 16,782 orders. A rebuilt pricing block took the page from 26.7% to 64.9% conversion, a +143% lift. A full redesign of the product page added 81%. And a headline that leads with a number — “Your editing workflow just got 40% faster” — beat the descriptive one by 58%.</p>
+      </div>
+    </div>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/cro/t1-control.webp?v=pr231" alt="Hero test — control with a single CTA">
+      <img loading="lazy" decoding="async" src="assets/cro/t1-variant.webp?v=pr231" alt="Hero test — winner with a second Free Download CTA, +56%">
+    </figure>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/cro/t2-control.webp?v=pr231" alt="Pricing test — control">
+      <img loading="lazy" decoding="async" src="assets/cro/t2-variant.webp?v=pr231" alt="Pricing test — winner, +143%">
+    </figure>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/cro/t3-control.webp?v=pr231" alt="Product page redesign — control">
+      <img loading="lazy" decoding="async" src="assets/cro/t3-variant.webp?v=pr231" alt="Product page redesign — winner, +81%">
+    </figure>
+    <figure class="cs-fig cs-fig--duo cs-fig--duow" data-reveal>
+      <img loading="lazy" decoding="async" src="assets/cro/t4-control.webp?v=pr231" alt="Headline test — control">
+      <img loading="lazy" decoding="async" src="assets/cro/t4-variant.webp?v=pr231" alt="Headline test — winner with a quantified headline, +58%">
+    </figure>
+
+    <div class="cs-block" data-appear>
+      <p class="lbl"><span class="lpill"><svg width="14" height="14" viewBox="0 0 15 15"><path d="M1.5 13.5V10M5.5 13.5V7M9.5 13.5V9.5M13.5 13.5V4.5M2 5.5 6 2.5l3.5 2L13 1.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg> The results</span></p>
+      <div>
+        <p class="results-intro">A year and a half of testing — and a page that earns measurably more than the one it replaced.</p>
+        <ul class="results">
+        <li>30 winning tests at 95%+ statistical significance</li>
+        <li>+56% conversions from a single hero test —<br>10,825 → 16,782 orders on 160,000 visits</li>
+        <li>+143% on the pricing block, +81% on a full page redesign,<br>+58% from a quantified headline</li>
+        <li>Every losing variant documented —<br>the pattern library got smarter with each round</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-quote" data-appear>
+      <p class="cs-quote__logo">✳ CRO Program</p>
+      <p class="q">“A redesign is a guess. A test is an answer. On live traffic the answer takes a week — and it settles the argument for good.”</p>
+      <div class="who">
+        <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr231" alt="Dima Golovenko">
+        <span><span class="n">Dima Golovenko</span><br><span class="r">Product Designer</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MORE CASES ================= -->
+<section class="cs-more">
+  <div class="cs-wrap">
+    <div class="cs-more__head" data-appear>
+      <div>
+        <h2>More cases.</h2>
+        <p class="sub">Trusted by more than 50 companies, from ambitious startups to major enterprises.</p>
+      </div>
+      <a class="btn btn--dark" href="cases.html">View All</a>
+    </div>
+    <div class="cgrid cgrid--tight">
+      <article class="ccard" data-appear>
+        <div class="ccard__img">
+          <img loading="lazy" decoding="async" src="assets/nomi/cover.webp?v=pr231" alt="Nomi — AI tutor app">
+        </div>
+        <div class="ccard__body">
+          <time datetime="2025-06-12">June 12, 2025</time>
+          <h3>Nomi — an AI tutor built for studying together.</h3>
+          <div class="ccard__mrow">
+            <div class="cell"><p class="v">24/7</p><p class="l">AI tutor availability for students</p></div>
+            <div class="cell"><p class="v">2</p><p class="l">Students learning together in one session</p></div>
+          </div>
+        </div>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-nomi.html">View Case Study</a>
+      </article>
+      <article class="ccard" data-appear>
+        <div class="ccard__img">
+          <img loading="lazy" decoding="async" src="assets/copytrading/hero.webp?v=pr231" alt="Copytrading — copy-trading platform">
+        </div>
+        <div class="ccard__body">
+          <time datetime="2023-06-24">June 24, 2023</time>
+          <h3>Copytrading — trading that copies the pros for you.</h3>
+          <div class="ccard__mrow">
+            <div class="cell"><p class="v">24/7</p><p class="l">Trades mirrored in real time</p></div>
+            <div class="cell"><p class="v">3 mo</p><p class="l">Brand, site and platform shipped</p></div>
+          </div>
+        </div>
+        <a class="btn btn--dark btn--wide btn--vc" href="case-copytrading.html">View Case Study</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DARK CTA ================= -->
+<section class="cta-dark" id="contact">
+  <div class="cta-card">
+    <div class="in">
+      <div>
+        <h2 id="ctaTitle" data-appear>Let's find your next growth lever.</h2>
+        <ul class="feats" data-appear>
+          <li><span class="ic">✦</span>Actionable growth roadmap</li>
+          <li><span class="ic">✦</span>Channel &amp; funnel diagnostics</li>
+          <li><span class="ic">✦</span>Clear next steps &amp; timeline</li>
+        </ul>
+        <div class="q" data-appear>
+          <p class="lbl">Testimonial</p>
+          <p>"What sets Dima apart is his commitment to building our capabilities, not creating dependency."</p>
+          <div class="who">
+            <img loading="lazy" decoding="async" src="assets/framer/4WbRXwPAFJbnEFjFuWDs7LLC4ds.jpg?v=pr231" alt="">
+            <span><span class="n">Jennifer Holland</span><br><span class="r">CFO, Elevance</span></span>
+          </div>
+        </div>
+      </div>
+      <form class="cform" data-appear onsubmit="return false">
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
+        <p class="lead">No pitch decks, no pressure. <em>Tell us where you are and we'll share how we can help.</em></p>
+        <div class="row2">
+          <div><label>Name</label><input type="text" placeholder="Jane Cooper"></div>
+          <div><label>Email</label><input type="email" placeholder="name@company.com"></div>
+        </div>
+        <label>What services are you interested in?</label>
+        <div class="chips" data-chips>
+          <button type="button"><span class="rb"></span>Product Design</button>
+          <button type="button"><span class="rb"></span>Web &amp; Landing Pages</button>
+          <button type="button"><span class="rb"></span>Motion Design</button>
+          <button type="button"><span class="rb"></span>3D Design</button>
+          <button type="button"><span class="rb"></span>UX Audit</button>
+        </div>
+        <label>Biggest growth challenge?</label>
+        <textarea placeholder="We’re building a mobile app and need a designer who…"></textarea>
+        <label class="terms"><input type="checkbox"> By submitting, you agree to our terms of service.</label>
+        <div class="foot">
+          <p class="note">We'll reach out within 24 hours to schedule your call.</p>
+          <button class="btn btn--dark" type="submit">Book a call <span class="dot" style="background:var(--green)"></span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__arcWrap"><div class="footer__arc" id="footerArc"></div></div>
+  <div class="footer__card">
+    <div class="footer__grid">
+      <div>
+        <span class="logo"><svg class="mark"><use href="#kmark"/></svg>pixelhomie<sup>™</sup></span>
+        <h3>Got a product<br>on your mind?</h3>
+        <a class="btn btn--green" href="contact.html">Book a call <span class="dot"></span></a>
+        <p class="h">Socials</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.8H5.3L17.8 20z"/></svg></a><a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8.2h4.6V23H.2V8.2zM8.2 8.2h4.4v2h.1c.6-1.2 2.1-2.4 4.4-2.4 4.7 0 5.6 3.1 5.6 7.1V23h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H8.2V8.2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.8l.5-3.4h-3.3V8.4c0-1 .3-1.7 1.8-1.7h1.6V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H7.4V14h2.8v8h3.3z"/></svg></a>
+        </div>
+        <p class="h">Legal</p>
+        <div class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div>
+        <p class="tagline"><em>Stalled revenue, leaky funnels, stretched leadership.</em> Whatever's holding you back, let's solve it.</p>
+        <div class="fwho">
+          <img loading="lazy" decoding="async" src="assets/avatar.jpg?v=pr231" alt="">
+          <span><span class="n">Dima Golovenko</span><br><span class="r">Founder &amp; Designer</span></span>
+        </div>
+        <span class="mail" data-copy="me@pixelhomie.com"><span class="ic">✳</span> me@pixelhomie.com</span>
+        <p class="h">Navigation</p>
+        <ul class="fnav">
+          <li><a href="cases.html">Case Studies</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__giant" data-appear><span>pixelhomie</span></div>
+  </div>
+</footer>
+
+</main>
+
+<script src="vendor/gsap.min.js?v=pr231"></script>
+<script src="vendor/ScrollTrigger.min.js?v=pr231"></script>
+<script src="vendor/lenis.min.js?v=pr231"></script>
+<script src="js/shared.js?v=pr231"></script>
+</body>
+</html>

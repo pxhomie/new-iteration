@@ -146,7 +146,7 @@
   font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.02em; color: var(--dark);
 }
 .cs-block .lead, .results-intro { max-width: 55rem; font-size: clamp(1.625rem, 2.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.3; color: var(--dark); }
-.cs-block .body { max-width: 55rem; margin-top: 2.75rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.5; color: var(--gray); }
+.cs-block .body { max-width: 48rem; margin-top: 2.75rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.5; color: var(--gray); }
 /* Results checklist. Narrower and tighter than the rest of the case column,
    as in the original: the pills stop at 36.25rem instead of running the full
    55rem, which keeps the longest line just inside the text box and lets the
@@ -170,12 +170,23 @@
   background: var(--green); color: var(--cream); display: grid; place-items: center;
   font-size: 0.75rem; font-weight: 700;
 }
-.cs-fig { margin-top: 6.25rem; border-radius: 1.875rem; overflow: hidden; aspect-ratio: 1480 / 1110; background: var(--green); }
+/* 5:3 instead of the original 4:3 — full container width, but the height now
+   clears the usable viewport on common screens: ~1110px-wide column on a
+   1440x900 laptop gives 666px, a 1480px column on 1920x1080 gives 888px,
+   both inside the window with browser chrome on. */
+.cs-fig { margin-top: 6.25rem; border-radius: 1.875rem; overflow: hidden; aspect-ratio: 5 / 3; background: var(--green); }
 .cs-fig img { width: 100%; height: 100%; object-fit: cover; }
 /* two concept shots side by side; collapses to a stack on mobile */
-.cs-fig--duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0; aspect-ratio: auto; }
-.cs-fig--duo img { aspect-ratio: 740 / 1110; }
-@media (max-width: 700px) { .cs-fig--duo { grid-template-columns: 1fr; } }
+/* the pair reads as two separate cards: a shell-gap between them, no shared
+   background, and each half carries its own rounded corners. */
+.cs-fig--duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; aspect-ratio: auto; background: none; overflow: visible; }
+.cs-fig--duo img { border-radius: 1.875rem; }
+.cs-fig--duo img { aspect-ratio: 740 / 888; } /* two cells = the same 5:3 overall */
+@media (max-width: 700px) { .cs-fig--duo { grid-template-columns: 1fr; } .cs-fig--duo img { aspect-ratio: 740 / 1110; } }
+/* landscape duo: pairs exported as two wide halves (Copytrading case) —
+   each cell keeps the source's own 1.37 ratio instead of the portrait cells */
+.cs-fig--duow img { aspect-ratio: 740 / 541; }
+@media (max-width: 700px) { .cs-fig--duow img { aspect-ratio: 740 / 541; } }
 /* quote: green rounded card, everything centered, logo on top */
 .cs-quote {
   margin: 8.125rem 0 0; background: var(--green); color: var(--cream);
@@ -269,11 +280,14 @@
 }
 
 /* ---------- case hero: bright product shot ---------- */
-/* the centred wordmark was made for the dark Kora photo; on a light
-   mockup it lands on the phone screen and stops being readable */
+/* the bare wordmark was made for the dark Kora photo; on a light mockup it
+   lands on the phone screen and stops being readable, so it gets the same
+   frosted pill as the cover badges. it stays centred — the pill is what
+   carries the contrast — and drops to the foot of the frame so it isn't
+   sitting in the middle of the phone UI. */
 .cs-shell__photo .feat__logo,
 .feat__photo .feat__logo {
-  left: 1.875rem; top: auto; bottom: 1.875rem; transform: none;
+  left: 50%; top: auto; bottom: 1.875rem; transform: translateX(-50%);
   font-size: 1rem; padding: 0.5rem 0.9375rem; border-radius: 999px;
   background: rgba(36, 36, 36, 0.55);
   -webkit-backdrop-filter: blur(0.5rem); backdrop-filter: blur(0.5rem);

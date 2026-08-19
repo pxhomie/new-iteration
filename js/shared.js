@@ -26,7 +26,10 @@
   /* ---------- Lenis ---------- */
   var lenis = null;
   if (!reduced && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.065, smoothWheel: true, wheelMultiplier: 1 });
+    /* lerp 0.065 read as syrup — the page kept gliding long after the wheel
+       stopped. 0.12 still smooths the scrub sections but catches up almost
+       twice as fast, and the wheel moves ~15% more page per tick. */
+    lenis = new Lenis({ lerp: 0.12, smoothWheel: true, wheelMultiplier: 1.15 });
     lenis.on("scroll", function () { ScrollTrigger.update(); });
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0); // homepage temporarily overrides during its load animation
@@ -136,25 +139,19 @@
     }
   }
 
-  /* ---------- Shape reveal: circle -> full rounded rect ----------
-     Two concentric masks on the same box. The frame itself (which carries
-     the green backing colour) opens first; the photo inside opens a beat
-     later behind it. That lag is the whole effect: for most of the run you
-     see a green shape with a smaller dark shape growing inside it, exactly
-     like the reference. Both are inset() regions that grow from a small
-     centred circle to the full box while the corner radius relaxes from
-     "fully round" to the box's own border-radius.
+  /* ---------- Shape reveal: iris from the bottom edge ----------
+     The same move as the page transition, played inside the image box: a
+     true circle anchored at the bottom-centre of the container grows until
+     it swallows the whole frame. Two masks ride the same circle — the box
+     (green backing) opens first, the photo follows a beat later — so for
+     most of the run you see a green iris with the image blooming inside it,
+     echoing the green curtain between pages.
 
      The photo never moves or rescales — only the masks do — so it stays
-     sharp and the whole thing reads as the frame opening up.
-
-     Plays once on the way in and is not scrubbed: scrolling back up leaves
-     the images in place rather than closing them again.
-
-     The radius has to be interpolated in px against a live measurement: a
-     % radius on a non-square region gives elliptical corners, and the end
-     state must land exactly on the CSS radius. Hence the manual onUpdate
-     instead of a plain gsap.fromTo on a clip-path string. */
+     sharp. Plays once on the way in and is not scrubbed: scrolling back up
+     leaves the images in place rather than closing them again. The radius
+     is computed in px against a live measurement so the circle exactly
+     reaches the top corners at p=1. */
   var revealEls = document.querySelectorAll("[data-reveal]");
   if (revealEls.length) {
     if (reduced) {
@@ -167,27 +164,26 @@
       var MIN = 0.07;          /* start size, as a fraction of the short side */
       revealEls.forEach(function (el) {
         var img = el.querySelector("img");
-        var W = 0, H = 0, rEnd = 0;
+        var W = 0, H = 0;
         function measure() {
           var r = el.getBoundingClientRect();
           W = r.width; H = r.height;
-          rEnd = parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0;
         }
-        function shape(p) {
+        function shape(p, anchor) {
           if (!W || !H) measure();
-          var side = Math.min(W, H) * MIN;
-          var rw = side + (W - side) * p;
-          var rh = side + (H - side) * p;
-          var x = (W - rw) / 2, y = (H - rh) / 2;
-          /* p=0 -> half the short side (a circle); p=1 -> the CSS radius */
-          var rMax = Math.min(rw, rh) / 2;
-          var rad = rEnd + (rMax - rEnd) * (1 - p);
-          return "inset(" + y + "px " + x + "px " + y + "px " + x + "px round " + rad + "px)";
+          /* iris anchored on the box edge: fully open when the circle
+             reaches the far corners */
+          var rMin = Math.min(W, H) * MIN;
+          var rMax = Math.sqrt((W / 2) * (W / 2) + H * H);
+          var R = rMin + (rMax - rMin) * p;
+          return "circle(" + R + "px at 50% " + anchor + ")";
         }
         var st = { frame: 0, photo: 0 };
         function paint() {
-          el.style.clipPath = shape(st.frame);
-          if (img) img.style.clipPath = shape(st.photo);
+          /* the green frame blooms from the bottom edge, the photo answers
+             it from the top — the two irises meet mid-box */
+          el.style.clipPath = shape(st.frame, "100%");
+          if (img) img.style.clipPath = shape(st.photo, "0%");
         }
         measure();
         paint();
@@ -214,7 +210,7 @@
           measure();
           gsap.to(st, { frame: 1, duration: 0.75, ease: "power3.out", onUpdate: paint });
           gsap.to(st, {
-            photo: 1, duration: 0.65, delay: 0.55, ease: "power3.out", onUpdate: paint,
+            photo: 1, duration: 0.75, delay: 0, ease: "power3.out", onUpdate: paint,
             /* drop the masks once we are done so a later resize can't
                leave a stale px-based clip behind */
             onComplete: function () {
@@ -426,6 +422,8 @@
      A container that hosts the skeleton also borrows the image's radius when
      it has none of its own, so a circular avatar never sits on a square. */
   var imgs = [].slice.call(document.querySelectorAll("img")).filter(function (img) {
+    if (img.classList.contains("lgi")) return false; // marquee logos: tiny SVGs under a
+    // flatten filter — the skeleton would paint as a solid slab riding the strip
     return !(img.complete && img.naturalWidth > 0); // already rendered: leave alone
   });
   // measure everything first, then write — so we never interleave reads and
@@ -575,7 +573,10 @@
     var nav = document.getElementById("nav");
     if (!nav) return;
     var TOP_LOCK = 120;              /* never hide this close to the top */
-    var DOWN = 10, UP = 6;           /* px of travel needed to flip state */
+    /* asymmetric on purpose: hiding should feel instant, but coming back
+       needs a deliberate upward move — a few px of trackpad drift or the
+       tail of a Lenis ease must not flash the pill back onto the page. */
+    var DOWN = 10, UP = 220;         /* px of travel needed to flip state */
     var lastY = window.scrollY || 0, acc = 0, away = false;
     function set(v) {
       if (v === away) return;

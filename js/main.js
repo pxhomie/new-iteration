@@ -176,7 +176,7 @@
       }, 0.12)
       // blur + dim (starts while still expanding)
       .to("#stageMedia", { filter: "blur(26px)", scale: 1.06, duration: 0.16, ease: "none" }, 0.3)
-      .to("#stageDim", { backgroundColor: "rgba(13,13,13,0.36)", duration: 0.16, ease: "none" }, 0.3)
+      .to("#stageDim", { backgroundColor: "rgba(13,13,13,0.3)", duration: 0.16, ease: "none" }, 0.3)
       // statement rises from below while words fill
       .fromTo("#statement", { opacity: 0, y: "28vh" }, { opacity: 1, y: 0, duration: 0.45, ease: "none" }, 0.36)
       .to("#statementTxt .w", { opacity: 1, stagger: stStagger, duration: FILL_DUR, ease: "none" }, FILL_START)
@@ -191,52 +191,58 @@
      0.18-0.34  title lines split left/right, fade
      0.26-0.45  Before card scales in (center, solo)
      0.50-0.80  Before shifts left, After slides in right     */
-  // both cards stacked dead-center; After hides UNDER Before, then slides out
-  gsap.set(["#beforeCard", "#afterCard"], { xPercent: -50, yPercent: -50 });
-  // hide both immediately (not inside the scrubbed timeline — otherwise they
-  // are visible until the pin starts, then pop off before animating back in)
-  gsap.set("#beforeCard", { opacity: 0, scale: 0.82 });
-  gsap.set("#afterCard", { opacity: 0, scale: 0.96 });
-  // bullets hidden at parse time (same reason as the cards above): a .from()
-  // inside the scrubbed timeline would let them show with the card first and
-  // then snap back to 0 before staggering in
-  gsap.set("#afterCard li", { opacity: 0, y: 20 });
-  var cardShift = function () {
-    var w = document.getElementById("beforeCard").offsetWidth;
-    return w / 2 + Math.max(8, w * 0.022);
-  };
-  var compTl = gsap.timeline({
-    scrollTrigger: {
-      // start while the section is still scrolling in, so the title is
-      // already visible the moment the white curtain lifts
-      trigger: "#comparePin", start: "top 70%", end: "bottom bottom",
-      scrub: 0.35, invalidateOnRefresh: true
-    }
-  });
-  // timeline runs from "top 70%": the curtain lifts around progress ~0.28,
-  // so the title fades in under the curtain, HOLDS through the lift, and
-  // only then splits apart and hands over to the cards
-  // the curtain lifts around progress ~0.28 of this trigger; the title's
-  // fade-in starts just AFTER that, so the entrance is actually seen
-  compTl
-    .fromTo("#compareTitle", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.12, ease: "none" }, 0.12)
-    // words split far to the edges (viewport-based, no card overlap)
-    .to("#compareTitle .l1", { x: function () { return -window.innerWidth * 0.45; }, duration: 0.14, ease: "power1.inOut" }, 0.34)
-    .to("#compareTitle .l2", { x: function () { return window.innerWidth * 0.45; }, duration: 0.14, ease: "power1.inOut" }, 0.34)
-    // Before card enters alone, dead-center (After sits hidden beneath it)
-    .to("#beforeCard", { scale: 1, opacity: 1, duration: 0.18, ease: "back.out(1.3)" }, 0.40)
-    .set("#afterCard", { opacity: 1 }, 0.54)
-    // edge words fade out as the pair separates
-    .to("#compareTitle", { opacity: 0, duration: 0.08, ease: "none" }, 0.54)
-    // After slides out FROM UNDER Before; Before shifts left
-    .to("#beforeCard", { x: function () { return -cardShift(); }, duration: 0.18, ease: "back.out(1.15)" }, 0.58)
-    .to("#afterCard", { x: function () { return cardShift(); }, scale: 1, duration: 0.18, ease: "back.out(1.15)" }, 0.58)
-    .to("#beforeCard", { filter: "grayscale(0.5)", duration: 0.14, ease: "none" }, 0.64)
-    .to("#beforeCard > *", { opacity: 0.45, duration: 0.14, ease: "none" }, 0.64)
-    // bullets finish building exactly at 0.54, i.e. the moment the card itself
-    // is revealed, so the card is never seen with an empty list and the bullets
-    // are never shown-then-hidden
-    .to("#afterCard li", { y: 0, opacity: 1, stagger: 0.02, duration: 0.08, ease: "back.out(1.3)" }, 0.40);
+  /* Above 760px only: the phone layout (style.css) lays the cards out as a
+     plain static stack, so the fan-out timeline and its hidden initial
+     states must never touch them there. Crossing the boundary mid-session
+     needs a reload — same trade-off as the other scrubbed sections. */
+  if (window.matchMedia("(min-width: 761px)").matches) {
+    // both cards stacked dead-center; After hides UNDER Before, then slides out
+    gsap.set(["#beforeCard", "#afterCard"], { xPercent: -50, yPercent: -50 });
+    // hide both immediately (not inside the scrubbed timeline — otherwise they
+    // are visible until the pin starts, then pop off before animating back in)
+    gsap.set("#beforeCard", { opacity: 0, scale: 0.82 });
+    gsap.set("#afterCard", { opacity: 0, scale: 0.96 });
+    // bullets hidden at parse time (same reason as the cards above): a .from()
+    // inside the scrubbed timeline would let them show with the card first and
+    // then snap back to 0 before staggering in
+    gsap.set("#afterCard li", { opacity: 0, y: 20 });
+    var cardShift = function () {
+      var w = document.getElementById("beforeCard").offsetWidth;
+      return w / 2 + Math.max(8, w * 0.022);
+    };
+    var compTl = gsap.timeline({
+      scrollTrigger: {
+        // start while the section is still scrolling in, so the title is
+        // already visible the moment the white curtain lifts
+        trigger: "#comparePin", start: "top 70%", end: "bottom bottom",
+        scrub: 0.35, invalidateOnRefresh: true
+      }
+    });
+    // timeline runs from "top 70%": the curtain lifts around progress ~0.28,
+    // so the title fades in under the curtain, HOLDS through the lift, and
+    // only then splits apart and hands over to the cards
+    // the curtain lifts around progress ~0.28 of this trigger; the title's
+    // fade-in starts just AFTER that, so the entrance is actually seen
+    compTl
+      .fromTo("#compareTitle", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.12, ease: "none" }, 0.12)
+      // words split far to the edges (viewport-based, no card overlap)
+      .to("#compareTitle .l1", { x: function () { return -window.innerWidth * 0.45; }, duration: 0.14, ease: "power1.inOut" }, 0.34)
+      .to("#compareTitle .l2", { x: function () { return window.innerWidth * 0.45; }, duration: 0.14, ease: "power1.inOut" }, 0.34)
+      // Before card enters alone, dead-center (After sits hidden beneath it)
+      .to("#beforeCard", { scale: 1, opacity: 1, duration: 0.18, ease: "back.out(1.3)" }, 0.40)
+      .set("#afterCard", { opacity: 1 }, 0.54)
+      // edge words fade out as the pair separates
+      .to("#compareTitle", { opacity: 0, duration: 0.08, ease: "none" }, 0.54)
+      // After slides out FROM UNDER Before; Before shifts left
+      .to("#beforeCard", { x: function () { return -cardShift(); }, duration: 0.18, ease: "back.out(1.15)" }, 0.58)
+      .to("#afterCard", { x: function () { return cardShift(); }, scale: 1, duration: 0.18, ease: "back.out(1.15)" }, 0.58)
+      .to("#beforeCard", { filter: "grayscale(0.5)", duration: 0.14, ease: "none" }, 0.64)
+      .to("#beforeCard > *", { opacity: 0.45, duration: 0.14, ease: "none" }, 0.64)
+      // bullets finish building exactly at 0.54, i.e. the moment the card itself
+      // is revealed, so the card is never seen with an empty list and the bullets
+      // are never shown-then-hidden
+      .to("#afterCard li", { y: 0, opacity: 1, stagger: 0.02, duration: 0.08, ease: "back.out(1.3)" }, 0.40);
+  }
 
   /* ---------- Work stack. Two things happen here, and they are driven from the
      same frame so they can never disagree.
@@ -442,6 +448,46 @@
      just a poster, so the page keeps its own weight and no third-party frame
      watches the visit. On click the player is inserted over the poster and
      starts at the timestamp carried by the markup. */
+  /* A self-hosted clip needs none of the facade dance below: the poster is
+     already the first frame, so the <video> is created on demand, plays
+     inline with controls, and nothing third-party is ever contacted. */
+  var vFile = document.querySelector(".how__video[data-video]");
+  if (vFile) {
+    var vEl = null;
+    function mount() {
+      if (vEl) return vEl;
+      vEl = document.createElement("video");
+      vEl.src = vFile.getAttribute("data-video");
+      vEl.setAttribute("title", vFile.getAttribute("data-video-title") || "Video");
+      /* silent by design: the reel is a moving still, not something you watch
+         with sound. muted + playsinline is also the only combination browsers
+         will start on their own. */
+      vEl.muted = true; vEl.loop = true; vEl.playsInline = true; vEl.preload = "metadata";
+      vEl.setAttribute("aria-hidden", "true");
+      vFile.appendChild(vEl);
+      vFile.classList.add("is-playing");
+      return vEl;
+    }
+    /* starts itself once properly on screen, pauses when it leaves, so a page
+       left open in a background tab isn't decoding video for nothing */
+    if ("IntersectionObserver" in window && !reduced) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            var v = mount();
+            var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+          } else if (vEl) { vEl.pause(); }
+        });
+      }, { threshold: 0.45 }).observe(vFile);
+    } else {
+      /* reduced motion (or no IO): one click starts it, still silent */
+      vFile.addEventListener("click", function () {
+        var v = mount();
+        var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+      });
+    }
+  }
+
   var vCard = document.querySelector(".how__video[data-yt]");
   if (vCard) {
     vCard.addEventListener("click", function () {
