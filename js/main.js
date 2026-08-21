@@ -443,11 +443,7 @@
   });
   openPhase(0);
 
-  /* ---------- Video card: click-to-play YouTube facade ----------
-     Nothing of YouTube is loaded until the visitor asks for it — the card is
-     just a poster, so the page keeps its own weight and no third-party frame
-     watches the visit. On click the player is inserted over the poster and
-     starts at the timestamp carried by the markup. */
+  /* ---------- Video card: the self-hosted showreel ---------- */
   /* A self-hosted clip needs none of the facade dance below: the poster is
      already the first frame, so the <video> is created on demand, plays
      inline with controls, and nothing third-party is ever contacted. */
@@ -486,37 +482,6 @@
         var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
       });
     }
-  }
-
-  var vCard = document.querySelector(".how__video[data-yt]");
-  if (vCard) {
-    vCard.addEventListener("click", function () {
-      if (vCard.classList.contains("is-playing")) return;
-      var id = encodeURIComponent(vCard.getAttribute("data-yt"));
-      var start = parseInt(vCard.getAttribute("data-yt-start"), 10) || 0;
-      /* A page opened straight from disk has no origin to send, and YouTube
-         refuses to play into it: "Error 153 — video player configuration
-         error". Nothing can fix an embed under file://, so a local preview
-         gets the video in a new tab instead. Served over http(s) — including
-         localhost — this branch never runs. */
-      if (location.protocol === "file:") {
-        window.open("https://www.youtube.com/watch?v=" + id +
-          (start ? "&t=" + start + "s" : ""), "_blank", "noopener");
-        return;
-      }
-      var fr = document.createElement("iframe");
-      fr.src = "https://www.youtube-nocookie.com/embed/" + id +
-        "?autoplay=1&rel=0&modestbranding=1&playsinline=1" +
-        (start ? "&start=" + start : "");
-      fr.title = vCard.getAttribute("data-yt-title") || "Video";
-      /* the player needs to see where it is embedded — a stricter policy set
-         page-wide later would bring back the same 153 */
-      fr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-      fr.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      fr.setAttribute("allowfullscreen", "");
-      vCard.appendChild(fr);
-      vCard.classList.add("is-playing");
-    });
   }
 
   /* ---------- Testimonial accordion cards ---------- */

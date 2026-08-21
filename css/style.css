@@ -449,9 +449,14 @@ h1, h2, h3, h4,
   transition: transform 0.5s var(--ease);
 }
 .case-mini:hover .go .go__fill { transform: translate(-50%, -50%) scale(1); }
-.case-mini__metric .go .go__arrows { position: relative; z-index: 1; display: block; width: 15px; height: 15px; }
+/* color: inherit is load-bearing — .case-mini__metric span paints every span
+   in the row grey, and this wrapper is a span, so without it the arrows keep
+   the metric's grey instead of following the circle from dark to cream. */
+.case-mini__metric .go .go__arrows { position: relative; z-index: 1; display: block; width: 15px; height: 15px; color: inherit; }
 .case-mini__metric .go .go__arrows svg { position: absolute; inset: 0; display: block; transition: transform 0.45s var(--ease-spring); }
-.case-mini__metric .go .go__arrows .a2 { transform: translateX(-160%); }
+/* the incoming arrow is cream from the first frame: it only ever appears on
+   the green flood, so it never has to wait for the colour transition */
+.case-mini__metric .go .go__arrows .a2 { transform: translateX(-160%); color: var(--cream); }
 .case-mini:hover .go .go__arrows svg { transform: translateX(160%); }
 .case-mini:hover .go .go__arrows .a2 { transform: translateX(0); }
 /* On phones the original keeps the case card, stacked full-width under the

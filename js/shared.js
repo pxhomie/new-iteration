@@ -596,6 +596,36 @@
     window.addEventListener("pageshow", function () { lastY = window.scrollY || 0; acc = 0; set(false); });
   })();
 
+  /* ---------- Click-to-play YouTube facade ----------
+     Nothing of YouTube is loaded until the visitor asks for it — the card is
+     just a poster, so the page keeps its own weight and no third-party frame
+     watches the visit. Lives here rather than in a page script because both
+     the homepage and the case pages use it. */
+  document.querySelectorAll("[data-yt]").forEach(function (card) {
+    card.addEventListener("click", function () {
+      if (card.classList.contains("is-playing")) return;
+      var id = encodeURIComponent(card.getAttribute("data-yt"));
+      var start = parseInt(card.getAttribute("data-yt-start"), 10) || 0;
+      /* A page opened straight from disk has no origin to send, and YouTube
+         refuses to play into it ("Error 153"). Nothing can fix an embed under
+         file://, so a local preview gets the video in a new tab instead. */
+      if (location.protocol === "file:") {
+        window.open("https://www.youtube.com/watch?v=" + id + (start ? "&t=" + start + "s" : ""),
+          "_blank", "noopener");
+        return;
+      }
+      var fr = document.createElement("iframe");
+      fr.src = "https://www.youtube-nocookie.com/embed/" + id +
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1" + (start ? "&start=" + start : "");
+      fr.title = card.getAttribute("data-yt-title") || "Video";
+      fr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      fr.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      fr.setAttribute("allowfullscreen", "");
+      card.appendChild(fr);
+      card.classList.add("is-playing");
+    });
+  });
+
   /* ---------- exports for page scripts ---------- */
   window.KORA = { reduced: reduced, lenis: lenis, fillWords: fillWords };
 })();
