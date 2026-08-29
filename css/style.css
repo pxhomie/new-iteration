@@ -338,12 +338,13 @@ h1, h2, h3, h4,
 /* an image that fills its frame — used by the hero stage, the case
    mini-cards and the contact background */
 .stage__media img, .case-mini__img img, .contact-sec__bg img { width: 100%; height: 100%; object-fit: cover; }
-/* Hero canvas is a gradient, not a photo: a deep navy at the top easing into
-   a brighter cobalt at the foot, so the cream headline sits on the darkest
-   part of the field and the CTA row on the lighter one. */
+/* Kept for a quick swap back to the flat canvas: add stage__media--grad to
+   #stageMedia and drop the <img>. */
 .stage__media--grad { background: linear-gradient(180deg, #0f3a86 0%, #12459b 42%, #1560cd 100%); }
-/* slight permanent darkening of the hero photo (deepens on scroll via JS) */
-.stage__dim { position: absolute; inset: 0; background: rgba(13,13,13,0.12); }
+/* the hero photo reads better flipped — the tree sits away from the headline */
+#stageMedia img { transform: scaleX(-1); }
+/* permanent darkening of the hero photo (deepens on scroll via JS) */
+.stage__dim { position: absolute; inset: 0; background: rgba(13,13,13,0.48); }
 /* film grain over the hero media */
 .stage__grain {
   position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.55;
