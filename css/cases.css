@@ -197,6 +197,10 @@
 /* two concept shots side by side; collapses to a stack on mobile */
 /* the pair reads as two separate cards: a shell-gap between them, no shared
    background, and each half carries its own rounded corners. */
+/* figure that keeps the image’s own proportions */
+.cs-fig--nat { aspect-ratio: auto; background: none; }
+.cs-fig--nat img { height: auto; object-fit: contain; display: block; }
+
 .cs-fig--duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; aspect-ratio: auto; background: none; overflow: visible; }
 .cs-fig--duo img { border-radius: 1.875rem; }
 .cs-fig--duo img { aspect-ratio: 740 / 888; } /* two cells = the same 5:3 overall */
