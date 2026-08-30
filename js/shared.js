@@ -626,6 +626,80 @@
     });
   });
 
+  /* ---------- image slider ----------
+     A [data-slider] figure holds N stacked <img>s; exactly one carries .is-on.
+     Arrows, dots, keyboard and a horizontal swipe all funnel into go(). */
+  document.querySelectorAll("[data-slider]").forEach(function (box) {
+    var slides = box.querySelectorAll(".cs-slider__track img");
+    if (slides.length < 2) return;
+    var bars = box.querySelectorAll(".cs-slider__prog button");
+    var cap = box.querySelector(".cs-slider__cap");
+    var caps = cap ? (cap.getAttribute("data-caps") || "").split("|") : [];
+    var i = 0;
+
+    function go(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (im, k) { im.classList.toggle("is-on", k === i); });
+      bars.forEach(function (bar, k) {
+        bar.classList.toggle("is-on", k === i);
+        bar.classList.toggle("is-done", k < i);
+        bar.setAttribute("aria-selected", k === i ? "true" : "false");
+        /* retrigger the fill: a class swap alone would keep the old animation
+           running from wherever it had got to */
+        var fill = bar.querySelector("i");
+        if (fill && k === i) {
+          fill.style.animation = "none";
+          void fill.offsetWidth;
+          fill.style.animation = "";
+        }
+      });
+      if (cap && caps[i]) cap.textContent = caps[i];
+    }
+
+    /* the filled bar hands over to the next slide */
+    bars.forEach(function (bar, k) {
+      var fill = bar.querySelector("i");
+      if (fill) fill.addEventListener("animationend", function () { if (k === i) go(i + 1); });
+    });
+
+    /* autoplay only while the figure is actually on screen */
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { box.classList.toggle("is-live", e.isIntersecting); });
+      }, { threshold: 0.4 }).observe(box);
+    } else {
+      box.classList.add("is-live");
+    }
+
+    var prev = box.querySelector(".cs-slider__nav--prev");
+    var next = box.querySelector(".cs-slider__nav--next");
+    if (prev) prev.addEventListener("click", function () { go(i - 1); });
+    if (next) next.addEventListener("click", function () { go(i + 1); });
+    bars.forEach(function (bar, k) { bar.addEventListener("click", function () { go(k); }); });
+
+    box.setAttribute("tabindex", "0");
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(i - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(i + 1); }
+    });
+
+    /* swipe: only a mostly-horizontal drag counts, so vertical scrolling
+       over the figure still works on a phone */
+    var x0 = null, y0 = null;
+    box.addEventListener("touchstart", function (e) {
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+    }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? i + 1 : i - 1);
+      x0 = y0 = null;
+    }, { passive: true });
+
+    go(0);
+  });
+
   /* ---------- exports for page scripts ---------- */
   window.KORA = { reduced: reduced, lenis: lenis, fillWords: fillWords };
 })();
