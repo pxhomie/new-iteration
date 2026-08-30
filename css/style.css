@@ -414,6 +414,7 @@ h1, h2, h3, h4,
 .marquee .lgi[src*="onepagecrm"], .marquee .lgi[src*="halo"] { height: 1.8rem; }
 .marquee .lgi[src*="nyra"] { height: 1.6rem; }
 .marquee .lgi[src*="adwa"] { height: 1.1rem; }
+.marquee .lgi[src*="upwork"] { height: 1.55rem; }
 .lg--1 { font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; font-size: 1.125rem !important; }
 .lg--2 { font-weight: 800; letter-spacing: -0.02em; }
 .lg--3 { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }

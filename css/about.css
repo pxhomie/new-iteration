@@ -84,6 +84,7 @@
 .ab-mq .lgi[src*="onepagecrm"], .ab-mq .lgi[src*="halo"] { height: 1.8rem; }
 .ab-mq .lgi[src*="nyra"] { height: 1.6rem; }
 .ab-mq .lgi[src*="adwa"] { height: 1.1rem; }
+.ab-mq .lgi[src*="upwork"] { height: 1.55rem; }
 .ab-story__ph { border-radius: 1.875rem; overflow: hidden; min-height: 26.25rem; }
 .ab-story__ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
 

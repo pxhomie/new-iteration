@@ -626,6 +626,54 @@
     });
   });
 
+  /* Lenis smooths the page by animating toward its own target, and it only
+     adopts a scroll made from outside while it thinks it is idle. A wheel over
+     the iframe never reaches it — the browser scrolls the page natively, and
+     the tween still in flight drags it back. reset() makes the real position
+     the new target, so the two stop fighting. */
+  function adoptNativeScroll(box) {
+    if (!lenis) return;
+    var over = false;
+    box.addEventListener("mouseenter", function () { over = true; });
+    box.addEventListener("mouseleave", function () { over = false; });
+    window.addEventListener("scroll", function () { if (over) lenis.reset(); }, { passive: true });
+  }
+
+  /* ---------- live prototype embed ----------
+     The iframe is built only when the block scrolls close, and only on the
+     widths that get the framed layout — so a phone never downloads it. */
+  document.querySelectorAll("[data-proto]").forEach(function (box) {
+    var slot = box.querySelector(".cs-proto__frame");
+    var src = box.getAttribute("data-src");
+    if (!slot || !src) return;
+    var built = false;
+
+    function build() {
+      if (built || !window.matchMedia("(min-width: 761px)").matches) return;
+      built = true;
+      var fr = document.createElement("iframe");
+      fr.src = src;
+      fr.title = "ASI — clickable prototype";
+      fr.loading = "lazy";
+      fr.setAttribute("referrerpolicy", "same-origin");
+      fr.addEventListener("load", function () {
+        var ph = slot.querySelector(".cs-proto__ph");
+        if (ph) ph.remove();
+        adoptNativeScroll(box);
+      });
+      slot.appendChild(fr);
+    }
+
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { build(); io.disconnect(); } });
+      }, { rootMargin: "600px 0px" });
+      io.observe(box);
+    } else {
+      build();
+    }
+  });
+
   /* ---------- image slider ----------
      A [data-slider] figure holds N stacked <img>s; exactly one carries .is-on.
      Arrows, dots, keyboard and a horizontal swipe all funnel into go(). */

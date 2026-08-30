@@ -209,6 +209,41 @@
 /* two concept shots side by side; collapses to a stack on mobile */
 /* the pair reads as two separate cards: a shell-gap between them, no shared
    background, and each half carries its own rounded corners. */
+/* ---------- live prototype embed ----------
+   The prototype is a self-contained page in an iframe. Its inner layout is
+   fixed px (a 375x812 device plus rail and toolbar), so the frame height is
+   px too — rem here would drift against the page's fluid root size.
+   Below 760px the iframe is dropped for a link: the prototype stacks its rail
+   on top at that width and reads far better as its own full-screen page. */
+.cs-proto {
+  position: relative; margin-top: 6.25rem;
+  border: 1px solid var(--line); border-radius: 1.875rem; overflow: hidden;
+  background: var(--paper);
+}
+.cs-proto iframe { display: block; width: 100%; height: 1045px; border: 0; }
+.cs-proto__ph {
+  display: grid; place-items: center; height: 1045px; margin: 0;
+  color: var(--gray-2); font-size: 0.8125rem; font-weight: 600;
+}
+.cs-proto__open {
+  /* bottom-right: the page’s sticky nav lives in the top corners */
+  position: absolute; z-index: 2; right: 1.25rem; bottom: 1.25rem;
+  display: inline-flex; align-items: center; gap: 0.4375rem;
+  padding: 0.5rem 0.9375rem; border-radius: 6.25rem;
+  background: var(--dark); color: var(--cream);
+  font-size: 0.75rem; font-weight: 600; letter-spacing: -0.01em;
+  transition: background 0.3s, transform 0.3s var(--ease);
+}
+.cs-proto__open:hover { background: var(--green); color: var(--ink); transform: translateY(-2px); }
+.cs-proto__small { display: none; }
+
+@media (max-width: 760px) {
+  .cs-proto { margin-top: 3.5rem; }
+  .cs-proto__frame, .cs-proto__open { display: none; }
+  .cs-proto__small { display: block; padding: 2rem 1.5rem; text-align: left; }
+  .cs-proto__small p { color: var(--gray); font-size: 0.9375rem; font-weight: 600; margin-bottom: 1.25rem; }
+}
+
 /* ---------- concept slider ----------
    Two stills of the same screens, swapped in place. The first image stays in
    flow so it sets the figure's height; the rest sit on top of it and cross-fade,
