@@ -626,19 +626,6 @@
     });
   });
 
-  /* Lenis smooths the page by animating toward its own target, and it only
-     adopts a scroll made from outside while it thinks it is idle. A wheel over
-     the iframe never reaches it — the browser scrolls the page natively, and
-     the tween still in flight drags it back. reset() makes the real position
-     the new target, so the two stop fighting. */
-  function adoptNativeScroll(box) {
-    if (!lenis) return;
-    var over = false;
-    box.addEventListener("mouseenter", function () { over = true; });
-    box.addEventListener("mouseleave", function () { over = false; });
-    window.addEventListener("scroll", function () { if (over) lenis.reset(); }, { passive: true });
-  }
-
   /* ---------- live prototype embed ----------
      The iframe is built only when the block scrolls close, and only on the
      widths that get the framed layout — so a phone never downloads it. */
@@ -659,7 +646,6 @@
       fr.addEventListener("load", function () {
         var ph = slot.querySelector(".cs-proto__ph");
         if (ph) ph.remove();
-        adoptNativeScroll(box);
       });
       slot.appendChild(fr);
     }
@@ -671,6 +657,14 @@
       io.observe(box);
     } else {
       build();
+    }
+
+    /* the shield hands the frame over on a click and takes it back when the
+       pointer leaves, so the page never loses the wheel by accident */
+    var shield = box.querySelector(".cs-proto__shield");
+    if (shield) {
+      shield.addEventListener("click", function () { box.classList.add("is-active"); });
+      box.addEventListener("mouseleave", function () { box.classList.remove("is-active"); });
     }
   });
 

@@ -458,8 +458,8 @@ h1, h2, h3, h4,
 .case-mini__metric .go .go__arrows svg { position: absolute; inset: 0; display: block; transition: transform 0.45s var(--ease-spring); }
 /* the incoming arrow is cream from the first frame: it only ever appears on
    the green flood, so it never has to wait for the colour transition */
-.case-mini__metric .go .go__arrows .a2 { transform: translateX(-160%); color: var(--cream); }
-.case-mini:hover .go .go__arrows svg { transform: translateX(160%); }
+.case-mini__metric .go .go__arrows .a2 { transform: translateX(-200%); color: var(--cream); }
+.case-mini:hover .go .go__arrows svg { transform: translateX(200%); }
 .case-mini:hover .go .go__arrows .a2 { transform: translateX(0); }
 /* On phones the original keeps the case card, stacked full-width under the
    hero copy. Absolute pinning collided with the copy on shorter screens, so
@@ -918,7 +918,7 @@ h1, h2, h3, h4,
 /* ============ TEAM ============ */
 /* full-bleed section on the paper background */
 [hidden] { display: none !important; }
-.team-sec, .pricing-sec, .contact-sec { padding: 0 var(--edge); background: var(--paper); }
+.team-sec, .pricing-sec, .contact-sec { position: relative; z-index: 3; padding: 0 var(--edge); background: var(--paper); }
 .team-sec__card { background: var(--green); border-radius: var(--r); padding: clamp(3.125rem, 5vw, 6.25rem) 0; }
 .team-sec .in { width: min(100rem, 88%); margin-inline: auto; }
 .team-sec .logo { color: var(--cream); font-size: 1.0625rem; }
