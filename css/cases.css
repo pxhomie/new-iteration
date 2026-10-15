@@ -124,7 +124,8 @@
 
 .cs-shell { margin-top: 3.75rem; background: var(--beige-2); border-radius: 2.5rem; padding: 0.625rem; display: flex; flex-direction: column; gap: 0.625rem; }
 .cs-shell__photo { position: relative; border-radius: 1.875rem; overflow: hidden; aspect-ratio: 1460 / 973; background: var(--dark); }
-.cs-shell__photo img { width: 100%; height: 100%; object-fit: cover; }
+.cs-shell__photo--video { aspect-ratio: 1920 / 998; }
+.cs-shell__photo img, .cs-shell__photo video { width: 100%; height: 100%; object-fit: cover; }
 .cs-shell__row { display: grid; grid-template-columns: 755fr 695fr; gap: 0.625rem; }
 .cs-meta { background: var(--cream); border-radius: 1.875rem; padding: 1.875rem; display: flex; flex-direction: column; justify-content: center; gap: 0; }
 .cs-meta__logo { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 1.625rem; }
@@ -147,6 +148,8 @@
 }
 .cs-block .lead, .results-intro { max-width: 55rem; font-size: clamp(1.625rem, 2.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.3; color: var(--dark); }
 .cs-block .body { max-width: 48rem; margin-top: 2.75rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.5; color: var(--gray); }
+/* a second paragraph continues the same thought — a paragraph gap, not a section gap */
+.cs-block .body + .body { margin-top: 1.375rem; }
 /* Results checklist. Narrower and tighter than the rest of the case column,
    as in the original: the pills stop at 36.25rem instead of running the full
    55rem, which keeps the longest line just inside the text box and lets the
@@ -178,7 +181,7 @@
 .cs-fig img { width: 100%; height: 100%; object-fit: cover; }
 /* video figure: same frame as the stills, but the clip's own 16:9 so the
    player is never letterboxed, plus the poster/play affordance */
-.cs-fig--video { position: relative; aspect-ratio: 16 / 9; cursor: pointer; background: var(--dark); }
+.cs-fig--video { position: relative; aspect-ratio: 16 / 9; cursor: pointer; background: var(--green); width: 100%; }
 /* the YouTube badge — the shape people read as "this plays on YouTube" */
 .cs-fig--video .play {
   position: absolute; inset: 0; margin: auto; width: 5.75rem; height: 4rem; border-radius: 1.125rem;
@@ -209,35 +212,6 @@
 /* two concept shots side by side; collapses to a stack on mobile */
 /* the pair reads as two separate cards: a shell-gap between them, no shared
    background, and each half carries its own rounded corners. */
-/* ---------- feature breakdown ----------
-   A run of screen-and-explanation rows under The screens. The shot keeps the
-   left column on every row: the eye returns to the same place, so five rows
-   scan as a list rather than a zig-zag. */
-.cs-feats { margin-top: 6.25rem; }
-.cs-feat {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 5.5rem); align-items: center;
-  padding: clamp(2.5rem, 4vw, 3.75rem) 0;
-}
-.cs-feat + .cs-feat { border-top: 1px solid var(--line); }
-.cs-feat__shot {
-  border-radius: 1.875rem; overflow: hidden;
-  background: var(--beige-2); aspect-ratio: 4 / 3;
-}
-.cs-feat__shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.cs-feat__txt h3 {
-  font-size: var(--t-lead-2); font-weight: 600;
-  letter-spacing: -0.03em; line-height: 1.2; max-width: 22ch;
-}
-.cs-feat__txt p {
-  margin-top: 1.125rem; max-width: 34rem;
-  font-size: 1.0625rem; font-weight: 600; line-height: 1.6; color: var(--gray);
-}
-@media (max-width: 860px) {
-  .cs-feats { margin-top: 3.5rem; }
-  .cs-feat { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0; }
-  .cs-feat__txt p { margin-top: 0.875rem; font-size: 1rem; }
-}
 
 /* ---------- live prototype embed ----------
    The prototype is a self-contained page in an iframe. Its inner layout is
@@ -369,9 +343,20 @@
   .cs-slider__bar { gap: 0.625rem; }
 }
 
-/* figure that keeps the image’s own proportions */
-.cs-fig--nat { aspect-ratio: auto; background: none; }
-.cs-fig--nat img { height: auto; object-fit: contain; display: block; }
+/* figure that keeps the image’s own proportions.
+   Each figure carries its image ratio as --ar, so the box has a size before
+   the file loads (ScrollTrigger measures it) and the height cap can shrink
+   width and height together instead of letterboxing. On a wide, short
+   window the cap bites first and the block stays inside the screen; the
+   subtracted space leaves room for the floating nav. */
+.cs-fig--nat {
+  /* full width of the layout column. --ar carries the image's own ratio, so
+     the box has a size before the file loads — ScrollTrigger measures it
+     correctly and there is no layout shift. */
+  aspect-ratio: var(--ar, 1.5); background: var(--green); width: 100%;
+}
+.cs-fig--nat img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.cs-fig--nat.cs-slider .cs-slider__track { height: 100%; }
 
 .cs-fig--duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; aspect-ratio: auto; background: none; overflow: visible; }
 .cs-fig--duo img { border-radius: 1.875rem; }
